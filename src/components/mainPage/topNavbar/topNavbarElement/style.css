@@ -1,0 +1,14 @@
+.for-top-navbar-element{
+    height: 55px;
+    width: auto;
+    font-size: 8pt;
+    background-color: white;
+    margin: 2px 0 0 0;
+    border: none;
+}
+
+.for-picture{
+    padding-top: 7px;
+    height: 37px;
+    width: auto/2;
+}
