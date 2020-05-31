@@ -175,9 +175,103 @@ export default [
                       { title: 'Примечание', field: 'note'}
                     ],
                     data: [],
-                  }}
+                }},
+                {id: 4, label: "Обновление розничных цен", table: {
+                    columns: [
+                        { title: 'Штрихкод', field: 'barcode'},
+                        { title: 'Код', field: 'code' },
+                        { title: 'Наименование', field: 'label'},
+                        { title: 'Единица измерения', field: 'unit'},
+                        { title: 'Текущий остаток', field: 'currentRemains'},
+                        { title: 'Остаток до', field: 'remainsFor'},
+                        { title: 'Описание', field: 'description'},
+                        { title: 'Дата/Время с', field: 'datetimeFrom'},
+                        { title: 'Розничная цена', field: 'retailPrice'}
+                    ],
+                    data: []
+                }}
             ]
-        }
+        },
+        {id: 3, label: "Цены", childrenList: [
+            {id: 0, label: 'Управление ценами', table: {
+                columns: [
+                    { title: 'Наименование', field: 'label'},
+                    { title: 'Код', field: 'code' },
+                    { title: 'Штрихкод', field: 'barcode'},
+                    { title: 'Ассортименты матрицы', field: 'matrixAssortiments'}
+                ],
+                data: []
+            }},
+            {id: 1, label: 'Текущие цены', table: {
+                columns: [
+                    { title: 'Наименование', field: 'label'},
+                    { title: 'Код', field: 'code' },
+                    { title: 'Штрихкод', field: 'barcode'},
+                    { title: 'Остаток(после)', field: 'balanceAfter'},
+                    { title: 'Цена', field: 'price'},
+                    { title: 'Организация', field: 'organisation'},
+                    { title: 'Описание', field: 'description'}
+                ],
+                data: []
+            }},
+            {id: 2, label: 'Розничные цены', table: {
+                columns: [
+                    { title: 'Наименование', field: 'label'},
+                    { title: 'Код', field: 'code' },
+                    { title: 'Штрихкод', field: 'barcode'},
+                    { title: 'Страна', field: 'country'},
+                    { title: 'Текущий остаток', field: 'currentRemains'},  
+                    { title: 'НДС %', field: 'VAT'},
+                    { title: 'Поставщик', field: 'sender'},
+                    { title: 'Вход. цена', field: 'enterPrice'},
+                    { title: '% ТН товар (основная)', field: 'commodityAllowance'},
+                    { title: '% ТН группа (основная)', field: 'griupAllowance'},
+                    { title: 'РЦ, над надбавка', field: 'retailPriceAllowance'}
+                ],
+                data: []
+            }}
+        ]},
+        {id: 4, label: 'Задолжности', childrenList: [
+            {id: 0, label: 'Управление задолжностями', table: {
+                columns: [
+                    { title: 'Тип договора', field: 'contractType'},
+                    { title: 'Серия/номер', field: 'serialNumber'},
+                    { title: 'Организация(поставщик)', field: 'organizationSender'},
+                    { title: 'Организация(покупатель)', field: 'organizationCustomer'},
+                    { title: 'Валюта взаиморасчетов', field: 'settlementCurrency'},
+                    { title: 'Задолженость на конец дня (упр.)', field: 'debtEndDayManag'},
+                    { title: 'Задолженость на конец дня (бух.)', field: 'debtEndDayAccounting'},
+                    { title: 'Долг по документам', field: 'debtByContracts'}
+                ],
+                data: []
+            }},
+            {id: 1, label: 'Разнесение документов', table: {
+                columns: [
+                    { title: 'Дата', field: 'Date'},
+                    { title: 'Название документа', field: 'documentName'},
+                    { title: 'Сумма', field: 'sum'},
+                    { title: 'Расписано из документа', field: 'wroteFromDoc'}
+                ],
+                data: []
+            }},
+            {id: 2, label: 'Неоплаченные документы', table: {
+                columns: [
+                    { title: 'Номер', field: 'number'},
+                    { title: 'Серия', field: 'seria'},
+                    { title: 'Дата', field: 'date'},
+                    { title: 'Организация(поставщик)', field: 'organizationSender'},
+                    { title: 'Склад покупателя', field: 'customerStorage'},
+                    { title: 'Валюта договора', field: 'contractCurrency'},
+                    { title: 'Серия/Номер', field: 'number'},
+                    { title: 'Сумма документа', field: 'contractSum'},
+                    { title: 'Оплачено по', field: 'paidBy'},
+                    { title: 'Долг по документу', field: 'debtByDocument'},
+                    { title: 'Название документа', field: 'docName'},
+                    { title: 'Расписано из документа', field: 'wroteFromDoc'}
+                ],
+                data: []
+            }}
+        ]}
     ],
     },
     {id: 1, pic: catalog, note: "Справочники",
@@ -648,7 +742,12 @@ export default [
     mainList: [
         {id: 0, label: "Поступления",childrenList:
             [
-                {id:0, label:"Поставки", data:"Ежов Борис Пуськович"},
+                {id:0, label:"Поставки", data:"Ежов Борис Пуськович", table: {
+                    columns: [
+                      
+                    ], 
+                    data: []
+                }},
                 {id:1, label:"Возвраты", data:"Стив Джобс Успешнонаебалович"}
             ]
         },
