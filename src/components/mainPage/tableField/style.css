@@ -1,12 +1,16 @@
 .position {
-  overflow: scroll;
+  overflow: hidden;
   height: 90%;
   width: 78%;
   font-size: 5pt;
   margin-left: 4px;
 }
 
-.btn {
-  height: 50px;
-  width: 400px;
+.btn-position {
+  height: 40px;
+  align-items: flex-end;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }

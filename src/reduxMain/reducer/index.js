@@ -3,11 +3,13 @@ import {
   SET_ID_LEFT_BAR,
   SET_ID_LEFT_FIELD,
   UPDATE_TABLE_DATA,
+  SET_DATA,
 } from "../constants";
 import TopNavbarItems from "../../itemsOfTopNavbar.js";
 import axios from "axios";
 
 let initialState = {
+  data: {},
   idTop: 0,
   idLeftField: 0,
   idLeft: 0,
@@ -36,27 +38,19 @@ const Reducer = (state = initialState, action) => {
       return initialState;
     }
     case UPDATE_TABLE_DATA: {
-      let location =
-        TopNavbarItems[initialState.idTop].note +
-        "/" +
-        TopNavbarItems[initialState.idTop].mainList[initialState.idLeftField]
-          .label +
-        "/" +
-        TopNavbarItems[initialState.idTop].mainList[initialState.idLeftField]
-          .childrenList[initialState.idLeft].label;
-
       let path =
         TopNavbarItems[initialState.idTop].mainList[initialState.idLeftField]
           .childrenList[initialState.idLeft].path;
 
-      let obj = { path: path, location: location, data: action.value.data };
-      console.log(obj)
-      axios.post(
-        `http://localhost:4000/${path}`,
-         obj ,
-        { "Content-Type": "application/x-www-form-urlencoded" }
-      );
+      let obj = { path: path, data: action.value.data };
+      axios.post(`http://localhost:4000/${path}`, obj, {
+        "Content-Type": "application/x-www-form-urlencoded",
+      });
       return initialState;
+    }
+    case SET_DATA: {
+      initialState = Object.assign({}, state, { data: action.value });
+      return Object.assign({}, state, { data: action.value });
     }
     default:
       return state;

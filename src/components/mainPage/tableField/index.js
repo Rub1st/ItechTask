@@ -17,7 +17,12 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import { updateData } from "../../../reduxMain/actions/dataActions";
+import { updateData, takeData } from "../../../reduxMain/actions/dataActions";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -43,8 +48,30 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
 function MaterialTableDemo(props) {
   const [state, setState] = React.useState(props.data.table);
+
+  const classes = useStyles();
+  const [customer, setCustomer] = React.useState("");
+  const [provider, setProvider] = React.useState("");
+
+  const handleChangeProvider = (event) => {
+    setProvider(event.target.value);
+  };
+
+  const handleChangeCustomer = (event) => {
+    setCustomer(event.target.value);
+  };
 
   React.useEffect(() => {
     setState(props.data.table);
@@ -56,7 +83,7 @@ function MaterialTableDemo(props) {
         icons={tableIcons}
         title={props.data.label}
         columns={state.columns}
-        data={state.data}
+        data={props.setData(state.path)}
         editable={{
           onRowAdd: (newData) =>
             new Promise((resolve) => {
@@ -95,21 +122,72 @@ function MaterialTableDemo(props) {
             }),
         }}
       />
-      <button
-        style={{
-          height: "40px",
-          width: "200px",
-          fontSize: "20px",
-          marginTop: "20px",
-        }}
-        onClick={() => props.updateData(state)}
-      >
-        Отправить
-      </button>
+      <div className="d-flex">
+        {props.ID.idTop === 3 &&
+        props.ID.idLeftField === 12 &&
+        props.ID.idLeft === 0 ? (
+          <>
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Поставщик</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={provider}
+                  onChange={handleChangeProvider}
+                >
+                  {props.setData("providers").map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Покупатель
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={customer}
+                  onChange={handleChangeCustomer}
+                >
+                  {props.setData("customers").map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <button
+              className="btn btn-info btn-position"
+              style={{ marginRight: "550px" }}
+              onClick={() => props.updateData(state)}
+            >
+              Оформить договор
+            </button>
+          </>
+        ) : null}
+
+        <button
+          className="btn btn-success btn-position"
+          onClick={() => props.updateData(state)}
+        >
+          Отправить
+        </button>
+      </div>
     </div>
   );
 }
 
-export default connect(null, (dispatch) => ({
-  updateData: (table) => dispatch(updateData(table)),
-}))(MaterialTableDemo);
+export default connect(
+  (state) => ({
+    ID: state,
+  }),
+  (dispatch) => ({
+    updateData: (table) => dispatch(updateData(table)),
+    setData: (path) => dispatch(takeData(path)),
+  })
+)(MaterialTableDemo);
