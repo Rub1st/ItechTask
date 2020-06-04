@@ -50,14 +50,12 @@ const Reducer = (state = initialState, action) => {
           .childrenList[initialState.idLeft].path;
 
       let obj = { path: path, location: location, data: action.value.data };
-
+      console.log(obj)
       axios.post(
-        `localhost:3000/${path}`,
-        { obj },
+        `http://localhost:4000/${path}`,
+         obj ,
         { "Content-Type": "application/x-www-form-urlencoded" }
       );
-
-      console.log(obj);
       return initialState;
     }
     default:

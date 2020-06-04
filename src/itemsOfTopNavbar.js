@@ -544,18 +544,15 @@ export default [
           {
             id: 0,
             label: "Товары",
+            path: "products",
             table: {
               columns: [
-                { title: "Штрихкод", field: "close" },
-                { title: "Наименование", field: "given" },
-                { title: "Код группы товаров", field: "number" },
-                { title: "Полное имя группы", field: "seria" },
-                { title: "Код", field: "dateOfDocument" },
-                { title: "Название", field: "Sender" },
-                { title: "Единица измерения", field: "warehouseOfSender" },
-                { title: "Бренд", field: "getter" },
-                { title: "Страна", field: "warehouseOfGetter" },
-                { title: "Производитель", field: "operation" },
+                { title: "Штрихкод", field: "barcode" },
+                { title: "Наименование", field: "name" },
+                { title: "Код группы товаров", field: "productGroupId" },
+                { title: "Единица измерения", field: "unitId" },
+                { title: "Бренд", field: "manufactorName" },
+                { title: "Страна", field: "country" },
               ],
               data: [],
             },
@@ -563,12 +560,13 @@ export default [
           {
             id: 1,
             label: "Товарные группы",
+            path: "productGroups",
             table: {
               columns: [
                 { title: "Дерево", field: "close" },
                 { title: "Отменено", field: "given" },
                 { title: "Код", field: "number" },
-                { title: "Наименование", field: "seria" },
+                { title: "Наименование", field: "name" },
                 { title: "Категорийный менеджер", field: "dateOfDocument" },
                 { title: "Неактивная", field: "Sender" },
                 { title: "Полное имя", field: "warehouseOfSender" },
@@ -686,9 +684,10 @@ export default [
           {
             id: 8,
             label: "Бренды",
+            path: "manufactors",
             table: {
               columns: [
-                { title: "Наименование", field: "close" },
+                { title: "Наименование", field: "name" },
                 { title: "Код", field: "given" },
                 { title: "Группа бренда", field: "number" },
               ],
