@@ -79,7 +79,10 @@ export default [
           {
             id: 1,
             label: "Обработка внутренних заказов",
-            data: "Бируля Никита Валерьевич",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -108,7 +111,14 @@ export default [
               data: [],
             },
           },
-          { id: 1, label: "POS", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 1,
+            label: "POS",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 2,
             label: "Печать ценников ТСД",
@@ -142,7 +152,14 @@ export default [
               data: [],
             },
           },
-          { id: 3, label: "Обработка Z-отчетов", data: "Ежов Борис Пуськович" },
+          {
+            id: 3,
+            label: "Обработка Z-отчетов",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 4,
             label: "Переоценка",
@@ -169,7 +186,10 @@ export default [
           {
             id: 5,
             label: "Подарочные сертификаты",
-            data: "Бил Гейтс Успешноспиздялович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 6,
@@ -207,7 +227,10 @@ export default [
           {
             id: 0,
             label: "Заказы по потребностям",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
@@ -235,7 +258,10 @@ export default [
           {
             id: 2,
             label: "Заказы по графику",
-            data: "Бил Гейтс Успешноспиздялович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 3,
@@ -442,16 +468,31 @@ export default [
           {
             id: 1,
             label: "Организации",
+            path: "companies",
             table: {
               columns: [
-                { title: "Наименование", field: "close" },
-                { title: "Код", field: "given" },
-                { title: "Полное наименование", field: "number" },
-                { title: "УНП", field: "seria" },
-                { title: "Форма собственности", field: "dateOfDocument" },
-                { title: "Группа организаций", field: "Sender" },
-                { title: "Юридический адрес", field: "warehouseOfSender" },
-                { title: "Телефон/факс", field: "getter" },
+                { title: "Наименование", field: "name" },
+                { title: "УНП", field: "PAN" },
+                { title: "Форма собственности", field: "ownerType" },
+                { title: "Группа организаций", field: "organizationGroup" },
+                { title: "Юридический адрес", field: "address" },
+                { title: "Телефон/факс", field: "telephone" },
+                { title: "E-mail", field: "email" },
+                {
+                  title: "Явл. поставшиком",
+                  field: "isProvider",
+                  type: "boolean",
+                },
+                {
+                  title: "Явл. компанией",
+                  field: "isOrganization",
+                  type: "boolean",
+                },
+                {
+                  title: "Явл. покупателем",
+                  field: "isCustomer",
+                  type: "boolean",
+                },
               ],
               data: [],
             },
@@ -1955,21 +1996,73 @@ export default [
           {
             id: 0,
             label: "Предварительные заказы",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 1, label: "Резервы", data: "Стив Джобс Успешнонаебалович" },
-          { id: 2, label: "Заказы", data: "Ежов Борис Пуськович" },
-          { id: 3, label: "Накладные", data: "Стив Джобс Успешнонаебалович" },
-          { id: 4, label: "Акты расхождений", data: "Ежов Борис Пуськович" },
+          {
+            id: 1,
+            label: "Резервы",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Заказы",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Накладные",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 4,
+            label: "Акты расхождений",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 1,
         label: "Возвраты",
         childrenList: [
-          { id: 0, label: "Заказы", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Накладные", data: "Стив Джобс Успешнонаебалович" },
-          { id: 2, label: "Акты расхождений", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Заказы",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Накладные",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Акты расхождений",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
@@ -1979,22 +2072,34 @@ export default [
           {
             id: 0,
             label: "Типы статистических групп",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Статистические группы",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 2,
             label: "Конвертация статистических ед. изм.",
-            data: "Бил Гейтс Успешноспиздялович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 3,
             label: "Статистический отчет",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2005,12 +2110,18 @@ export default [
           {
             id: 0,
             label: "Типы статистических отчетов",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Статистические отчеты",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2018,34 +2129,67 @@ export default [
         id: 4,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Операции", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Операции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 5,
         label: "Отчеты",
         childrenList: [
-          { id: 0, label: "Регистр продаж", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Регистр продаж",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 1,
             label: "Исполнение заявок",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 2, label: "Продажи по неделям", data: "Ежов Борис Пуськович" },
+          {
+            id: 2,
+            label: "Продажи по неделям",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 3,
             label: "Отчет по продажам",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 4,
             label: "Продажи клиентам по неделям",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 5,
             label: "Товарооборачиваемость по поставщикам",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2688,39 +2832,112 @@ export default [
         id: 0,
         label: "Задолженности",
         childrenList: [
-          { id: 0, label: "Условия оплаты", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Условия оплаты",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 1,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Налоги", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Банки", data: "Стив Джобс Успешнонаебалович" },
-          { id: 2, label: "Операции", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 0,
+            label: "Налоги",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Банки",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Операции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 2,
         label: "Движение денежных средств",
         childrenList: [
-          { id: 0, label: "Движение денег", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Платежи", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 0,
+            label: "Движение денег",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Платежи",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 3,
         label: "Бухгалтерский учет",
         childrenList: [
-          { id: 0, label: "Планы счетов", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Счета", data: "Стив Джобс Успешнонаебалович" },
-          { id: 2, label: "Проводки", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Планы счетов",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Счета",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Проводки",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 3,
             label: "Тип субконто",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 4, label: "Субконто (польз.)", data: "Ежов Борис Пуськович" },
+          {
+            id: 4,
+            label: "Субконто (польз.)",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
     ],
@@ -2734,51 +2951,151 @@ export default [
         id: 0,
         label: "Документы",
         childrenList: [
-          { id: 0, label: "Соглашения", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Прайсы", data: "Ежов Борис Пуськович" },
-          { id: 2, label: "Торговые надбавки", data: "Ежов Борис Пуськович" },
-          { id: 3, label: "Акции", data: "Ежов Борис Пуськович" },
-          { id: 4, label: "Акции (магазин)", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Соглашения",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Прайсы",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Торговые надбавки",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Акции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 4,
+            label: "Акции (магазин)",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 1,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Виды цен", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Виды цен",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 1,
             label: "Округления цен",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 2, label: "Операции", data: "Стив Джобс Успешнонаебалович" },
-          { id: 3, label: "Тип акции", data: "Стив Джобс Успешнонаебалович" },
-          { id: 4, label: "Листовки", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 2,
+            label: "Операции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Тип акции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 4,
+            label: "Листовки",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 2,
         label: "Отчеты",
         childrenList: [
-          { id: 0, label: "Регистр цен", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Регистр цен",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 3,
         label: "Цены конкурентов",
         childrenList: [
-          { id: 0, label: "Конкуренты", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Типы прайса", data: "Стив Джобс Успешнонаебалович" },
-          { id: 2, label: "Проводки", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Конкуренты",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Типы прайса",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Проводки",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 3,
             label: "Прайсы конкурентов",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 4,
             label: "Анализ цен конкурентов",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2796,17 +3113,26 @@ export default [
           {
             id: 0,
             label: "Загрузки прайса в оборудование",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Запросы обмена данными",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 2,
             label: "Запрет на применение скидок",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2817,7 +3143,10 @@ export default [
           {
             id: 0,
             label: "Серверы оборудования",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2825,32 +3154,83 @@ export default [
         id: 2,
         label: "Кассы",
         childrenList: [
-          { id: 0, label: "Модели касс", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Группы касс", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 0,
+            label: "Модели касс",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Группы касс",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 2,
             label: "Модели платёжных терминалов",
-            data: "Бил Гейтс Успешноспиздялович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 3, label: "Секции", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 3,
+            label: "Секции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 3,
         label: "Терминалы сбора данных",
         childrenList: [
-          { id: 0, label: "Документы ТСД", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Группы ТСД", data: "Стив Джобс Успешнонаебалович" },
-          { id: 2, label: "Модели ТСД", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Документы ТСД",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Группы ТСД",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Модели ТСД",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 3,
             label: "Группы типов документов",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 4,
             label: "Виды справочников ТСД",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2858,21 +3238,37 @@ export default [
         id: 4,
         label: "Весы",
         childrenList: [
-          { id: 0, label: "Группы весов", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Группы весов",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 1,
             label: "Модели весов",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 2,
             label: "Форматы этикеток весов",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 3,
             label: "Ячейки весов",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2883,12 +3279,18 @@ export default [
           {
             id: 0,
             label: "Группы прайс чекеров",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Модели прайс чекеров",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2903,21 +3305,52 @@ export default [
         id: 0,
         label: "Документы",
         childrenList: [
-          { id: 0, label: "Рейсы", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Маршруты", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Рейсы",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Маршруты",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 1,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Машины", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Машины",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 1,
             label: "Модели машин",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 2, label: "Водители", data: "Бил Гейтс Успешноспиздялович" },
+          {
+            id: 2,
+            label: "Водители",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
     ],
@@ -2934,12 +3367,18 @@ export default [
           {
             id: 0,
             label: "Сертификаты соответствия",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Таможенные декларации",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2947,11 +3386,21 @@ export default [
         id: 1,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Таможенная зона", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Таможенная зона",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 1,
             label: "Позиции ТН ВЭД",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -2969,25 +3418,73 @@ export default [
           {
             id: 0,
             label: "Производственные заказы",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 1, label: "Производство", data: "Ежов Борис Пуськович" },
-          { id: 2, label: "Списания сырья", data: "Ежов Борис Пуськович" },
+          {
+            id: 1,
+            label: "Производство",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Списания сырья",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 1,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Спецификации", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Спецификации",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 1,
             label: "Комиссии производства",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
-          { id: 2, label: "Замена", data: "Бил Гейтс Успешноспиздялович" },
-          { id: 3, label: "Операции", data: "Стив Джобс Успешнонаебалович" },
-          { id: 4, label: "Технологии", data: "Бил Гейтс Успешноспиздялович" },
+          {
+            id: 2,
+            label: "Замена",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Операции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 4,
+            label: "Технологии",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
     ],
@@ -3004,12 +3501,18 @@ export default [
           {
             id: 0,
             label: "Заказы на перемещение по ячейкам",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Перемещения по ячейкам",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -3020,12 +3523,18 @@ export default [
           {
             id: 0,
             label: "Регистр изменения остатков по ячейкам",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 1,
             label: "Остатки по ячейкам",
-            data: "Стив Джобс Успешнонаебалович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
@@ -3033,24 +3542,66 @@ export default [
         id: 2,
         label: "Рампа",
         childrenList: [
-          { id: 0, label: "Типы интервала", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Группы рамп", data: "Ежов Борис Пуськович" },
-          { id: 2, label: "Рампы", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Типы интервала",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Группы рамп",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Рампы",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 3,
         label: "Ячейки",
         childrenList: [
-          { id: 0, label: "Группы ячеек", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Ячейки", data: "Стив Джобс Успешнонаебалович" },
+          {
+            id: 0,
+            label: "Группы ячеек",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Ячейки",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
       {
         id: 4,
         label: "Справочники",
         childrenList: [
-          { id: 0, label: "Операции", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Операции",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
         ],
       },
     ],
@@ -3064,7 +3615,16 @@ export default [
       {
         id: 0,
         label: "Сменить пользователя",
-        childrenList: [{ id: 0, label: "Выйти", data: "Ежов Борис Пуськович" }],
+        childrenList: [
+          {
+            id: 0,
+            label: "Выйти",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+        ],
       },
     ],
   },
@@ -3078,12 +3638,29 @@ export default [
         id: 0,
         label: "Разделы",
         childrenList: [
-          { id: 0, label: "Оборочиваемость", data: "Ежов Борис Пуськович" },
-          { id: 1, label: "Продажа (по чекам)", data: "Ежов Борис Пуськович" },
+          {
+            id: 0,
+            label: "Оборочиваемость",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Продажа (по чекам)",
+            table: {
+              columns: [],
+              data: [],
+            },
+          },
           {
             id: 2,
             label: "Продажа (по строкам чеков)",
-            data: "Ежов Борис Пуськович",
+            table: {
+              columns: [],
+              data: [],
+            },
           },
         ],
       },
