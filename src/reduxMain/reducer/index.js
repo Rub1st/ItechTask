@@ -9,7 +9,7 @@ import TopNavbarItems from "../../itemsOfTopNavbar.js";
 import axios from "axios";
 
 let initialState = {
-  data: {},
+  data: [],
   idTop: 0,
   idLeftField: 0,
   idLeft: 0,
@@ -18,7 +18,7 @@ let initialState = {
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ID_TOP_BAR: {
-      initialState = Object.assign({}, state, {
+      state = Object.assign({}, state, {
         idTop: action.value,
         idLeftField: 0,
         idLeft: 0,
@@ -30,12 +30,12 @@ const Reducer = (state = initialState, action) => {
       });
     }
     case SET_ID_LEFT_BAR: {
-      initialState = Object.assign({}, state, { idLeft: action.value });
-      return initialState;
+      state = Object.assign({}, state, { idLeft: action.value });
+      return state;
     }
     case SET_ID_LEFT_FIELD: {
-      initialState = Object.assign({}, state, { idLeftField: action.value });
-      return initialState;
+      state = Object.assign({}, state, { idLeftField: action.value });
+      return state;
     }
     case UPDATE_TABLE_DATA: {
       let path =
@@ -46,10 +46,10 @@ const Reducer = (state = initialState, action) => {
       axios.post(`http://localhost:4000/${path}`, obj, {
         "Content-Type": "application/x-www-form-urlencoded",
       });
-      return initialState;
+      return state;
     }
     case SET_DATA: {
-      initialState = Object.assign({}, state, { data: action.value });
+      state = Object.assign({}, state, { data: action.value });
       return Object.assign({}, state, { data: action.value });
     }
     default:

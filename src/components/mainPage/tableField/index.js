@@ -59,8 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MaterialTableDemo(props) {
-  const [state, setState] = React.useState(props.data.table);
-
+  const [state, setState] = React.useState(props.data);
   const classes = useStyles();
   const [customer, setCustomer] = React.useState("");
   const [provider, setProvider] = React.useState("");
@@ -74,7 +73,8 @@ function MaterialTableDemo(props) {
   };
 
   React.useEffect(() => {
-    setState(props.data.table);
+    setState(props.data);
+    props.setData(state.path)
   }, [props.data.table]);
 
   return (
@@ -82,8 +82,8 @@ function MaterialTableDemo(props) {
       <MaterialTable
         icons={tableIcons}
         title={props.data.label}
-        columns={state.columns}
-        data={props.setData(state.path)}
+        columns={state.table.columns}
+        data={props.ID.data}
         editable={{
           onRowAdd: (newData) =>
             new Promise((resolve) => {
@@ -184,7 +184,7 @@ function MaterialTableDemo(props) {
 
 export default connect(
   (state) => ({
-    ID: state,
+    ID: state
   }),
   (dispatch) => ({
     updateData: (table) => dispatch(updateData(table)),

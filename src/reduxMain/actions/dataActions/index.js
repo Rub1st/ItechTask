@@ -19,7 +19,7 @@ const setData = (data) => ({
 
 export const takeData = (path) => (dispatch) => {
   axios.get(`http://localhost:4000/${path}`).then((response) => {
-    dispatch(setData(response.setData));
+    dispatch(setData(response.data));
   });
 };
 

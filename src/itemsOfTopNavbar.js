@@ -448,6 +448,7 @@ export default [
           {
             id: 0,
             label: "Сотрудники",
+            path: "employers",
             table: {
               columns: [
                 { title: "Фамилия", field: "surname" },
@@ -1871,19 +1872,11 @@ export default [
             label: "Договоры",
             table: {
               columns: [
-                { title: "Организация (поставщик)", field: "eria" },
-                { title: "Склады поставщика", field: "daeOfDocument" },
-                { title: "Огранизация (покупатель)", field: "timeOfocument" },
-                { title: "Склады покупателя", field: "nber" },
-                { title: "Код", field: "era" },
-                { title: "Серия/Номер", field: "satusOfNote" },
-                { title: "Действует (с)", field: "close" },
-                { title: "Действует (по)", field: "given" },
-                { title: "Валюта взаиморасчетов", field: "ender" },
-                { title: "Тип обмена", field: "nmber" },
-                { title: "Условия оплаты", field: "daeOfocument" },
-                { title: "Примечание", field: "nmbe" },
-                { title: "Тип договора", field: "deOfoument" },
+                { title: "Организация (поставщик)", field: "provider" },
+                { title: "Огранизация (покупатель)", field: "customer" },
+                { title: "Код", field: "number" },
+                { title: "Серия/Номер", field: "seria" },
+                { title: "Дата создания", field: "createdAt"} 
               ],
               data: [],
             },
