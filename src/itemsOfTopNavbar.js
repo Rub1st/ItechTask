@@ -1869,6 +1869,7 @@ export default [
         childrenList: [
           {
             id: 0,
+            path: "contracts",
             label: "Договоры",
             table: {
               columns: [

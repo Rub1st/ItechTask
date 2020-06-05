@@ -4,6 +4,7 @@ import {
   SET_ID_LEFT_FIELD,
   UPDATE_TABLE_DATA,
   SET_DATA,
+  ADD
 } from "../../constants";
 import axios from "axios";
 
@@ -22,6 +23,18 @@ export const takeData = (path) => (dispatch) => {
     dispatch(setData(response.data));
   });
 };
+
+
+const add = (data) => ({
+  type: ADD,
+  value: data,
+});
+
+export const AddToData = (obj, path) => dispatch => {
+  axios.post(`http://localhost:4000/${path}/create`, obj, {
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).then((response) => dispatch(add(response.data)))
+}
 
 export const updateData = (table) => ({
   type: UPDATE_TABLE_DATA,

@@ -4,6 +4,7 @@ import {
   SET_ID_LEFT_FIELD,
   UPDATE_TABLE_DATA,
   SET_DATA,
+  ADD
 } from "../constants";
 import TopNavbarItems from "../../itemsOfTopNavbar.js";
 import axios from "axios";
@@ -12,7 +13,7 @@ let initialState = {
   data: [],
   idTop: 0,
   idLeftField: 0,
-  idLeft: 0,
+  idLeft: 0
 };
 
 const Reducer = (state = initialState, action) => {
@@ -48,8 +49,10 @@ const Reducer = (state = initialState, action) => {
       });
       return state;
     }
+    case ADD:{
+      console.log(action.value)
+    }
     case SET_DATA: {
-      state = Object.assign({}, state, { data: action.value });
       return Object.assign({}, state, { data: action.value });
     }
     default:
