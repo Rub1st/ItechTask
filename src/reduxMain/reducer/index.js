@@ -4,6 +4,9 @@ import {
   SET_ID_LEFT_FIELD,
   UPDATE_TABLE_DATA,
   SET_DATA,
+  SET_PROVIDERS,
+  SET_CUSTOMERS,
+  DESTROY,
   ADD
 } from "../constants";
 import TopNavbarItems from "../../itemsOfTopNavbar.js";
@@ -13,7 +16,9 @@ let initialState = {
   data: [],
   idTop: 0,
   idLeftField: 0,
-  idLeft: 0
+  idLeft: 0,
+  customers: [],
+  providers: []
 };
 
 const Reducer = (state = initialState, action) => {
@@ -38,6 +43,14 @@ const Reducer = (state = initialState, action) => {
       state = Object.assign({}, state, { idLeftField: action.value });
       return state;
     }
+    case SET_CUSTOMERS: {
+      state = Object.assign({}, state, {customers: action.value})
+      return state;
+    }
+    case SET_PROVIDERS: {
+      state = Object.assign({}, state, {providers: action.value})
+      return state;
+    }
     case UPDATE_TABLE_DATA: {
       let path =
         TopNavbarItems[initialState.idTop].mainList[initialState.idLeftField]
@@ -48,6 +61,9 @@ const Reducer = (state = initialState, action) => {
         "Content-Type": "application/x-www-form-urlencoded",
       });
       return state;
+    }
+    case DESTROY: {
+
     }
     case ADD:{
       console.log(action.value)

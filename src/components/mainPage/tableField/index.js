@@ -2,7 +2,6 @@ import React, { forwardRef } from "react";
 import "./style.css";
 import MaterialTable from "material-table";
 import { connect } from "react-redux";
-import axios from 'axios'
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Check from "@material-ui/icons/Check";
@@ -18,7 +17,7 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import { updateData, takeData, AddToData } from "../../../reduxMain/actions/dataActions";
+import { updateData, takeData, destroyData, AddToData, takeCustomers, takeProviders } from "../../../reduxMain/actions/dataActions";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -97,27 +96,22 @@ function MaterialTableDemo(props) {
               }, 1000)
             }),
           onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
+            new Promise((resolve, reject) => {
               setTimeout(() => {
-                resolve();
-                if (oldData) {
-                  setState((prevData) => {
-                    const data = [...prevData];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevData, data };
-                  });
+                {
+                  props.destroy(oldData, state.path)
+                  props.add(newData, state.path);
                 }
-              }, 600);
+                resolve()
+              }, 1000)
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
               setTimeout(() => {
+                {
+                  props.destroy(oldData, state.path)
+                }
                 resolve();
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
               }, 600);
             }),
         }}
@@ -137,7 +131,7 @@ function MaterialTableDemo(props) {
                   onChange={handleChangeProvider}
                 >
                   { 
-                       
+                    props.ID.providers.map(el => (<MenuItem value={el.name}>{el.name}</MenuItem>))                    
                   }
                 </Select>
               </FormControl>
@@ -155,7 +149,7 @@ function MaterialTableDemo(props) {
                   onChange={handleChangeCustomer}
                 >
                   {
-                         
+                    props.ID.customers.map(el => (<MenuItem value={el.name}>{el.name}</MenuItem>))
                   }                  
                 </Select>
               </FormControl>
@@ -173,11 +167,15 @@ function MaterialTableDemo(props) {
 
         <button
           className="btn btn-success btn-position"
-          onClick={() => props.updateData(state)}
+          onClick={() => props.setData(state.path)}
         >
           Отправить
         </button>
-        <button onClick={() =>  props.setData(state.path) }>Click</button>
+        <button onClick={() => { 
+          props.setData(state.path);
+          props.setProviders(); 
+          props.setCustomers();
+          } }>Click</button>
       </div>
     </div>
   );
@@ -190,6 +188,9 @@ export default connect(
   (dispatch) => ({
     updateData: (table) => dispatch(updateData(table)),
     setData: (path) => dispatch(takeData(path)),
-    add: (data, path) => dispatch(AddToData(data, path))
+    add: (data, path) => dispatch(AddToData(data, path)),
+    destroy: (data, path) => dispatch(destroyData(data, path)),
+    setCustomers: () => dispatch(takeCustomers()),
+    setProviders: () => dispatch(takeProviders())
   })
 )(MaterialTableDemo);
