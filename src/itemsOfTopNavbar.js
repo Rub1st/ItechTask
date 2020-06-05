@@ -1874,7 +1874,9 @@ export default [
             table: {
               columns: [
                 { title: "Организация (поставщик)", field: "provider" },
+                { title: "Адрес поставщика", field: "providerAddress"},
                 { title: "Огранизация (покупатель)", field: "customer" },
+                { title: "Адрес покупателя", field: "customerAddress"},
                 { title: "Код", field: "number" },
                 { title: "Серия/Номер", field: "seria" },
                 { title: "Дата создания", field: "createdAt"} 

@@ -36,11 +36,11 @@ const Reducer = (state = initialState, action) => {
       });
     }
     case SET_ID_LEFT_BAR: {
-      state = Object.assign({}, state, { idLeft: action.value });
+      state = Object.assign({}, state, { idLeft: action.value, data: [] });
       return state;
     }
     case SET_ID_LEFT_FIELD: {
-      state = Object.assign({}, state, { idLeftField: action.value });
+      state = Object.assign({}, state, { idLeftField: action.value, data: [] });
       return state;
     }
     case SET_CUSTOMERS: {

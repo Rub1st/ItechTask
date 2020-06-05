@@ -62,8 +62,8 @@ const useStyles = makeStyles((theme) => ({
 function MaterialTableDemo(props) {
   const [state, setState] = React.useState(props.data);
   const classes = useStyles();
-  const [customer, setCustomer] = React.useState("");
-  const [provider, setProvider] = React.useState("");
+  const [customer, setCustomer] = React.useState({});
+  const [provider, setProvider] = React.useState({});
   const [customers, setCustomers] = React.useState([]);
 
   const handleChangeProvider = (event) => {
@@ -131,7 +131,7 @@ function MaterialTableDemo(props) {
                   onChange={handleChangeProvider}
                 >
                   { 
-                    props.ID.providers.map(el => (<MenuItem value={el.name}>{el.name}</MenuItem>))                    
+                    props.ID.providers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))                    
                   }
                 </Select>
               </FormControl>
@@ -149,7 +149,7 @@ function MaterialTableDemo(props) {
                   onChange={handleChangeCustomer}
                 >
                   {
-                    props.ID.customers.map(el => (<MenuItem value={el.name}>{el.name}</MenuItem>))
+                    props.ID.customers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))
                   }                  
                 </Select>
               </FormControl>
@@ -158,7 +158,14 @@ function MaterialTableDemo(props) {
             <button
               className="btn btn-info btn-position"
               style={{ marginRight: "550px" }}
-              onClick={() => props.updateData(state)}
+              onClick={() => {
+                props.add({
+                  customer: customer.name,
+                  provider: provider.name,
+                  customerAddress: customer.address,
+                  providerAddress: provider.address
+                }, state.path);
+              }}
             >
               Оформить договор
             </button>
