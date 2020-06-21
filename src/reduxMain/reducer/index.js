@@ -28,11 +28,13 @@ const Reducer = (state = initialState, action) => {
         idTop: action.value,
         idLeftField: 0,
         idLeft: 0,
+        date: []
       });
       return Object.assign({}, state, {
         idTop: action.value,
         idLeftField: 0,
         idLeft: 0,
+        date: []
       });
     }
     case SET_ID_LEFT_BAR: {

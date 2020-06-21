@@ -157,7 +157,7 @@ function MaterialTableDemo(props) {
 
             <button
               className="btn btn-info btn-position"
-              style={{ marginRight: "550px" }}
+              style={{ marginRight: "250px" }}
               onClick={() => {
                 props.add({
                   customer: customer.name,
@@ -178,11 +178,11 @@ function MaterialTableDemo(props) {
         >
           Отправить
         </button>
-        <button onClick={() => { 
+        <button className="btn btn-dark btn-position" onClick={() => { 
           props.setData(state.path);
           props.setProviders(); 
           props.setCustomers();
-          } }>Click</button>
+          } }>Обновить данные</button>
       </div>
     </div>
   );
