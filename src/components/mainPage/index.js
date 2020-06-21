@@ -19,7 +19,7 @@ const MainPage = (props) => {
 
 export default connect(
     state => ({
-      Id: state
+      Id: state.idReducer
     }),
     dispatch => ({})
   )(MainPage)

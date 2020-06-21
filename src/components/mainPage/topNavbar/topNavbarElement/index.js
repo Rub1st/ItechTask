@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 import {connect} from 'react-redux'
-import {setIdTopBar} from '../../../../reduxMain/actions/dataActions'
+import {setIdTopBar} from '../../../../reduxMain/reducer/id/actions'
 
 const TopNavbarElement = (props) => {
     return(

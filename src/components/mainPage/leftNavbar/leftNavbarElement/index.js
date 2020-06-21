@@ -5,7 +5,7 @@ import form from '../../../../icons/form.png'
 import './style.css'
 import {setIdLeftBar,
         setIdLeftField}
- from '../../../../reduxMain/actions/dataActions'
+ from '../../../../reduxMain/reducer/id/actions'
 
 const LeftNavbarElement = (props) => (
     <>

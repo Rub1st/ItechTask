@@ -17,7 +17,9 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import { updateData, takeData, destroyData, AddToData, takeCustomers, takeProviders } from "../../../reduxMain/actions/dataActions";
+import { destroyData, AddToData } from "../../../reduxMain/actions/dataActions"
+import { updateData, takeData } from "../../../reduxMain/reducer/id/actions";
+import { takeCustomers, takeProviders } from "../../../reduxMain/reducer/cospro/actions"
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -64,7 +66,6 @@ function MaterialTableDemo(props) {
   const classes = useStyles();
   const [customer, setCustomer] = React.useState({});
   const [provider, setProvider] = React.useState({});
-  const [customers, setCustomers] = React.useState([]);
 
   const handleChangeProvider = (event) => {
     setProvider(event.target.value);
@@ -131,7 +132,7 @@ function MaterialTableDemo(props) {
                   onChange={handleChangeProvider}
                 >
                   { 
-                    props.ID.providers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))                    
+                    props.CosPro.providers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))                    
                   }
                 </Select>
               </FormControl>
@@ -149,7 +150,7 @@ function MaterialTableDemo(props) {
                   onChange={handleChangeCustomer}
                 >
                   {
-                    props.ID.customers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))
+                    props.CosPro.customers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))
                   }                  
                 </Select>
               </FormControl>
@@ -190,7 +191,8 @@ function MaterialTableDemo(props) {
 
 export default connect(
   (state) => ({
-    ID: state
+    ID: state.idReducer,
+    CosPro: state.cosProReducer
   }),
   (dispatch) => ({
     updateData: (table) => dispatch(updateData(table)),
