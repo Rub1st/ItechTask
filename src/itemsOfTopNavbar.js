@@ -112,7 +112,7 @@ export default [
             },
           },
           {
-            id: 5,
+            id: 1,
             label: "Подарочные сертификаты",
             table: {
               columns: [],
@@ -120,7 +120,7 @@ export default [
             },
           },
           {
-            id: 6,
+            id: 2,
             label: "Выписка подарочных сертификатов",
             table: {
               columns: [
@@ -153,7 +153,7 @@ export default [
         label: "Закупка",
         childrenList: [
           {
-            id: 1,
+            id: 0,
             label: "Графики заказов",
             table: {
               columns: [
@@ -176,7 +176,7 @@ export default [
             },
           },
           {
-            id: 2,
+            id: 1,
             label: "Заказы по графику",
             table: {
               columns: [],
@@ -184,7 +184,7 @@ export default [
             },
           },
           {
-            id: 3,
+            id: 2,
             label: "Приемка по заказам",
             table: {
               columns: [
@@ -214,7 +214,7 @@ export default [
         label: "Цены",
         childrenList: [
           {
-            id: 1,
+            id: 0,
             label: "Текущие цены",
             table: {
               columns: [
@@ -230,7 +230,7 @@ export default [
             },
           },
           {
-            id: 2,
+            id: 1,
             label: "Розничные цены",
             table: {
               columns: [
@@ -462,7 +462,7 @@ export default [
             },
           },
           {
-            id: 8,
+            id: 3,
             label: "Бренды",
             path: "manufactors",
             table: {
@@ -492,7 +492,7 @@ export default [
             },
           },
           {
-            id: 3,
+            id: 1,
             label: "Страны",
             table: {
               columns: [
@@ -602,7 +602,7 @@ export default [
             },
           },
           {
-            id: 2,
+            id: 1,
             label: "Накладные",
             table: {
               columns: [
@@ -1133,7 +1133,7 @@ export default [
         ],
       },
       {
-        id: 12,
+        id: 8,
         label: "Справочники",
         childrenList: [
           {
