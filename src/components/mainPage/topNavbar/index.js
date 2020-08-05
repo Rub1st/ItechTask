@@ -8,13 +8,15 @@ const TopNavbar = ({topNavbarItems}) => (
     <ul className="list-inline for-list">
         {
             topNavbarItems.map(el => 
-                <li key={el.id} className="list-inline-item">
+                <li title={el.note} key={el.id} className="list-inline-item">
                     <TopNavbarElement id={el.id} pic={el.pic} note={el.note}/>
                 </li>
                 )
         }
     </ul>
-    <hr className="for-horizontal-line"/>
+        <div>
+            <hr className="for-horizontal-line"/>
+        </div>
     </div>
 )
 

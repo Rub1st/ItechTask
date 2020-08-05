@@ -9,15 +9,17 @@ import {setIdLeftBar,
 
 const LeftNavbarElement = (props) => (
     <>
-    <p><img src={open} alt=""/> {props.label}</p>
-    <ul className="for-children-list">
+    <p title={props.label}><img src={open} alt=""/> {props.label}</p>
+    {
+       <ul className="for-children-list">
         {
             props.childrenList.map(el => <li key={el.id} onClick={() =>
              (props.setIdLeftBar(el.id),props.setIdLeftField(props.id))}>
-                <p><img src={form} alt=""/> {el.label}</p>
-            </li>)
+                <p title={el.label} className={'prelabel'}><img src={form} alt=""/> {el.label}</p>
+            </li>) 
         }
     </ul>
+    }
     </>
 )
 

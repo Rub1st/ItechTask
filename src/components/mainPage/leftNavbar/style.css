@@ -1,10 +1,12 @@
 .for-main-list{
     list-style-type: none;
     font-size: 8pt;
-    width: 280px;
+    width: 260px;
     height: 400px;
     overflow-y: scroll;   
     padding: 10px 0 0 20px;   
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
 
 .for-left-block{
