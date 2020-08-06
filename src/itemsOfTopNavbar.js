@@ -1395,8 +1395,8 @@ export default [
             label: "Группы акций",
             table: {
               columns: [
-                { title: "Порядок", field: "timeOfocument" },
-                { title: "Наименование", field: "nber" },
+                { title: "Код", field: "Code" },
+                { title: "Наименование", field: "label" },
               ],
               data: [],
             },
@@ -2080,7 +2080,9 @@ export default [
             id: 0,
             label: "Соглашения",
             table: {
-              columns: [],
+              columns: [
+               
+              ],
               data: [],
             },
           },
@@ -2088,7 +2090,10 @@ export default [
             id: 1,
             label: "Прайсы",
             table: {
-              columns: [],
+              columns: [
+                { title: "Код", field: "code" },
+                { title: "Наименование", field: "label" }
+              ],
               data: [],
             },
           },
@@ -2104,7 +2109,10 @@ export default [
             id: 3,
             label: "Акции",
             table: {
-              columns: [],
+              columns: [
+                { title: "Номер", field: "number" },
+                { title: "Наименование", field: "label" }
+              ],
               data: [],
             },
           },
@@ -2112,7 +2120,10 @@ export default [
             id: 4,
             label: "Акции (магазин)",
             table: {
-              columns: [],
+              columns: [
+                { title: "Номер", field: "number" },
+                { title: "Наименование", field: "label" }
+              ],
               data: [],
             },
           },
@@ -2126,7 +2137,10 @@ export default [
             id: 0,
             label: "Виды цен",
             table: {
-              columns: [],
+              columns: [
+              { title: "Код", field: "code" },
+                { title: "Наименование", field: "label" }
+              ],
               data: [],
             },
           },
@@ -2150,7 +2164,10 @@ export default [
             id: 3,
             label: "Тип акции",
             table: {
-              columns: [],
+              columns: [
+              { title: "Код", field: "code" },
+                { title: "Наименование", field: "label" }
+              ],
               data: [],
             },
           },
