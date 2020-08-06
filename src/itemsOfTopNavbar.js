@@ -1100,10 +1100,7 @@ export default [
             label: "Склады",
             table: {
               columns: [
-                { title: "Наименование", field: "eria" },
-                { title: "Наименование полное", field: "daeOfDocument" },
-                { title: "Код", field: "timeOfocument" },
-                { title: "Адрес", field: "nber" },
+                { title: "Наименование", field: "label" },
               ],
               data: [],
             },
