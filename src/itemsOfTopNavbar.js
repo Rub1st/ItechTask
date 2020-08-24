@@ -102,9 +102,7 @@ export default [
             label: "Товарные группы",
             path: "productGroups",
             table: {
-              columns: [
-                { title: "Наименование", field: "name" },
-              ],
+              columns: [{ title: "Наименование", field: "name" }],
               data: [],
             },
           },
@@ -130,15 +128,17 @@ export default [
               ],
               data: [],
             },
+            table1: {
+              columns: [],
+              data: [],
+            },
           },
           {
             id: 3,
             label: "Классификаторы",
             path: "manufactors",
             table: {
-              columns: [
-                { title: "Наименование", field: "name" },
-              ],
+              columns: [{ title: "Наименование", field: "name" }],
               data: [],
             },
           },
@@ -188,16 +188,44 @@ export default [
             label: "Накладные",
             table: {
               columns: [
-                { title: "Номер строки", field: "close" },
-                { title: "Штрихкод", field: "given" },
-                { title: "Код", field: "number" },
-                { title: "Наименование", field: "seria" },
-                { title: "ед. изм.", field: "dateOfDocument" },
-                { title: "Партия", field: "Sender" },
-                { title: "Штриихкод упаковки", field: "warehouseOfSender" },
-                { title: "Кол-во упаковок", field: "getter" },
-                { title: "Вид цен", field: "warehouseOfGetter" },
-                { title: "Цена", field: "operation" },
+                { title: "Закрыт", field: "is_closed", type: "boolean" },
+                { title: "Проведен", field: "is_conducted", type: "boolean" },
+                { title: "Серия/Номер", field: "series_and_number" },
+                { title: "Дата и время", field: "date_and_time" },
+                {
+                  title: "Продажа на комиссию",
+                  field: "selling_on_commission",
+                },
+                { title: "Сумма", field: "summa" },
+                { title: "Сумма НДС", field: "summa_ndc" },
+                { title: "Сумма с НДС", field: "summa_with_ndc" },
+                { title: "Сумма (учетная)", field: "record_summa" },
+                { title: "Сумма розничная", field: "retail_summa" },
+                { title: "Сумма дооценки", field: "pre_assessment_summa" },
+                { title: "Сумма списания", field: "write_down_summa" },
+                { title: "Примечание", field: "note" },
+                { title: "Операция", field: "operation_name" },
+                { title: "Валюта", field: "currency_name" },
+                { title: "Соглашение", field: "agreement_name" },
+                {
+                  title: "Статус печати чека",
+                  field: "status_of_price_tag_printing_name",
+                },
+                { title: "Статус приемки", field: "status_of_acceptance_name" },
+                {
+                  title: "Статус загрузки оборудования",
+                  field: "status_of_booting_in_equipment_name",
+                },
+                {
+                  title: "Номер договора",
+                  field: "contract_series_and_number",
+                },
+                { title: "Поставщик", field: "provider" },
+                { title: "Покупатель", field: "customer" },
+                { title: "Склад поставщика", field: "provider_warehouse" },
+                { title: "Склад покупателя", field: "customer_warehouse" },
+                { title: "Кол-во строк", field: "strings_count" },
+                { title: "Кол-во (всего)", field: "total_count" },
                 { title: "Сумма", field: "countAll" },
               ],
               data: [],
@@ -252,9 +280,35 @@ export default [
               data: [],
             },
           },
+          {
+            id: 2,
+            label: "Акты расхождений",
+            table: {
+              columns: [
+                { title: "Закрыто", field: "close", type: "boolean" },
+                { title: "Проведен", field: "is_conducted", type: "boolean" },
+                { title: "Серия/Номер", field: "series_and_number" },
+                { title: "Дата и время", field: "date_and_time" },
+                { title: "Кол-во строк", field: "strings_count" },
+                { title: "Кол-во (всего)", field: "total_count" },
+                { title: "Сумма НДС", field: "summa_ndc" },
+                { title: "Сумма с НДС", field: "summa_with_ndc" },
+                { title: "Примечание", field: "note" },
+                { title: "Поставщик", field: "provider" },
+                { title: "Покупатель", field: "customer" },
+                { title: "Операция", field: "operation_name" },
+                { title: "Валюта", field: "currency_name" },
+                {
+                  title: "Номер договора",
+                  field: "contract_series_and_number",
+                },
+              ],
+              data: [],
+            },
+          },
         ],
       },
-    ]
+    ],
   },
   {
     id: 2,
@@ -262,7 +316,7 @@ export default [
     note: "Склад",
     mainList: [
       {
-        id: 1,
+        id: 0,
         label: "Отгрузки",
         childrenList: [
           {
@@ -320,7 +374,7 @@ export default [
         ],
       },
       {
-        id: 8,
+        id: 1,
         label: "Справочники",
         childrenList: [
           {
@@ -330,12 +384,12 @@ export default [
             table: {
               columns: [
                 { title: "Организация (поставщик)", field: "provider" },
-                { title: "Адрес поставщика", field: "providerAddress"},
+                { title: "Адрес поставщика", field: "providerAddress" },
                 { title: "Огранизация (покупатель)", field: "customer" },
-                { title: "Адрес покупателя", field: "customerAddress"},
+                { title: "Адрес покупателя", field: "customerAddress" },
                 { title: "Код", field: "number" },
                 { title: "Серия/Номер", field: "seria" },
-                { title: "Дата создания", field: "createdAt"} 
+                { title: "Дата создания", field: "createdAt" },
               ],
               data: [],
             },
@@ -344,9 +398,7 @@ export default [
             id: 1,
             label: "Склады",
             table: {
-              columns: [
-                { title: "Наименование", field: "label" },
-              ],
+              columns: [{ title: "Наименование", field: "label" }],
               data: [],
             },
           },

@@ -17,9 +17,19 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import { destroyData, AddToData } from "../../../reduxMain/actions/dataActions"
+import { destroyData, AddToData } from "../../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../../reduxMain/reducer/id/actions";
-import { takeCustomers, takeProviders } from "../../../reduxMain/reducer/cospro/actions"
+import {
+  takeCustomers,
+  takeProviders,
+  takeContracts,
+  takeAgreements,
+  takeCurrencies,
+  takeOperations,
+  takeStatusesPriceTag,
+  takeStatusesAcceptence,
+  takeStatusesBooting,
+} from "../../../reduxMain/reducer/cospro/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -60,12 +70,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function MaterialTableDemo(props) {
   const [state, setState] = React.useState(props.data);
   const classes = useStyles();
-  const [customer, setCustomer] = React.useState({});
-  const [provider, setProvider] = React.useState({});
+  const [customer, setCustomer] = React.useState({ warehouses: [] });
+  const [provider, setProvider] = React.useState({ warehouses: [] });
+  const [pWarehouse, setPWarehouse] = React.useState({});
+  const [cWarehouse, setCWarehouse] = React.useState({});
+  const [contract, setContract] = React.useState({});
+  const [operation, setOperation] = React.useState({});
+  const [currency, setCurrency] = React.useState({});
+  const [agreement, setAgreement] = React.useState({});
+  const [status_of_price_tag_printing, setStatusPriceTag] = React.useState({});
+  const [status_of_acceptence, setStatusAcceptence] = React.useState({});
+  const [status_of_booting_in_equipment, setStatusBooting] = React.useState({});
 
   const handleChangeProvider = (event) => {
     setProvider(event.target.value);
@@ -75,9 +93,45 @@ function MaterialTableDemo(props) {
     setCustomer(event.target.value);
   };
 
-   React.useEffect(() => {
-     setState(props.data);
-   },[props.data.table]);
+  const handleChangeContract = (event) => {
+    setContract(event.target.value);
+  };
+
+  const handleChangeOperation = (event) => {
+    setOperation(event.target.value);
+  };
+
+  const handleChangeCurrency = (event) => {
+    setCurrency(event.target.value);
+  };
+
+  const handleChangeAgreement = (event) => {
+    setAgreement(event.target.value);
+  };
+
+  const handleChangeStatusPriceTag = (event) => {
+    setStatusPriceTag(event.target.value);
+  };
+
+  const handleChangeStatusAcceptence = (event) => {
+    setStatusAcceptence(event.target.value);
+  };
+
+  const handleChangeStatusBooting = (event) => {
+    setStatusBooting(event.target.value);
+  };
+
+  const handleChangePWarehouse = (event) => {
+    setPWarehouse(event.target.value);
+  };
+
+  const handleChangeCWarehouse = (event) => {
+    setCWarehouse(event.target.value);
+  };
+
+  React.useEffect(() => {
+    setState(props.data);
+  }, [props.data.table]);
 
   return (
     <div className="position">
@@ -87,30 +141,30 @@ function MaterialTableDemo(props) {
         columns={state.table.columns}
         data={props.ID.data}
         editable={{
-          onRowAdd: (newData) => 
+          onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 {
-                  props.add(newData, state.path)
+                  props.add(newData, state.path);
                 }
-                resolve()
-              }, 1000)
+                resolve();
+              }, 1000);
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 {
-                  props.destroy(oldData, state.path)
+                  props.destroy(oldData, state.path);
                   props.add(newData, state.path);
                 }
-                resolve()
-              }, 1000)
+                resolve();
+              }, 1000);
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
               setTimeout(() => {
                 {
-                  props.destroy(oldData, state.path)
+                  props.destroy(oldData, state.path);
                 }
                 resolve();
               }, 600);
@@ -118,8 +172,244 @@ function MaterialTableDemo(props) {
         }}
       />
       <div className="d-flex">
-        {props.ID.idTop === 3 &&
-        props.ID.idLeftField === 12 &&
+        {props.ID.idTop === 1 &&
+        props.ID.idLeftField === 0 &&
+        props.ID.idLeft === 0 ? (
+          <>
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Контракт</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={contract}
+                  onChange={handleChangeContract}
+                >
+                  {props.CosPro.contracts.map((el) => (
+                    <MenuItem value={el}>{el.series_and_number}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Операция</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={operation}
+                  onChange={handleChangeOperation}
+                >
+                  {props.CosPro.operations.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Валюта</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={currency}
+                  onChange={handleChangeCurrency}
+                >
+                  {props.CosPro.currencies.map((el) => (
+                    <MenuItem value={el}>{el.full_name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Соглашение
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={agreement}
+                  onChange={handleChangeAgreement}
+                >
+                  {props.CosPro.agreements.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Статус печати чека
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={status_of_price_tag_printing}
+                  onChange={handleChangeStatusPriceTag}
+                >
+                  {props.CosPro.statuses_price_tag.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Статус приемки
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={status_of_acceptence}
+                  onChange={handleChangeStatusAcceptence}
+                >
+                  {props.CosPro.statuses_acceptence.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Статус загрузки в оборудование
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={status_of_booting_in_equipment}
+                  onChange={handleChangeStatusBooting}
+                >
+                  {props.CosPro.statuses_booting.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <button
+              className="btn btn-info btn-position"
+              onClick={() => {
+                props.add(
+                  {
+                    contract_series_and_number: contract.series_and_number,
+                    operation_name: operation.name,
+                    currency_name: currency.full_name,
+                    agreement_name: agreement.name,
+                    status_of_price_tag_printing_name:
+                      status_of_price_tag_printing.name,
+                    status_of_acceptance_name: status_of_acceptence.name,
+                    status_of_booting_in_equipment_name:
+                      status_of_booting_in_equipment.name,
+                  },
+                  state.path
+                );
+              }}
+            >
+              Оформить ТТН
+            </button>
+          </>
+        ) : null}
+      </div>
+      <div className="d-flex">
+        {props.ID.idTop === 1 &&
+        props.ID.idLeftField === 1 &&
+        props.ID.idLeft === 2 ? (
+          <>
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Контракт</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={contract}
+                  onChange={handleChangeContract}
+                >
+                  {props.CosPro.contracts.map((el) => (
+                    <MenuItem value={el}>{el.series_and_number}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Операция</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={operation}
+                  onChange={handleChangeOperation}
+                >
+                  {props.CosPro.operations.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Валюта</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={currency}
+                  onChange={handleChangeCurrency}
+                >
+                  {props.CosPro.currencies.map((el) => (
+                    <MenuItem value={el}>{el.full_name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Склад поставщика
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={pWarehouse}
+                  onChange={handleChangePWarehouse}
+                >
+                  {provider.warehouses.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  Склад покупателя
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={cWarehouse}
+                  onChange={handleChangeCWarehouse}
+                >
+                  {customer.warehouses.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+          </>
+        ) : null}
+      </div>
+      <div className="d-flex">
+        {props.ID.idTop === 2 &&
+        props.ID.idLeftField === 1 &&
         props.ID.idLeft === 0 ? (
           <>
             <div>
@@ -131,9 +421,9 @@ function MaterialTableDemo(props) {
                   value={provider}
                   onChange={handleChangeProvider}
                 >
-                  { 
-                    props.CosPro.providers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))                    
-                  }
+                  {props.CosPro.providers.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -149,9 +439,9 @@ function MaterialTableDemo(props) {
                   value={customer}
                   onChange={handleChangeCustomer}
                 >
-                  {
-                    props.CosPro.customers.map(el => (<MenuItem value={el}>{el.name}</MenuItem>))
-                  }                  
+                  {props.CosPro.customers.map((el) => (
+                    <MenuItem value={el}>{el.name}</MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -160,12 +450,15 @@ function MaterialTableDemo(props) {
               className="btn btn-info btn-position"
               style={{ marginRight: "250px" }}
               onClick={() => {
-                props.add({
-                  customer: customer.name,
-                  provider: provider.name,
-                  customerAddress: customer.address,
-                  providerAddress: provider.address
-                }, state.path);
+                props.add(
+                  {
+                    customer: customer.name,
+                    provider: provider.name,
+                    customerAddress: customer.address,
+                    providerAddress: provider.address,
+                  },
+                  state.path
+                );
               }}
             >
               Оформить договор
@@ -179,12 +472,64 @@ function MaterialTableDemo(props) {
         >
           Отправить
         </button>
-        <button className="btn btn-dark btn-position" onClick={() => { 
-          props.setData(state.path);
-          props.setProviders(); 
-          props.setCustomers();
-          } }>Обновить данные</button>
+        <button
+          className="btn btn-dark btn-position"
+          onClick={() => {
+            props.setData(state.path);
+            props.setProviders();
+            props.setCustomers();
+            props.setContracts();
+            props.setOperations();
+            props.setCurrencies();
+            props.setAgreements();
+            props.setStatusesAcceptence();
+            props.setStatusesPriceTag();
+            props.setStatusesBooting();
+          }}
+        >
+          Обновить данные
+        </button>
       </div>
+      {state.table1 ? (
+        <>
+          <MaterialTable
+            icons={tableIcons}
+            title={props.data.label}
+            columns={state.table1.columns}
+            data={props.ID.data}
+            editable={{
+              onRowAdd: (newData) =>
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    {
+                      props.add(newData, state.path);
+                    }
+                    resolve();
+                  }, 1000);
+                }),
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    {
+                      props.destroy(oldData, state.path);
+                      props.add(newData, state.path);
+                    }
+                    resolve();
+                  }, 1000);
+                }),
+              onRowDelete: (oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    {
+                      props.destroy(oldData, state.path);
+                    }
+                    resolve();
+                  }, 600);
+                }),
+            }}
+          />
+        </>
+      ) : null}
     </div>
   );
 }
@@ -192,7 +537,7 @@ function MaterialTableDemo(props) {
 export default connect(
   (state) => ({
     ID: state.idReducer,
-    CosPro: state.cosProReducer
+    CosPro: state.cosProReducer,
   }),
   (dispatch) => ({
     updateData: (table) => dispatch(updateData(table)),
@@ -200,6 +545,13 @@ export default connect(
     add: (data, path) => dispatch(AddToData(data, path)),
     destroy: (data, path) => dispatch(destroyData(data, path)),
     setCustomers: () => dispatch(takeCustomers()),
-    setProviders: () => dispatch(takeProviders())
+    setProviders: () => dispatch(takeProviders()),
+    setContracts: () => dispatch(takeContracts()),
+    setOperations: () => dispatch(takeOperations()),
+    setCurrencies: () => dispatch(takeCurrencies()),
+    setAgreements: () => dispatch(takeAgreements()),
+    setStatusesPriceTag: () => dispatch(takeStatusesPriceTag()),
+    setStatusesAcceptence: () => dispatch(takeStatusesAcceptence()),
+    setStatusesBooting: () => dispatch(takeStatusesBooting()),
   })
 )(MaterialTableDemo);
