@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 export const takeData = (path) => (dispatch) => {
-    axios.get(`http://localhost:4000/${path}`).then((response) => {
+    axios.get(`http://localhost:3000/${path}`).then((response) => {
       dispatch(setData(response.data));
     });
   };

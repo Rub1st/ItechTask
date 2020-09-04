@@ -21,6 +21,7 @@ export default [
     id: 0,
     pic: catalog,
     note: "Справочники",
+    path: 'guides',
     mainList: [
       {
         id: 0,
@@ -28,53 +29,48 @@ export default [
         childrenList: [
           {
             id: 0,
-            label: "Сотрудники",
-            path: "employers",
-            table: {
-              columns: [
-                { title: "Фамилия", field: "surname" },
-                { title: "Имя", field: "name" },
-                { title: "Логин", field: "login" },
-                { title: "Активность", field: "active" },
-                { title: "Заблокировано", field: "block" },
-                { title: "Последняя активность", field: "lastActive" },
-                { title: "Организация", field: "organisation" },
-              ],
-              data: [],
-            }, //+
-          },
-          {
-            id: 1,
             label: "Организации",
-            path: "companies",
+            path: "guides/organizations",
             table: {
               columns: [
-                { title: "Наименование", field: "name" },
-                { title: "УНП", field: "PAN" },
-                { title: "Форма собственности", field: "ownerType" },
-                { title: "Группа организаций", field: "organizationGroup" },
-                { title: "Юридический адрес", field: "address" },
-                { title: "Телефон/факс", field: "telephone" },
+                { title: "Наименование", field: "full_name" },
+                { title: "Короткое имя", field: "short_name" },
+                { title: "УНП", field: "unp" },
+                { title: "Форма собственности", field: "ownership_form.name" },
+                { title: "Группа организаций", field: "organization_group" },
+                { title: "Юридический адрес", field: "legal_address" },
+                { title: "Телефон/факс", field: "phone_or_fax" },
                 { title: "E-mail", field: "email" },
                 {
                   title: "Явл. поставшиком",
-                  field: "isProvider",
+                  field: "is_provider",
                   type: "boolean",
                 },
                 {
                   title: "Явл. компанией",
-                  field: "isOrganization",
+                  field: "is_company",
                   type: "boolean",
                 },
                 {
                   title: "Явл. покупателем",
-                  field: "isCustomer",
+                  field: "is_buyer",
                   type: "boolean",
                 },
               ],
               data: [],
-            }, //+
+            },
           },
+          {
+            id: 1,
+            label: "Формы собственности",
+            path: "guides/ownership_forms",
+            table: {
+              columns: [
+                { title: "Наименование", field: "name" },
+              ],
+              data: [],
+            },
+          }
         ],
       },
       {
@@ -84,15 +80,17 @@ export default [
           {
             id: 0,
             label: "Товары",
-            path: "products",
+            path: "guides/products",
             table: {
               columns: [
-                { title: "Штрихкод", field: "barcode" },
-                { title: "Наименование", field: "name" },
-                { title: "Код группы товаров", field: "productGroupId" },
-                { title: "Единица измерения", field: "unitId" },
-                { title: "Бренд", field: "manufactorName" },
-                { title: "Страна", field: "country" },
+                { title: "Штрихкод", field: "code" },
+                { title: "Наименование", field: "full_name" },
+                { title: "Короткое имя", field: "short_name" },
+                { title: "Единица измерения", field: "unit.full_name" },
+                { title: "Цена", field: "price" },
+                { title: "Рейтинг НДС", field: "rate_nds" },
+                { title: "Сумма НДС", field: "summa_nds" },
+                { title: "Стоимость", field: "cost" }
               ],
               data: [],
             },
@@ -100,7 +98,7 @@ export default [
           {
             id: 1,
             label: "Товарные группы",
-            path: "productGroups",
+            path: "guides/p_groups",
             table: {
               columns: [{ title: "Наименование", field: "name" }],
               data: [],
@@ -108,7 +106,28 @@ export default [
           },
           {
             id: 2,
+            label: "Дополнительные группы",
+            path: "guides/p_subgroups",
+            table: {
+              columns: [{ title: "Наименование", field: "name" },
+                        { title: "Группа", field: "groupName"}],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Eдиницы измерения",
+            path: "guides/units",
+            table: {
+              columns: [{ title: "Короткое наименование", field: "short_name" },
+                        { title: "Полное наименование", field: "full_name"}],
+              data: [],
+            },
+          },
+          {
+            id: 4,
             label: "Цены",
+            path: 'Nujno razobratsya',
             table: {
               columns: [
                 { title: "Наименование", field: "close" },
@@ -134,39 +153,28 @@ export default [
             },
           },
           {
-            id: 3,
+            id: 5,
             label: "Классификаторы",
-            path: "manufactors",
+            path: 'Nujno razobratsya',
             table: {
-              columns: [{ title: "Наименование", field: "name" }],
+              columns: [{ title: "Подгруппа", field: "ProductSubgroupName" },
+                        { title: "Продукт", field: "productName"}],
               data: [],
             },
           },
-        ], //+
+        ],
       },
       {
         id: 2,
-        label: "Шаблоны",
+        label: "Валюты и курсы",
         childrenList: [
           {
             id: 0,
-            label: "Шаблоны Excel",
+            label: "Валюты",
+            path: 'guides/currencies',
             table: {
-              columns: [
-                { title: "Имя", field: "close" },
-                { title: "Идентификатор", field: "given" },
-              ],
-              data: [],
-            },
-          },
-          {
-            id: 1,
-            label: "Шаблоны Word",
-            table: {
-              columns: [
-                { title: "Имя", field: "close" },
-                { title: "Идентификатор", field: "given" },
-              ],
+              columns: [{ title: "Короткое наименование", field: "short_name" },
+                        { title: "Полное наименование", field: "full_name"}],
               data: [],
             },
           },
@@ -178,6 +186,7 @@ export default [
     id: 1,
     pic: purchase,
     note: "Закупки",
+    path: 'customs',
     mainList: [
       {
         id: 0,
@@ -186,6 +195,7 @@ export default [
           {
             id: 0,
             label: "Накладные",
+            path: 'customs/invoices',
             table: {
               columns: [
                 { title: "Закрыт", field: "is_closed", type: "boolean" },
@@ -204,29 +214,29 @@ export default [
                 { title: "Сумма дооценки", field: "pre_assessment_summa" },
                 { title: "Сумма списания", field: "write_down_summa" },
                 { title: "Примечание", field: "note" },
-                { title: "Операция", field: "operation_name" },
-                { title: "Валюта", field: "currency_name" },
-                { title: "Соглашение", field: "agreement_name" },
+                { title: "Операция", field: "operation.name" },
+                { title: "Валюта", field: "currency.full_name" },
+                { title: "Соглашение", field: "agreement.name" },
                 {
                   title: "Статус печати чека",
-                  field: "status_of_price_tag_printing_name",
+                  field: "status_of_price_tag_printing.name",
                 },
-                { title: "Статус приемки", field: "status_of_acceptance_name" },
+                { title: "Статус приемки", field: "status_of_acceptance.name" },
                 {
                   title: "Статус загрузки оборудования",
-                  field: "status_of_booting_in_equipment_name",
+                  field: "status_of_booting_in_equipment.name",
                 },
                 {
                   title: "Номер договора",
-                  field: "contract_series_and_number",
+                  field: "contract_series_and.number",
                 },
-                { title: "Поставщик", field: "provider" },
-                { title: "Покупатель", field: "customer" },
-                { title: "Склад поставщика", field: "provider_warehouse" },
-                { title: "Склад покупателя", field: "customer_warehouse" },
+                { title: "Поставщик", field: "provider.full_name" },
+                { title: "Покупатель", field: "customer.full_name" },
+                { title: "Склад поставщика", field: "warehouse.address" },
+                { title: "Склад покупателя", field: "warehouse.address" },
                 { title: "Кол-во строк", field: "strings_count" },
                 { title: "Кол-во (всего)", field: "total_count" },
-                { title: "Сумма", field: "countAll" },
+                { title: "Сумма", field: "count_all" },
               ],
               data: [],
             },
@@ -239,23 +249,8 @@ export default [
         childrenList: [
           {
             id: 0,
-            label: "Заказы",
-            table: {
-              columns: [
-                { title: "Закрыто", field: "close" },
-                { title: "Код", field: "number" },
-                { title: "Наименование", field: "seria" },
-                { title: "Дата заказа", field: "dateOfStart" },
-                { title: "Дата конца", field: "dateOfFinish" },
-                { title: "Цена", field: "price" },
-                { title: "Номер заказа", field: "numberOfOrder" },
-              ],
-              data: [],
-            },
-          },
-          {
-            id: 1,
             label: "Накладные",
+            path: 'invoices',
             table: {
               columns: [
                 { title: "Закрыто", field: "close" },
@@ -281,8 +276,9 @@ export default [
             },
           },
           {
-            id: 2,
+            id: 1,
             label: "Акты расхождений",
+            path: 'act_of_discrepancies',
             table: {
               columns: [
                 { title: "Закрыто", field: "close", type: "boolean" },
@@ -308,12 +304,75 @@ export default [
           },
         ],
       },
+      {
+        id: 2,
+        label: "Справочники",
+        childrenList: [
+          {
+            id: 0,
+            label: "Типы соглашений",
+          
+            path: 'customs/agreements',
+            table: {
+              columns: [
+                { title: "Наименование", field: "name" },
+              ],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Виды операций",
+            path: 'customs/operations',
+            table: {
+              columns: [
+                { title: "Наименование", field: "name" },
+              ],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Статусы приемки",
+            path: 'customs/status_of_acceptances',
+            table: {
+              columns: [
+                { title: "Наименование", field: "name" },
+              ],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Статусы загрузки в оборудование",
+            path: 'customs/status_of_booting_in_equipments',
+            table: {
+              columns: [
+                { title: "Наименование", field: "name" },
+              ],
+              data: [],
+            },
+          },
+          {
+            id: 4,
+            label: "Статусы печати чека",
+            path: 'customs/status_of_price_tag_printings',
+            table: {
+              columns: [
+                { title: "Наименование", field: "name" },
+              ],
+              data: [],
+            },
+          },
+        ],
+      },
     ],
   },
   {
     id: 2,
     pic: stock,
     note: "Склад",
+    path: 'warehouses',
     mainList: [
       {
         id: 0,
@@ -322,6 +381,7 @@ export default [
           {
             id: 0,
             label: "Поставки",
+            path: 'Nujno produmat chto-to',
             table: {
               columns: [
                 { title: "Номер", field: "close" },
@@ -348,6 +408,7 @@ export default [
           {
             id: 1,
             label: "Возвраты",
+            path: 'Nujno produmat chto-to',
             table: {
               columns: [
                 { title: "Номер", field: "close" },
@@ -379,8 +440,8 @@ export default [
         childrenList: [
           {
             id: 0,
-            path: "contracts",
             label: "Договоры",
+            path: "warehouses/contracts",
             table: {
               columns: [
                 { title: "Организация (поставщик)", field: "provider" },
@@ -388,8 +449,8 @@ export default [
                 { title: "Огранизация (покупатель)", field: "customer" },
                 { title: "Адрес покупателя", field: "customerAddress" },
                 { title: "Код", field: "number" },
-                { title: "Серия/Номер", field: "seria" },
-                { title: "Дата создания", field: "createdAt" },
+                { title: "Серия/Номер", field: "series_and_number" },
+                { title: "Дата создания", field: "created_at" },
               ],
               data: [],
             },
@@ -397,8 +458,37 @@ export default [
           {
             id: 1,
             label: "Склады",
+            path: 'warehouses/warehouses',
             table: {
-              columns: [{ title: "Наименование", field: "label" }],
+              columns: [{ title: "Организация", field: "organizationName" },
+                        { title: "Адрес", field: "address"}],
+              data: [],
+            },
+          },
+          {
+            id: 2,
+            label: "Тип договора",
+            path: 'warehouses/type_of_contracts',
+            table: {
+              columns: [{ title: "Наименование", field: "name" }],
+              data: [],
+            },
+          },
+          {
+            id: 3,
+            label: "Вид обмена",
+            path: 'warehouses/type_of_exchanges',
+            table: {
+              columns: [{ title: "Наименование", field: "name" }],
+              data: [],
+            },
+          },
+          {
+            id: 4,
+            label: "Условия оплаты",
+            path: 'warehouses/type_of_payments',
+            table: {
+              columns: [{ title: "Наименование", field: "name" }],
               data: [],
             },
           },

@@ -35,6 +35,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import axios from "axios";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -476,15 +477,15 @@ function MaterialTableDemo(props) {
           className="btn btn-dark btn-position"
           onClick={() => {
             props.setData(state.path);
-            props.setProviders();
-            props.setCustomers();
-            props.setContracts();
-            props.setOperations();
-            props.setCurrencies();
-            props.setAgreements();
-            props.setStatusesAcceptence();
-            props.setStatusesPriceTag();
-            props.setStatusesBooting();
+            /* props.setProviders();
+              props.setCustomers();
+              props.setContracts();
+              props.setOperations();
+              props.setCurrencies();
+              props.setAgreements();
+              props.setStatusesAcceptence();
+              props.setStatusesPriceTag();
+               props.setStatusesBooting(); */
           }}
         >
           Обновить данные

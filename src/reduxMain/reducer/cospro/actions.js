@@ -57,31 +57,31 @@ const setStatusesBooting = (data) => ({
 });
 
 export const takeProviders = (path) => (dispatch) => {
-  axios.get(`http://localhost:4000/tables/providers`).then((response) => {
+  axios.get(`http://localhost:3000/tables/providers`).then((response) => {
     dispatch(setProviders(response.data));
   });
 };
 
 export const takeCustomers = (path) => (dispatch) => {
-  axios.get(`http://localhost:4000/tables/customers`).then((response) => {
+  axios.get(`http://localhost:3000/tables/customers`).then((response) => {
     dispatch(setCustomers(response.data));
   });
 };
 
 export const takeContracts = (path) => (dispatch) => {
-  axios.get(`http://localhost:4000/tables/contracts`).then((response) => {
+  axios.get(`http://localhost:3000/tables/contracts`).then((response) => {
     dispatch(setContracts(response.data));
   });
 };
 
 export const takeOperations = (path) => (dispatch) => {
-  axios.get(`http://localhost:4000/tables/operations`).then((response) => {
+  axios.get(`http://localhost:3000/tables/operations`).then((response) => {
     dispatch(setOperations(response.data));
   });
 };
 
 export const takeCurrencies = (path) => (dispatch) => {
-  axios.get(`http://localhost:4000/tables/currencies`).then((response) => {
+  axios.get(`http://localhost:3000/tables/currencies`).then((response) => {
     dispatch(setCurrencies(response.data));
   });
 };
@@ -102,7 +102,7 @@ export const takeStatusesPriceTag = (path) => (dispatch) => {
 
 export const takeStatusesAcceptence = (path) => (dispatch) => {
   axios
-    .get(`http://localhost:4000/tables/acceptence-statuses`)
+    .get(`http://localhost:3000/tables/acceptence-statuses`)
     .then((response) => {
       dispatch(setStatusesAcceptence(response.data));
     });
@@ -110,7 +110,7 @@ export const takeStatusesAcceptence = (path) => (dispatch) => {
 
 export const takeStatusesBooting = (path) => (dispatch) => {
   axios
-    .get(`http://localhost:4000/tables/booting-statuses`)
+    .get(`http://localhost:3000/tables/booting-statuses`)
     .then((response) => {
       dispatch(setStatusesBooting(response.data));
     });
