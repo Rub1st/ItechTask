@@ -178,126 +178,14 @@ function MaterialTableDemo(props) {
         props.ID.idLeftField === 0 &&
         props.ID.idLeft === 0 ? (
           <>
-           <Inputs type="select" name="test"/>
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Контракт</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={contract}
-                  onChange={handleChangeContract}
-                >
-                  {props.CosPro.contracts.map((el) => (
-                    <MenuItem value={el}>{el.series_and_number}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
+            <Inputs type="select" name="Контракт" attribute={"series_and_number"} collection={props.CosPro.contracts}/>
+            <Inputs type="select" name="Операция" attribute={"name"} collection={props.CosPro.operations}/>
+            <Inputs type="select" name="Валюта" attribute={"full_name"} collection={props.CosPro.currencies}/>
+            <Inputs type="select" name="Соглашение" attribute={"name"} collection={props.CosPro.agreements}/>
+            <Inputs type="select" name="Статус печати чека" attribute={"name"} collection={props.CosPro.statuses_price_tag}/>
+            <Inputs type="select" name="Статус приемки" attribute={"name"} collection={props.CosPro.statuses_acceptence}/>
+            <Inputs type="select" name="Статус загрузки в оборудование" attribute={"name"} collection={props.CosPro.status_of_booting_in_equipment}/>
 
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Операция</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={operation}
-                  onChange={handleChangeOperation}
-                >
-                  {props.CosPro.operations.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Валюта</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={currency}
-                  onChange={handleChangeCurrency}
-                >
-                  {props.CosPro.currencies.map((el) => (
-                    <MenuItem value={el}>{el.full_name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Соглашение
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={agreement}
-                  onChange={handleChangeAgreement}
-                >
-                  {props.CosPro.agreements.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Статус печати чека
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={status_of_price_tag_printing}
-                  onChange={handleChangeStatusPriceTag}
-                >
-                  {props.CosPro.statuses_price_tag.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Статус приемки
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={status_of_acceptence}
-                  onChange={handleChangeStatusAcceptence}
-                >
-                  {props.CosPro.statuses_acceptence.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Статус загрузки в оборудование
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={status_of_booting_in_equipment}
-                  onChange={handleChangeStatusBooting}
-                >
-                  {props.CosPro.statuses_booting.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
             <button
               className="btn btn-info btn-position"
               onClick={() => {

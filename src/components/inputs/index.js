@@ -5,13 +5,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-const Inputs = ({type, name, collection = []}) => {
+import "../mainPage/tableField/style.css"
+
+const Inputs = ({type, name, attribute, collection = []}) => {
     switch(type){
         case "input": {
             return <TextInput name={name}/>
         }
         case "select": {
-            return <SelectInput name={name} collection={collection}/>
+            return <SelectInput name={name} collection={collection} attribute={attribute}/>
         }
         case "boolean": {
             return <CheckInput name={name}/>
@@ -43,16 +45,20 @@ class TextInput extends React.Component {
   
   class SelectInput extends React.Component {
     state = {
-        value: this.props.collection[0].value
+        value: this.props.collection[0]
     }
-
+    
     onChangeValue = (value) => this.setState({value: value});
 
     render(){
-        const {name, collection} = this.props;
+        const {name, collection, attribute} = this.props;
+        const style = {
+            margin: "10px",
+            minWidth: "120px",
+          };
         return(
             <div>
-              <FormControl>
+              <FormControl style={style}> 
               <InputLabel id="demo-simple-select-label">{name}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -61,7 +67,7 @@ class TextInput extends React.Component {
                   onChange={this.onChangeValue}
                 >
                   {collection.map((el) => (
-                    <MenuItem value={el}>{el.value}</MenuItem>
+                    <MenuItem value={el}>{el[attribute]}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
