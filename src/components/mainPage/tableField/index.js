@@ -35,8 +35,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import axios from "axios";
-import Inputs from "../../inputs";
+import Organizations from "../../referencesTables";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -130,62 +129,82 @@ function MaterialTableDemo(props) {
   const handleChangeCWarehouse = (event) => {
     setCWarehouse(event.target.value);
   };
-
   React.useEffect(() => {
     setState(props.data);
   }, [props.data.table]);
 
   return (
     <div className="position">
-      <MaterialTable
-        icons={tableIcons}
-        title={props.data.label}
-        columns={state.table.columns}
-        data={props.ID.data}
-        editable={{
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                {
-                  props.add(newData, state.path);
-                }
-                resolve();
-              }, 1000);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                {
-                  props.destroy(oldData, state.path);
-                  props.add(newData, state.path);
-                }
-                resolve();
-              }, 1000);
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                {
-                  props.destroy(oldData, state.path);
-                }
-                resolve();
-              }, 600);
-            }),
-        }}
-      />
+      {props.ID.idTop === 0 &&
+        props.ID.idLeftField === 0 &&
+        props.ID.idLeft === 0 ? <Organizations tableIcons={tableIcons} state={state}/> : (
+        <>
+          <MaterialTable
+            icons={tableIcons}
+            title={state.label}
+            columns={state.table.columns}
+            data={props.ID.data}
+            editable={{
+              onRowAdd: (newData) =>
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    {
+                      props.add(newData, state.path);
+                    }
+                    resolve();
+                  }, 1000);
+                }),
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    {
+                      props.destroy(oldData, state.path);
+                      props.add(newData, state.path);
+                    }
+                    resolve();
+                  }, 1000);
+                }),
+              onRowDelete: (oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    {
+                      props.destroy(oldData, state.path);
+                    }
+                    resolve();
+                  }, 600);
+                }),
+            }}
+          />
+          <button
+          className="btn btn-success btn-position"
+          onClick={() => props.setData(state.path)}
+        >
+          Отправить
+        </button>
+        <button
+          className="btn btn-dark btn-position"
+          onClick={() => {
+            props.setData(state.path);
+            /* props.setProviders();
+              props.setCustomers();
+              props.setContracts();
+              props.setOperations();
+              props.setCurrencies();
+              props.setAgreements();
+              props.setStatusesAcceptence();
+              props.setStatusesPriceTag();
+               props.setStatusesBooting(); */
+          }}
+        >
+          Обновить данные
+        </button>
+          </>)
+      }
       <div className="d-flex">
         {props.ID.idTop === 1 &&
         props.ID.idLeftField === 0 &&
         props.ID.idLeft === 0 ? (
           <>
-            <Inputs type="select" name="Контракт" attribute={"series_and_number"} collection={props.CosPro.contracts}/>
-            <Inputs type="select" name="Операция" attribute={"name"} collection={props.CosPro.operations}/>
-            <Inputs type="select" name="Валюта" attribute={"full_name"} collection={props.CosPro.currencies}/>
-            <Inputs type="select" name="Соглашение" attribute={"name"} collection={props.CosPro.agreements}/>
-            <Inputs type="select" name="Статус печати чека" attribute={"name"} collection={props.CosPro.statuses_price_tag}/>
-            <Inputs type="select" name="Статус приемки" attribute={"name"} collection={props.CosPro.statuses_acceptence}/>
-            <Inputs type="select" name="Статус загрузки в оборудование" attribute={"name"} collection={props.CosPro.status_of_booting_in_equipment}/>
-
             <button
               className="btn btn-info btn-position"
               onClick={() => {
@@ -356,30 +375,6 @@ function MaterialTableDemo(props) {
             </button>
           </>
         ) : null}
-
-        <button
-          className="btn btn-success btn-position"
-          onClick={() => props.setData(state.path)}
-        >
-          Отправить
-        </button>
-        <button
-          className="btn btn-dark btn-position"
-          onClick={() => {
-            props.setData(state.path);
-            /* props.setProviders();
-              props.setCustomers();
-              props.setContracts();
-              props.setOperations();
-              props.setCurrencies();
-              props.setAgreements();
-              props.setStatusesAcceptence();
-              props.setStatusesPriceTag();
-               props.setStatusesBooting(); */
-          }}
-        >
-          Обновить данные
-        </button>
       </div>
       {state.table1 ? (
         <>
@@ -446,3 +441,13 @@ export default connect(
     setStatusesBooting: () => dispatch(takeStatusesBooting()),
   })
 )(MaterialTableDemo);
+
+/*
+<Inputs type="select" name="Контракт" attribute={"series_and_number"} collection={props.CosPro.contracts}/>
+            <Inputs type="select" name="Операция" attribute={"name"} collection={props.CosPro.operations}/>
+            <Inputs type="select" name="Валюта" attribute={"full_name"} collection={props.CosPro.currencies}/>
+            <Inputs type="select" name="Соглашение" attribute={"name"} collection={props.CosPro.agreements}/>
+            <Inputs type="select" name="Статус печати чека" attribute={"name"} collection={props.CosPro.statuses_price_tag}/>
+            <Inputs type="select" name="Статус приемки" attribute={"name"} collection={props.CosPro.statuses_acceptence}/>
+            <Inputs type="select" name="Статус загрузки в оборудование" attribute={"name"} collection={props.CosPro.status_of_booting_in_equipment}/> 
+*/
