@@ -36,6 +36,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+import Inputs from "../../inputs";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -177,6 +178,7 @@ function MaterialTableDemo(props) {
         props.ID.idLeftField === 0 &&
         props.ID.idLeft === 0 ? (
           <>
+           <Inputs type="select" name="test"/>
             <div>
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Контракт</InputLabel>
