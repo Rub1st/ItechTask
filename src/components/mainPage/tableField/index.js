@@ -35,7 +35,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import {Organizations, Products, Subgroups} from "../../referencesTables";
+import {Invoices, Organizations, Products, Subgroups} from "../../referencesTables";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -146,6 +146,10 @@ function MaterialTableDemo(props) {
         props.ID.idTop === 0 &&
         props.ID.idLeftField === 1 &&
         props.ID.idLeft === 2 ? <Subgroups tableIcons={tableIcons} state={state}/> :
+
+        props.ID.idTop === 1 &&
+        props.ID.idLeftField === 0 &&
+        props.ID.idLeft === 0 ? <Invoices tableIcons={tableIcons} state={state}/> :
         (
         <>
           <MaterialTable
@@ -194,15 +198,6 @@ function MaterialTableDemo(props) {
           className="btn btn-dark btn-position"
           onClick={() => {
             props.setData(state.path);
-            /* props.setProviders();
-              props.setCustomers();
-              props.setContracts();
-              props.setOperations();
-              props.setCurrencies();
-              props.setAgreements();
-              props.setStatusesAcceptence();
-              props.setStatusesPriceTag();
-               props.setStatusesBooting(); */
           }}
         >
           Обновить данные
