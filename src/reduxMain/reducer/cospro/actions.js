@@ -10,11 +10,23 @@ import {
   SET_STATUS_BOOTING,
   SET_OWNERSHIP_FORMS,
   SET_UNITS,
-  SET_GROUPS
+  SET_GROUPS,
+  SET_PROVIDER_WAREHOUSES,
+  SET_CUSTOMER_WAREHOUSES
 } from "../../constants";
 import axios from "axios";
 
 const setProviders = (data) => ({
+  type: SET_PROVIDERS,
+  value: data,
+});
+
+const setProviderWarehouses = (data) => ({
+  type: SET_PROVIDERS,
+  value: data,
+});
+
+const setCustomerWarehouses = (data) => ({
   type: SET_PROVIDERS,
   value: data,
 });
@@ -86,8 +98,20 @@ export const takeGroups = (path) => (dispatch) => {
   });
 };
 
+export const takeProviderWarehouses = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/warehouses/warehouses`).then((response) => {
+    dispatch(setProviderWarehouses(response.data));
+  });
+};
+
+export const takeCustomerWarehouses = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/warehouses/warehouses`).then((response) => {
+    dispatch(setCustomerWarehouses(response.data));
+  });
+};
+
 export const takeProviders = (path) => (dispatch) => {
-  axios.get(`http://localhost:3000/tables/providers`).then((response) => {
+  axios.get(`http://localhost:3000/guides/organizations`).then((response) => {
     dispatch(setProviders(response.data));
   });
 };
@@ -99,38 +123,38 @@ export const takeOwnershipForms = (path) => (dispatch) => {
 };
 
 export const takeCustomers = (path) => (dispatch) => {
-  axios.get(`http://localhost:3000/tables/customers`).then((response) => {
+  axios.get(`http://localhost:3000/guides/organizations`).then((response) => {
     dispatch(setCustomers(response.data));
   });
 };
 
-export const takeContracts = (path) => (dispatch) => {
-  axios.get(`http://localhost:3000/tables/contracts`).then((response) => {
+export const takeContracts = () => (dispatch) => {
+  axios.get(`http://localhost:3000/warehouses/contracts`).then((response) => {
     dispatch(setContracts(response.data));
   });
 };
 
 export const takeOperations = (path) => (dispatch) => {
-  axios.get(`http://localhost:3000/tables/operations`).then((response) => {
+  axios.get(`http://localhost:3000/customs/operations`).then((response) => {
     dispatch(setOperations(response.data));
   });
 };
 
 export const takeCurrencies = (path) => (dispatch) => {
-  axios.get(`http://localhost:3000/tables/currencies`).then((response) => {
+  axios.get(`http://localhost:3000/guides/currencies`).then((response) => {
     dispatch(setCurrencies(response.data));
   });
 };
 
 export const takeAgreements = (path) => (dispatch) => {
-  axios.get(`http://localhost:4000/tables/agreements`).then((response) => {
+  axios.get(`http://localhost:3000/customs/agreements`).then((response) => {
     dispatch(setAgreements(response.data));
   });
 };
 
 export const takeStatusesPriceTag = (path) => (dispatch) => {
   axios
-    .get(`http://localhost:4000/tables/price-tag-statuses`)
+    .get(`http://localhost:3000/customs/status_of_price_tag_printings`)
     .then((response) => {
       dispatch(setStatusesPriceTag(response.data));
     });
@@ -138,7 +162,7 @@ export const takeStatusesPriceTag = (path) => (dispatch) => {
 
 export const takeStatusesAcceptence = (path) => (dispatch) => {
   axios
-    .get(`http://localhost:3000/tables/acceptence-statuses`)
+    .get(`http://localhost:3000/customs/status_of_acceptances`)
     .then((response) => {
       dispatch(setStatusesAcceptence(response.data));
     });
@@ -146,7 +170,7 @@ export const takeStatusesAcceptence = (path) => (dispatch) => {
 
 export const takeStatusesBooting = (path) => (dispatch) => {
   axios
-    .get(`http://localhost:3000/tables/booting-statuses`)
+    .get(`http://localhost:3000/customs/status_of_booting_in_equipments`)
     .then((response) => {
       dispatch(setStatusesBooting(response.data));
     });

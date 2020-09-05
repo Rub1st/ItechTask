@@ -11,12 +11,15 @@ import { takeCustomers,
     takeOperations,
     takeStatusesPriceTag,
     takeStatusesAcceptence,
-    takeStatusesBooting, } from "../../reduxMain/reducer/cospro/actions"
+    takeStatusesBooting,
+    takeProviderWarehouses,
+    takeCustomerWarehouses } from "../../reduxMain/reducer/cospro/actions"
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
+import './style.css'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -36,7 +39,7 @@ const Invoices = (props) => {
     const is_closed = useCheckBox(false);
     const is_conducted = useCheckBox(false);
     const series_and_number = useInputText('');
-    const date_and_time = useDateTime(Date.now.getDate());
+    const date_and_time = useDateTime({});
     const selling_on_commission = useCheckBox(false);
     const summa = useInputText('');
     const summa_ndc = useInputText(false);
@@ -49,15 +52,15 @@ const Invoices = (props) => {
     const strings_count = useInputText('');
     const total_count = useInputText('');
     const count_all = useInputText('');
+    const contract = useSelectBox({})
     const operation = useSelectBox({});
     const currency = useSelectBox({});
     const agreement = useSelectBox({});
     const status_of_price_tag_printing = useSelectBox({});
     const status_of_acceptance = useSelectBox({});
     const status_of_booting_in_equipment = useSelectBox({});
-    const contract_series_and = useSelectBox({});
-    const provider = useSelectBox({});
-    const customer = useSelectBox({});
+    const provider = useSelectBox({warehouses: []});
+    const customer = useSelectBox({warehouses: []});
     const warehouse_c = useSelectBox({});
     const warehouse_p = useSelectBox({});
 
@@ -81,13 +84,12 @@ const Invoices = (props) => {
                     }),
                 }}
             />
-            <div className="d-flex">
+            <div className="d-flex input-panel">
                 <input type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
                 <input {...series_and_number}/>
-                <input {...legal_address}/>
                 <input {...date_and_time}/>
-                <input {...selling_on_commission}/>
+                <input type="checkbox" {...selling_on_commission}/>
                 <input {...summa}/>
                 <input {...summa_ndc}/>
                 <input {...summa_with_ndc}/>
@@ -123,7 +125,7 @@ const Invoices = (props) => {
                   value={status_of_price_tag_printing.value}
                   onChange={status_of_price_tag_printing.onChange}
                 >
-                  {props.CosPro.statuses_price_tag.map((el) => (
+                  {props.CosPro.status_price_tags.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
                   ))}
                 </Select>
@@ -138,7 +140,7 @@ const Invoices = (props) => {
                   value={status_of_acceptance.value}
                   onChange={status_of_acceptance.onChange}
                 >
-                  {props.CosPro.statuses_acceptence.map((el) => (
+                  {props.CosPro.status_acceptences.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
                   ))}
                 </Select>
@@ -153,40 +155,7 @@ const Invoices = (props) => {
                   value={status_of_booting_in_equipment.value}
                   onChange={status_of_booting_in_equipment.onChange}
                 >
-                  {props.CosPro.statuses_booting.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Поставщик</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={provider.value}
-                  onChange={provider.onChange}
-                >
-                  {props.CosPro.providers.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Покупатель
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={customer.value}
-                  onChange={customer.onChange}
-                >
-                  {props.CosPro.customers.map((el) => (
+                  {props.CosPro.status_bootings.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
                   ))}
                 </Select>
@@ -198,10 +167,10 @@ const Invoices = (props) => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={contract_series_and.value}
-                  onChange={contract_series_and.onChange}
+                  value={contract.value}
+                  onChange={contract.onChange}
                 >
-                  {props.CosPro.contracts.map((el) => (
+                  {props.CosPro.contracts.map((el) => (	
                     <MenuItem value={el}>{el.series_and_number}</MenuItem>
                   ))}
                 </Select>
@@ -214,8 +183,8 @@ const Invoices = (props) => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={operation}
-                  onChange={handleChangeOperation}
+                  value={operation.value}
+                  onChange={operation.onChange}
                 >
                   {props.CosPro.operations.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
@@ -229,8 +198,8 @@ const Invoices = (props) => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={currency}
-                  onChange={handleChangeCurrency}
+                  value={currency.value}
+                  onChange={currency.onChange}
                 >
                   {props.CosPro.currencies.map((el) => (
                     <MenuItem value={el}>{el.full_name}</MenuItem>
@@ -249,7 +218,7 @@ const Invoices = (props) => {
                   value={warehouse_p.value}
                   onChange={warehouse_p.onChange}
                 >
-                  {provider.warehouses.map((el) => (
+                  {provider.value.warehouses.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
                   ))}
                 </Select>
@@ -266,7 +235,7 @@ const Invoices = (props) => {
                   value={warehouse_c.value}
                   onChange={warehouse_c.onChange}
                 >
-                  {customer.warehouses.map((el) => (
+                  {customer.value.warehouses.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
                   ))}
                 </Select>
@@ -277,16 +246,18 @@ const Invoices = (props) => {
             
                 <button onClick={() => 
                         props.add({
-                            contract_series_and_number: contract.series_and_number,
-                            operation_name: operation.name,
-                            currency_name: currency.full_name,
-                            agreement_name: agreement.name,
-                            status_of_price_tag_printing_name:
-                            status_of_price_tag_printing.name,
-                            status_of_acceptance_name: status_of_acceptence.name,
-                            status_of_booting_in_equipment_name:
-                            status_of_booting_in_equipment.name,
-                        }, state.path)
+                            contract_id: contract.value.series_and_number,
+                            operation_id: operation.value.id,
+                            currency_id: currency.value.id,
+                            agreement_id: agreement.value.id,
+                            status_of_price_tag_printing_id:
+                            status_of_price_tag_printing.value.id,
+                            status_of_acceptance_id: status_of_acceptance.value.id,
+                            status_of_booting_in_equipment_id:
+                            status_of_booting_in_equipment.value.id,
+                            provider_id: contract.value.provider.id,
+                            customer_id: contract.value.customer.id,
+                        },  state.path)
                     }>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
@@ -301,6 +272,8 @@ const Invoices = (props) => {
                         props.setStatusesAcceptence();
                         props.setStatusesPriceTag();
                         props.setStatusesBooting();
+                        props.setCustomerWarehouses();
+                        props.setProviderWarehouses();
                     }}
                     >
                     Обновить данные
@@ -345,7 +318,7 @@ const useCheckBox = (initialState) => {
 }
 
 const useSelectBox = (initialState) => {
-    const [value, setValue] = React.useState();
+    const [value, setValue] = React.useState(initialState);
     const handleChange = (e) => setValue(e.target.value);
     return ({
         value,
@@ -360,8 +333,9 @@ export default connect(
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
-        getOwnershipForms: (path) => dispatch(takeOwnershipForms(path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
+        setCustomerWarehouses: (path) => dispatch(takeCustomerWarehouses(path)),
+        setProviderWarehouses: (path) => dispatch(takeProviderWarehouses(path)),
         setData: (path) => dispatch(takeData(path)),
         setCustomers: () => dispatch(takeCustomers()),
         setProviders: () => dispatch(takeProviders()),

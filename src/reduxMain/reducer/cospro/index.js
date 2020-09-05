@@ -23,9 +23,9 @@ let initialState = {
   operations: [],
   currencies: [],
   agreements: [],
-  statuses_price_tag: [],
-  statuses_acceptence: [],
-  statuses_booting: [],
+  status_price_tags: [],
+  status_acceptences: [],
+  status_bootings: [],
 };
 
 const cosProReducer = (state = initialState, action) => {
@@ -55,15 +55,15 @@ const cosProReducer = (state = initialState, action) => {
       return state;
     }
     case SET_STATUS_PRICE_TAG: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { status_price_tags: action.value });
       return state;
     }
     case SET_STATUS_ACCEPTENCE: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { status_acceptences: action.value });
       return state;
     }
     case SET_STATUS_BOOTING: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { status_bootings: action.value });
       return state;
     }
     case SET_OWNERSHIP_FORMS: {
