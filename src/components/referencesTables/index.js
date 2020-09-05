@@ -1,3 +1,7 @@
 import Organizations from './organizations'
+import Products from './products'
+import Subgroups from './subgroups'
 
-export default Organizations;
+export {Subgroups}
+export {Products}
+export {Organizations};

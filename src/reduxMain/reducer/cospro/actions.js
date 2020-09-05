@@ -8,6 +8,9 @@ import {
   SET_STATUS_PRICE_TAG,
   SET_STATUS_ACCEPTENCE,
   SET_STATUS_BOOTING,
+  SET_OWNERSHIP_FORMS,
+  SET_UNITS,
+  SET_GROUPS
 } from "../../constants";
 import axios from "axios";
 
@@ -18,6 +21,11 @@ const setProviders = (data) => ({
 
 const setCustomers = (data) => ({
   type: SET_CUSTOMERS,
+  value: data,
+});
+
+const setGroups = (data) => ({
+  type: SET_GROUPS,
   value: data,
 });
 
@@ -56,9 +64,37 @@ const setStatusesBooting = (data) => ({
   value: data,
 });
 
+const setOwnershipForms = (data) => ({
+  type: SET_OWNERSHIP_FORMS,
+  value: data,
+});
+
+const setUnits = (data) => ({
+  type: SET_UNITS,
+  value: data,
+});
+
+export const takeUnits = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/guides/units`).then((response) => {
+    dispatch(setUnits(response.data));
+  });
+};
+
+export const takeGroups = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/guides/p_groups`).then((response) => {
+    dispatch(setGroups(response.data));
+  });
+};
+
 export const takeProviders = (path) => (dispatch) => {
   axios.get(`http://localhost:3000/tables/providers`).then((response) => {
     dispatch(setProviders(response.data));
+  });
+};
+
+export const takeOwnershipForms = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/guides/ownership_forms`).then((response) => {
+    dispatch(setOwnershipForms(response.data));
   });
 };
 

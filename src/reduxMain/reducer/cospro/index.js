@@ -8,11 +8,17 @@ import {
   SET_STATUS_PRICE_TAG,
   SET_STATUS_ACCEPTENCE,
   SET_STATUS_BOOTING,
+  SET_OWNERSHIP_FORMS,
+  SET_UNITS,
+  SET_GROUPS
 } from "../../constants";
 
 let initialState = {
   customers: [],
   providers: [],
+  groups: [],
+  ownership_forms: [],
+  units: [],
   contracts: [],
   operations: [],
   currencies: [],
@@ -58,6 +64,18 @@ const cosProReducer = (state = initialState, action) => {
     }
     case SET_STATUS_BOOTING: {
       state = Object.assign({}, state, { contracts: action.value });
+      return state;
+    }
+    case SET_OWNERSHIP_FORMS: {
+      state = Object.assign({}, state, { ownership_forms: action.value });
+      return state;
+    }
+    case SET_UNITS: {
+      state = Object.assign({}, state, { units: action.value });
+      return state;
+    }
+    case SET_GROUPS: {
+      state = Object.assign({}, state, { groups: action.value });
       return state;
     }
     default:

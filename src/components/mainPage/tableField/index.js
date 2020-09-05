@@ -35,7 +35,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Organizations from "../../referencesTables";
+import {Organizations, Products, Subgroups} from "../../referencesTables";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -137,7 +137,16 @@ function MaterialTableDemo(props) {
     <div className="position">
       {props.ID.idTop === 0 &&
         props.ID.idLeftField === 0 &&
-        props.ID.idLeft === 0 ? <Organizations tableIcons={tableIcons} state={state}/> : (
+        props.ID.idLeft === 0 ? <Organizations tableIcons={tableIcons} state={state}/>:
+        
+        props.ID.idTop === 0 &&
+        props.ID.idLeftField === 1 &&
+        props.ID.idLeft === 0 ? <Products tableIcons={tableIcons} state={state}/> :
+
+        props.ID.idTop === 0 &&
+        props.ID.idLeftField === 1 &&
+        props.ID.idLeft === 2 ? <Subgroups tableIcons={tableIcons} state={state}/> :
+        (
         <>
           <MaterialTable
             icons={tableIcons}

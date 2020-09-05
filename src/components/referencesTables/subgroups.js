@@ -3,7 +3,7 @@ import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../reduxMain/reducer/id/actions";
-import { takeOwnershipForms } from "../../reduxMain/reducer/cospro/actions"
+import { takeGroups } from "../../reduxMain/reducer/cospro/actions"
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -20,21 +20,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Organizations = (props) => {
+const Subgroups = (props) => {
 
     const classes = useStyles();
 
     const {tableIcons, state} = props;
-    const full_name = useInputText('');
-    const short_name = useInputText('');
-    const unp = useInputText('');
-    const legal_address = useInputText('');
-    const phone_or_fax = useInputText('');
-    const email = useInputText('');
-    const is_provider = useCheckBox(false);
-    const is_company = useCheckBox(false);
-    const is_buyer = useCheckBox(false);
-    const ownership_form = useSelectBox({});
+    const name = useInputText('');
+    const group = useSelectBox({});
 
     return (
         <>
@@ -56,50 +48,35 @@ const Organizations = (props) => {
                 }}
             />
             <div className="d-flex">
-                <input {...full_name}/>
-                <input {...short_name}/>
-                <input {...unp}/>
-                <input {...legal_address}/>
-                <input {...phone_or_fax}/>
-                <input {...email}/>
-                <input type="checkbox" {...is_provider}/>
-                <input type="checkbox" {...is_company}/>
-                <input type="checkbox" {...is_buyer}/>
+                <input {...name}/>
             <div>
               <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Форма собственности</InputLabel>
+                <InputLabel id="demo-simple-select-label">Единица измерения</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={ownership_form.value}
-                  onChange={ownership_form.onChange}
+                  value={group.value}
+                  onChange={group.onChange}
                 >
-                  {props.CosPro.ownership_forms.map((el) => (
+                  {props.CosPro.groups.map((el) => (
                     <MenuItem value={el}>{el.name}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
+
             </div>
             </div>
             <div>
             
                 <button onClick={() => 
                         props.add({
-                            full_name: full_name.value,
-                            short_name: short_name.value,
-                            unp: unp.value,
-                            legal_address: legal_address.value,
-                            phone_or_fax: phone_or_fax.value,
-                            ownership_form_id: ownership_form.value.id,
-                            email: email.value,
-                            is_provider: is_provider.value,
-                            is_company: is_company.value,
-                            is_buyer: is_buyer.value
+                            name: name.value,
+                            p_group_id: group.value.id,
                         }, state.path)
                     }>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {props.setData(state.path); props.getOwnershipForms(state.path)}}
+                    onClick={() => {props.setData(state.path); props.getGroups(state.path)}}
                     >
                     Обновить данные
                 </button>
@@ -147,8 +124,8 @@ export default connect(
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
-        getOwnershipForms: (path) => dispatch(takeOwnershipForms(path)),
+        getGroups: (path) => dispatch(takeGroups(path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
         setData: (path) => dispatch(takeData(path)),
     })
-)(Organizations);
+)(Subgroups);

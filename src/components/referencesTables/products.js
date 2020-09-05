@@ -3,7 +3,7 @@ import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../reduxMain/reducer/id/actions";
-import { takeOwnershipForms } from "../../reduxMain/reducer/cospro/actions"
+import { takeUnits } from "../../reduxMain/reducer/cospro/actions"
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -20,21 +20,19 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Organizations = (props) => {
+const Products = (props) => {
 
     const classes = useStyles();
 
     const {tableIcons, state} = props;
     const full_name = useInputText('');
     const short_name = useInputText('');
-    const unp = useInputText('');
-    const legal_address = useInputText('');
-    const phone_or_fax = useInputText('');
-    const email = useInputText('');
-    const is_provider = useCheckBox(false);
-    const is_company = useCheckBox(false);
-    const is_buyer = useCheckBox(false);
-    const ownership_form = useSelectBox({});
+    const code = useInputText('');
+    const price = useInputText('');
+    const cost = useInputText('');
+    const rate_nds = useCheckBox(false);
+    const summa_nds = useCheckBox(false);
+    const unit = useSelectBox({});
 
     return (
         <>
@@ -58,27 +56,26 @@ const Organizations = (props) => {
             <div className="d-flex">
                 <input {...full_name}/>
                 <input {...short_name}/>
-                <input {...unp}/>
-                <input {...legal_address}/>
-                <input {...phone_or_fax}/>
-                <input {...email}/>
-                <input type="checkbox" {...is_provider}/>
-                <input type="checkbox" {...is_company}/>
-                <input type="checkbox" {...is_buyer}/>
+                <input {...code}/>
+                <input {...price}/>
+                <input {...cost}/>
+                <input {...rate_nds}/>
+                <input {...summa_nds}/>
             <div>
               <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Форма собственности</InputLabel>
+                <InputLabel id="demo-simple-select-label">Единица измерения</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={ownership_form.value}
-                  onChange={ownership_form.onChange}
+                  value={unit.value}
+                  onChange={unit.onChange}
                 >
-                  {props.CosPro.ownership_forms.map((el) => (
-                    <MenuItem value={el}>{el.name}</MenuItem>
+                  {props.CosPro.units.map((el) => (
+                    <MenuItem value={el}>{el.full_name}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
+
             </div>
             </div>
             <div>
@@ -87,19 +84,17 @@ const Organizations = (props) => {
                         props.add({
                             full_name: full_name.value,
                             short_name: short_name.value,
-                            unp: unp.value,
-                            legal_address: legal_address.value,
-                            phone_or_fax: phone_or_fax.value,
-                            ownership_form_id: ownership_form.value.id,
-                            email: email.value,
-                            is_provider: is_provider.value,
-                            is_company: is_company.value,
-                            is_buyer: is_buyer.value
+                            code: code.value,
+                            price: price.value,
+                            cost: cost.value,
+                            unit_id: unit.value.id,
+                            rate_nds: rate_nds.value,
+                            summa_nds: summa_nds.value
                         }, state.path)
                     }>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {props.setData(state.path); props.getOwnershipForms(state.path)}}
+                    onClick={() => {props.setData(state.path); props.getUnits(state.path)}}
                     >
                     Обновить данные
                 </button>
@@ -147,8 +142,8 @@ export default connect(
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
-        getOwnershipForms: (path) => dispatch(takeOwnershipForms(path)),
+        getUnits: (path) => dispatch(takeUnits(path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
         setData: (path) => dispatch(takeData(path)),
     })
-)(Organizations);
+)(Products);
