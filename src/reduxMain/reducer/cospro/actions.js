@@ -122,6 +122,12 @@ export const takeOwnershipForms = (path) => (dispatch) => {
   });
 };
 
+export const takeAgreements = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/customs/agreements`).then((response) => {
+    dispatch(setAgreements(response.data));
+  });
+};
+
 export const takeCustomers = (path) => (dispatch) => {
   axios.get(`http://localhost:3000/guides/organizations`).then((response) => {
     dispatch(setCustomers(response.data));
@@ -146,11 +152,6 @@ export const takeCurrencies = (path) => (dispatch) => {
   });
 };
 
-export const takeAgreements = (path) => (dispatch) => {
-  axios.get(`http://localhost:3000/customs/agreements`).then((response) => {
-    dispatch(setAgreements(response.data));
-  });
-};
 
 export const takeStatusesPriceTag = (path) => (dispatch) => {
   axios

@@ -3,17 +3,17 @@ import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../reduxMain/reducer/id/actions";
-import { takeCustomers,
-    takeProviders,
-    takeContracts,
-    takeAgreements,
-    takeCurrencies,
-    takeOperations,
-    takeStatusesPriceTag,
-    takeStatusesAcceptence,
-    takeStatusesBooting,
-    takeProviderWarehouses,
-    takeCustomerWarehouses } from "../../reduxMain/reducer/cospro/actions"
+import {  takeCustomers,
+          takeProviders,
+          takeContracts,
+          takeAgreements,
+          takeCurrencies,
+          takeOperations,
+          takeStatusesPriceTag,
+          takeStatusesAcceptence,
+          takeStatusesBooting,
+          takeProviderWarehouses,
+          takeCustomerWarehouses } from "../../reduxMain/reducer/cospro/actions"
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -64,6 +64,7 @@ const Invoices = (props) => {
     const warehouse_c = useSelectBox({});
     const warehouse_p = useSelectBox({});
 
+    console.log(props.CosPro.contracts)
 
     return (
         <>
@@ -170,7 +171,8 @@ const Invoices = (props) => {
                   value={contract.value}
                   onChange={contract.onChange}
                 >
-                  {props.CosPro.contracts.map((el) => (	
+                  
+                   {props.CosPro.contracts.map((el) => (
                     <MenuItem value={el}>{el.series_and_number}</MenuItem>
                   ))}
                 </Select>
@@ -259,6 +261,7 @@ const Invoices = (props) => {
                             customer_id: contract.value.customer.id,
                         },  state.path)
                     }>Добавить</button>
+
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
@@ -278,6 +281,7 @@ const Invoices = (props) => {
                     >
                     Обновить данные
                 </button>
+
             </div>
             
         </>

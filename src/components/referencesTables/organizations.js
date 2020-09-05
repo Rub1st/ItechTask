@@ -97,12 +97,14 @@ const Organizations = (props) => {
                             is_buyer: is_buyer.value
                         }, state.path)
                     }>Добавить</button>
+
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {props.setData(state.path); props.getOwnershipForms(state.path)}}
+                    onClick={() => {props.setData(state.path); props.setOwnershipForms(state.path)}}
                     >
                     Обновить данные
                 </button>
+
             </div>
             
         </>
@@ -147,7 +149,7 @@ export default connect(
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
-        getOwnershipForms: (path) => dispatch(takeOwnershipForms(path)),
+        setOwnershipForms: (path) => dispatch(takeOwnershipForms(path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
         setData: (path) => dispatch(takeData(path)),
     })

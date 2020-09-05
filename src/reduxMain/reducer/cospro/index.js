@@ -43,15 +43,15 @@ const cosProReducer = (state = initialState, action) => {
       return state;
     }
     case SET_OPERATIONS: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { operations: action.value });
       return state;
     }
     case SET_CURRENCIES: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { currencies: action.value });
       return state;
     }
     case SET_AGREEMENTS: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { agreements: action.value });
       return state;
     }
     case SET_STATUS_PRICE_TAG: {
