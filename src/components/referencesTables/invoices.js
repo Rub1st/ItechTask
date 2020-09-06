@@ -73,8 +73,8 @@ const Invoices = (props) => {
               <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
-              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
-              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses} attribute={'address'}/>
+              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={contract.provider.warehouses} attribute={'address'}/>
+              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={contract.customer.warehouses} attribute={'address'}/>
             </div>
             <div>         
                 <button onClick={() => 
