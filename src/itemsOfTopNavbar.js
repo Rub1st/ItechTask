@@ -460,7 +460,7 @@ export default [
             label: "Склады",
             path: 'warehouses/warehouses',
             table: {
-              columns: [{ title: "Организация", field: "organizationName" },
+              columns: [{ title: "Организация", field: "organization.name" },
                         { title: "Адрес", field: "address"}],
               data: [],
             },

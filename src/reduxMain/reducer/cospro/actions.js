@@ -1,4 +1,5 @@
 import {
+  SET_ORGANIZATIONS,
   SET_CUSTOMERS,
   SET_PROVIDERS,
   SET_CONTRACTS,
@@ -12,7 +13,7 @@ import {
   SET_UNITS,
   SET_GROUPS,
   SET_PROVIDER_WAREHOUSES,
-  SET_CUSTOMER_WAREHOUSES
+  SET_CUSTOMER_WAREHOUSES,
 } from "../../constants";
 import axios from "axios";
 
@@ -86,6 +87,11 @@ const setUnits = (data) => ({
   value: data,
 });
 
+const setOrganizations = (data) => ({
+  type: SET_ORGANIZATIONS,
+  value: data
+})
+
 export const takeUnits = (path) => (dispatch) => {
   axios.get(`http://localhost:3000/guides/units`).then((response) => {
     dispatch(setUnits(response.data));
@@ -131,6 +137,12 @@ export const takeAgreements = (path) => (dispatch) => {
 export const takeCustomers = (path) => (dispatch) => {
   axios.get(`http://localhost:3000/guides/organizations`).then((response) => {
     dispatch(setCustomers(response.data));
+  });
+};
+
+export const takeOrganizations = (path) => (dispatch) => {
+  axios.get(`http://localhost:3000/guides/organizations`).then((response) => {
+    dispatch(setOrganizations(response.data));
   });
 };
 

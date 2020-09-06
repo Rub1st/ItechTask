@@ -1,4 +1,5 @@
 import {
+  SET_ORGANIZATIONS,
   SET_PROVIDERS,
   SET_CUSTOMERS,
   SET_CONTRACTS,
@@ -14,6 +15,7 @@ import {
 } from "../../constants";
 
 let initialState = {
+  organizations: [],
   customers: [],
   providers: [],
   groups: [],
@@ -30,6 +32,10 @@ let initialState = {
 
 const cosProReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ORGANIZATIONS: {
+      state = Object.assign({}, state, { organizations: action.value });
+      return state;
+    }
     case SET_CUSTOMERS: {
       state = Object.assign({}, state, { customers: action.value });
       return state;
