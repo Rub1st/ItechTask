@@ -14,7 +14,8 @@ import {
   SET_GROUPS,
   SET_TYPE_OF_PAYMENT,
   SET_TYPE_OF_CONTRACT,
-  SET_TYPE_OF_EXCHANGE
+  SET_TYPE_OF_EXCHANGE,
+  SET_INVOICE_TYPES
 } from "../../constants";
 
 let initialState = {
@@ -34,7 +35,8 @@ let initialState = {
   type_of_contracts: [],
   type_of_exchanges: [],
   type_of_payments: [],
-  warehouses: []
+  warehouses: [],
+  invoice_types: []
 };
 
 const cosProReducer = (state = initialState, action) => {
@@ -101,6 +103,10 @@ const cosProReducer = (state = initialState, action) => {
     }
     case SET_TYPE_OF_CONTRACT: {
       state = Object.assign({}, state, { type_of_contracts: action.value });
+      return state;
+    }
+    case SET_INVOICE_TYPES: {
+      state = Object.assign({}, state, {invoice_types: action.value});
       return state;
     }
     default:

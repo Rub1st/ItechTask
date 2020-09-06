@@ -79,6 +79,21 @@ const Invoices = (props) => {
             <div>         
                 <button onClick={() => 
                         props.add({
+                            is_closed: is_closed.value,
+                            is_conducted: is_conducted.value,
+                            series_and_number: series_and_number.value,
+                            date_and_time: date_and_time.value,
+                            summa: summa.value,
+                            summa_ndc: summa_ndc.value,
+                            summa_with_ndc: summa_with_ndc.value,
+                            record_summa: record_summa.value,
+                            retail_summa: retail_summa.value,
+                            pre_assessment_summa: pre_assessment_summa.value,
+                            write_down_summa: write_down_summa.value,
+                            note: note.value,
+                            strings_count: strings_count.value,
+                            total_count: total_count.value,
+                            count_all: count_all.value,
                             contract_id: contract.value.series_and_number,
                             operation_id: operation.value.id,
                             currency_id: currency.value.id,
@@ -90,6 +105,8 @@ const Invoices = (props) => {
                             status_of_booting_in_equipment.value.id,
                             provider_id: contract.value.provider.id,
                             customer_id: contract.value.customer.id,
+                            provider_warehouse_id: contract.provider.warehouse.id,
+                            customer_warehouse_id: contract.customer.warehouse.id
                         },  state.path)
                     }>Добавить</button>
                 <button 

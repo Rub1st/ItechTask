@@ -278,10 +278,10 @@ export default [
           {
             id: 1,
             label: "Акты расхождений",
-            path: 'act_of_discrepancies',
+            path: 'customs/act_of_discrepancies',
             table: {
               columns: [
-                { title: "Закрыто", field: "close", type: "boolean" },
+                { title: "Закрыто", field: "is_closed", type: "boolean" },
                 { title: "Проведен", field: "is_conducted", type: "boolean" },
                 { title: "Серия/Номер", field: "series_and_number" },
                 { title: "Дата и время", field: "date_and_time" },
@@ -290,13 +290,16 @@ export default [
                 { title: "Сумма НДС", field: "summa_ndc" },
                 { title: "Сумма с НДС", field: "summa_with_ndc" },
                 { title: "Примечание", field: "note" },
-                { title: "Поставщик", field: "provider" },
-                { title: "Покупатель", field: "customer" },
-                { title: "Операция", field: "operation_name" },
-                { title: "Валюта", field: "currency_name" },
+                { title: "Поставщик", field: "provider.full_name" },
+                { title: "Склад поставщика", field: "contract.provider.warehouse.address" },
+                { title: "Склад покупателя", field: "contract.customer.warehouse.address" },
+                { title: "Покупатель", field: "customer.full_name" },
+                { title: "Операция", field: "operation.name" },
+                { title: "Валюта", field: "currency.full_name" },
+                { title: "Направление документа", field: "invoice_type.name"},
                 {
                   title: "Номер договора",
-                  field: "contract_series_and_number",
+                  field: "contract.series_and_number",
                 },
               ],
               data: [],
@@ -364,6 +367,17 @@ export default [
               data: [],
             },
           },
+          {
+            id: 5,
+            label: "Направления документа",
+            path: 'utils/invoice_types',
+            table: {
+              columns: [
+                { title: "Наименование", field: "name"}
+              ],
+              data: []
+            }
+          }
         ],
       },
     ],

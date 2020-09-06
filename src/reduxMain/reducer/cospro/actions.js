@@ -16,7 +16,8 @@ import {
   SET_CUSTOMER_WAREHOUSES,
   SET_TYPE_OF_CONTRACT,
   SET_TYPE_OF_EXCHANGE,
-  SET_TYPE_OF_PAYMENT
+  SET_TYPE_OF_PAYMENT,
+  SET_INVOICE_TYPES
 } from "../../constants";
 import axios from "axios";
 
@@ -107,6 +108,11 @@ export const setUnits = (data) => ({
 
 export const setOrganizations = (data) => ({
   type: SET_ORGANIZATIONS,
+  value: data
+})
+
+export const setInvoiceTypes = (data) => ({
+  type: SET_INVOICE_TYPES,
   value: data
 })
 
