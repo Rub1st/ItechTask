@@ -4,13 +4,13 @@ import {
     SET_ID_LEFT_FIELD,
     UPDATE_TABLE_DATA,
     SET_DATA
-} from "../../constants";
+  } from "../../constants";
 import axios from "axios";
 
 
-export const takeData = (path) => (dispatch) => {
+export const takeData = (path, setter) => (dispatch) => {
     axios.get(`http://localhost:3000/${path}`).then((response) => {
-      dispatch(setData(response.data));
+      dispatch(setter(response.data));
     });
   };
   
@@ -34,7 +34,7 @@ export const takeData = (path) => (dispatch) => {
     value: newId,
   });
   
-  const setData = (data) => ({
+  export const setData = (data) => ({
     type: SET_DATA,
     value: data,
   });

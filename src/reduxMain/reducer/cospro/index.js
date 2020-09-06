@@ -11,7 +11,10 @@ import {
   SET_STATUS_BOOTING,
   SET_OWNERSHIP_FORMS,
   SET_UNITS,
-  SET_GROUPS
+  SET_GROUPS,
+  SET_TYPE_OF_PAYMENT,
+  SET_TYPE_OF_CONTRACT,
+  SET_TYPE_OF_EXCHANGE
 } from "../../constants";
 
 let initialState = {
@@ -28,6 +31,10 @@ let initialState = {
   status_price_tags: [],
   status_acceptences: [],
   status_bootings: [],
+  type_of_contracts: [],
+  type_of_exchanges: [],
+  type_of_payments: [],
+  warehouses: []
 };
 
 const cosProReducer = (state = initialState, action) => {
@@ -82,6 +89,18 @@ const cosProReducer = (state = initialState, action) => {
     }
     case SET_GROUPS: {
       state = Object.assign({}, state, { groups: action.value });
+      return state;
+    }
+    case SET_TYPE_OF_EXCHANGE: {
+      state = Object.assign({}, state, { type_of_exchanges: action.value });
+      return state;
+    }
+    case SET_TYPE_OF_PAYMENT: {
+      state = Object.assign({}, state, { type_of_payments: action.value });
+      return state;
+    }
+    case SET_TYPE_OF_CONTRACT: {
+      state = Object.assign({}, state, { type_of_contracts: action.value });
       return state;
     }
     default:
