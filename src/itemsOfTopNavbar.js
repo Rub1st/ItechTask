@@ -1,20 +1,20 @@
-import dashboard from "./icons/dashboard.png";
+//import dashboard from "./icons/dashboard.png";
 import catalog from "./icons/catalog.png";
 import purchase from "./icons/purchase.png";
 import stock from "./icons/stock.png";
-import sale from "./icons/sale.png";
-import retail from "./icons/retail.png";
-import finance from "./icons/finance.png";
-import priceList from "./icons/priceList.png";
-import machinery from "./icons/machinery.png";
-import transport from "./icons/transport.png";
-import customs from "./icons/customs.png";
-import manufacturing from "./icons/manufacturing.png";
-import wms from "./icons/wms.png";
-import chat from "./icons/chat.png";
-import lock from "./icons/lock.png";
-import search from "./icons/search.png";
-import bi from "./icons/bi.png";
+// import sale from "./icons/sale.png";
+// import retail from "./icons/retail.png";
+// import finance from "./icons/finance.png";
+// import priceList from "./icons/priceList.png";
+// import machinery from "./icons/machinery.png";
+// import transport from "./icons/transport.png";
+// import customs from "./icons/customs.png";
+// import manufacturing from "./icons/manufacturing.png";
+// import wms from "./icons/wms.png";
+// import chat from "./icons/chat.png";
+// import lock from "./icons/lock.png";
+// import search from "./icons/search.png";
+// import bi from "./icons/bi.png";
 
 export default [
   {

@@ -19,7 +19,6 @@ import {
   SET_TYPE_OF_PAYMENT,
   SET_INVOICE_TYPES
 } from "../../constants";
-import axios from "axios";
 
 export const setProviders = (data) => ({
   type: SET_PROVIDERS,
@@ -42,12 +41,12 @@ export const setTypeOfExchanges = (data) => ({
 });
 
 export const setProviderWarehouses = (data) => ({
-  type: SET_PROVIDERS,
+  type: SET_PROVIDER_WAREHOUSES,
   value: data,
 });
 
 export const setCustomerWarehouses = (data) => ({
-  type: SET_PROVIDERS,
+  type: SET_CUSTOMER_WAREHOUSES,
   value: data,
 });
 

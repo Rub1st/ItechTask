@@ -1,12 +1,11 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import "./style.css";
 import {MaterialTables} from '../../utils'
 import { connect } from "react-redux";
 import { destroyData, AddToData } from "../../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../../reduxMain/reducer/id/actions";
 import { setData } from '../../../reduxMain/reducer/id/actions.js'
-import { makeStyles } from "@material-ui/core/styles";
-import {Invoices, Organizations, Products, Subgroups, Warehouses, Contracts} from "../../referencesTables";
+import {Invoices, Organizations, Products, Subgroups, Warehouses, Contracts, ActOfDiscrepancies} from "../../referencesTables";
 
 
 function MaterialTableDemo(props) {
@@ -21,6 +20,8 @@ function MaterialTableDemo(props) {
   return (
     <div className="position">
       {
+        checkIdes(1,1,1) ? <ActOfDiscrepancies state={state}/> :
+
         checkIdes(2,1,0) ? <Contracts state={state}/>: 
       
         checkIdes(2,1,1) ? <Warehouses state={state}/>:
@@ -35,12 +36,6 @@ function MaterialTableDemo(props) {
         (
         <>
           <MaterialTables isAdd={true} state={state}/>
-          <button
-          className="btn btn-success btn-position"
-          onClick={() => props.setData(state.path, setData)}
-        >
-          Отправить
-        </button>
         <button
           className="btn btn-dark btn-position"
           onClick={() => {

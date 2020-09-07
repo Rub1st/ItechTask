@@ -14,7 +14,7 @@ const LeftNavbarElement = (props) => (
        <ul className="for-children-list">
         {
             props.childrenList.map(el => <li key={el.id} onClick={() =>
-             (props.setIdLeftBar(el.id),props.setIdLeftField(props.id))}>
+             {props.setIdLeftBar(el.id); props.setIdLeftField(props.id)}}>
                 <p title={el.label} className={'prelabel'}><img src={form} alt=""/> {el.label}</p>
             </li>) 
         }

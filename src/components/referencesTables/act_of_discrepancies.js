@@ -25,10 +25,14 @@ const ActOfDiscrepancies = (props) => {
     const summa_ndc = useInputText(false);
     const summa_with_ndc = useInputText('');
     const note = useInputText('');
+    const summa = useInputText('');
     const contract = useSelectBox({});
     const operation = useSelectBox({});
     const currency = useSelectBox({});
-    const invoce_type = useSelectBox({});
+    //const invoce_type = useSelectBox({});
+
+
+    console.log(props.CosPro.invoce_types)
 
     return (
         <>
@@ -43,12 +47,9 @@ const ActOfDiscrepancies = (props) => {
                 <input {...note}/>
                 <input {...strings_count}/>
                 <input {...total_count}/>
-              <SelectedInput label={'Направление документа'} classes={classes} object={invoce_type} collection={props.CosPro.invoce_types} attribute={'name'}/>
               <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
-              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={contract.provider.warehouses} attribute={'address'}/>
-              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={contract.customer.warehouses} attribute={'address'}/>
             </div>
             <div>         
                 <button onClick={() => 
@@ -62,8 +63,8 @@ const ActOfDiscrepancies = (props) => {
                             note: note.value,
                             strings_count: strings_count.value,
                             total_count: total_count.value,
-                            invoce_type_id: invoce_type.value.id,
-                            contract_id: contract.value.series_and_number,
+                            invoce_type_id: 2,
+                            contract_id: contract.value.id,
                             operation_id: operation.value.id,
                             currency_id: currency.value.id,
                             provider_id: contract.value.provider.id,

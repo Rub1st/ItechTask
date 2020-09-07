@@ -64,7 +64,6 @@ const MaterialTables = (props) => {
             resolve();
           }, 1000);
         })} : null
-
     return(
         <MaterialTable
             icons={tableIcons}

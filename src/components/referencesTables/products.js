@@ -1,5 +1,5 @@
 import React from 'react'
-import { SelectedInput, useCheckBox, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
+import { SelectedInput, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setUnits } from '../../reduxMain/reducer/cospro/actions'

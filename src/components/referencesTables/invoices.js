@@ -10,7 +10,10 @@ import { setCustomers,
          setOperations,
          setStatusesAcceptence,
          setStatusesBooting,
-         setStatusesPriceTag } from '../../reduxMain/reducer/cospro/actions'
+         setStatusesPriceTag, 
+         setCustomerWarehouses,
+         setProviderWarehouses,
+        setInvoiceTypes} from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
 import './style.css'
@@ -36,7 +39,7 @@ const Invoices = (props) => {
     const strings_count = useInputText('');
     const total_count = useInputText('');
     const count_all = useInputText('');
-    const contract = useSelectBox({})
+    const contract = useSelectBox({provider: {warehouses: []}, customer: {warehouses: []}})
     const operation = useSelectBox({});
     const currency = useSelectBox({});
     const agreement = useSelectBox({});
@@ -45,6 +48,7 @@ const Invoices = (props) => {
     const status_of_booting_in_equipment = useSelectBox({});
     const warehouse_c = useSelectBox({});
     const warehouse_p = useSelectBox({});
+    //const invoce_type = useSelectBox({});
 
     return (
         <>
@@ -73,8 +77,8 @@ const Invoices = (props) => {
               <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
-              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={contract.provider.warehouses} attribute={'address'}/>
-              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={contract.customer.warehouses} attribute={'address'}/>
+              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
+              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses} attribute={'address'}/>
             </div>
             <div>         
                 <button onClick={() => 
@@ -83,9 +87,10 @@ const Invoices = (props) => {
                             is_conducted: is_conducted.value,
                             series_and_number: series_and_number.value,
                             date_and_time: date_and_time.value,
+                            selling_on_commission: selling_on_commission.value,
                             summa: summa.value,
-                            summa_ndc: summa_ndc.value,
-                            summa_with_ndc: summa_with_ndc.value,
+                            summa_nds: summa_ndc.value,
+                            summa_with_nds: summa_with_ndc.value,
                             record_summa: record_summa.value,
                             retail_summa: retail_summa.value,
                             pre_assessment_summa: pre_assessment_summa.value,
@@ -105,8 +110,9 @@ const Invoices = (props) => {
                             status_of_booting_in_equipment.value.id,
                             provider_id: contract.value.provider.id,
                             customer_id: contract.value.customer.id,
-                            provider_warehouse_id: contract.provider.warehouse.id,
-                            customer_warehouse_id: contract.customer.warehouse.id
+                            invoice_type_id: 1
+                            // provider_warehouse_id: contract.provider.warehouse.id,
+                            // customer_warehouse_id: contract.customer.warehouse.id
                         },  state.path)
                     }>Добавить</button>
                 <button 
@@ -122,6 +128,10 @@ const Invoices = (props) => {
                         props.setData("customs/status_of_acceptances", setStatusesAcceptence);
                         props.setData("customs/status_of_price_tag_printings", setStatusesPriceTag);
                         props.setData("customs/status_of_booting_in_equipments", setStatusesBooting);
+                        props.setData("warehouses/warehouses", setCustomerWarehouses)
+                        props.setData("warehouses/warehouses", setProviderWarehouses)
+                        props.setData("utils/invoice_types", setInvoiceTypes);
+
                     }}
                     >
                     Обновить данные
