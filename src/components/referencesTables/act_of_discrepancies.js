@@ -5,7 +5,9 @@ import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setContracts,
          setCurrencies,
          setOperations,
-         setInvoiceTypes
+         setInvoiceTypes,
+         setProviderWarehouses,
+         setCustomerWarehouses
         } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
@@ -22,16 +24,18 @@ const ActOfDiscrepancies = (props) => {
     const date_and_time = useDateTime({});
     const strings_count = useInputText('');
     const total_count = useInputText('');
-    const summa_ndc = useInputText(false);
-    const summa_with_ndc = useInputText('');
+    const summa_nds = useInputText('');
+    const summa_with_nds = useInputText('');
     const note = useInputText('');
     const summa = useInputText('');
     const contract = useSelectBox({});
     const operation = useSelectBox({});
     const currency = useSelectBox({});
+    const warehouse_c = useSelectBox({});
+    const warehouse_p = useSelectBox({});
     //const invoce_type = useSelectBox({});
 
-
+    //props.setData("utils/invoice_types", setInvoiceTypes);
     console.log(props.CosPro.invoce_types)
 
     return (
@@ -42,14 +46,16 @@ const ActOfDiscrepancies = (props) => {
                 <input type="checkbox" {...is_conducted}/>
                 <input {...series_and_number}/>
                 <input {...date_and_time}/>
-                <input {...summa_ndc}/>
-                <input {...summa_with_ndc}/>
+                <input {...summa_nds}/>
+                <input {...summa_with_nds}/>
                 <input {...note}/>
                 <input {...strings_count}/>
                 <input {...total_count}/>
               <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
+              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
+              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses} attribute={'address'}/>
             </div>
             <div>         
                 <button onClick={() => 
@@ -59,16 +65,17 @@ const ActOfDiscrepancies = (props) => {
                             series_and_number: series_and_number.value,
                             date_and_time: date_and_time.value,
                             summa: summa.value,
-                            summa_ndc: summa_ndc.value,
+                            summa_nds: summa_nds.value,
+                            summa_with_nds: summa_with_nds.value,
                             note: note.value,
                             strings_count: strings_count.value,
                             total_count: total_count.value,
-                            invoce_type_id: 2,
+                            invoice_type_id: 2,
                             contract_id: contract.value.id,
                             operation_id: operation.value.id,
                             currency_id: currency.value.id,
-                            provider_id: contract.value.provider.id,
-                            customer_id: contract.value.customer.id
+                            provider_warehouse_id: warehouse_p.value.id,
+                            customer_warehouse_id: warehouse_c.value.id
                         },  state.path)
                     }>Добавить</button>
                 <button 
@@ -78,7 +85,8 @@ const ActOfDiscrepancies = (props) => {
                         props.setData("warehouses/contracts", setContracts);
                         props.setData("customs/operations", setOperations);
                         props.setData("guides/currencies", setCurrencies);
-                        props.setData("utils/invoice_types", setInvoiceTypes);
+                        props.setData("warehouses/warehouses", setCustomerWarehouses);
+                        props.setData("warehouses/warehouses", setProviderWarehouses);
                     }}
                     >
                     Обновить данные

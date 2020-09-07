@@ -20,7 +20,7 @@ function MaterialTableDemo(props) {
   return (
     <div className="position">
       {
-        checkIdes(1,1,1) ? <ActOfDiscrepancies state={state}/> :
+        checkIdes(1,1,0) ? <ActOfDiscrepancies state={state}/> :
 
         checkIdes(2,1,0) ? <Contracts state={state}/>: 
       

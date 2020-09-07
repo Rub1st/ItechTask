@@ -29,8 +29,8 @@ const Invoices = (props) => {
     const date_and_time = useDateTime({});
     const selling_on_commission = useCheckBox(false);
     const summa = useInputText('');
-    const summa_ndc = useInputText(false);
-    const summa_with_ndc = useInputText('');
+    const summa_nds = useInputText(false);
+    const summa_with_nds = useInputText('');
     const record_summa = useInputText('');
     const retail_summa = useInputText('');
     const pre_assessment_summa = useInputText('');
@@ -39,15 +39,13 @@ const Invoices = (props) => {
     const strings_count = useInputText('');
     const total_count = useInputText('');
     const count_all = useInputText('');
-    const contract = useSelectBox({provider: {warehouses: []}, customer: {warehouses: []}})
+    const contract = useSelectBox({})
     const operation = useSelectBox({});
     const currency = useSelectBox({});
     const agreement = useSelectBox({});
     const status_of_price_tag_printing = useSelectBox({});
     const status_of_acceptance = useSelectBox({});
     const status_of_booting_in_equipment = useSelectBox({});
-    const warehouse_c = useSelectBox({});
-    const warehouse_p = useSelectBox({});
     //const invoce_type = useSelectBox({});
 
     return (
@@ -60,8 +58,8 @@ const Invoices = (props) => {
                 <input {...date_and_time}/>
                 <input type="checkbox" {...selling_on_commission}/>
                 <input {...summa}/>
-                <input {...summa_ndc}/>
-                <input {...summa_with_ndc}/>
+                <input {...summa_nds}/>
+                <input {...summa_with_nds}/>
                 <input {...record_summa}/>
                 <input {...retail_summa}/>
                 <input {...pre_assessment_summa}/>
@@ -77,8 +75,6 @@ const Invoices = (props) => {
               <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
-              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
-              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses} attribute={'address'}/>
             </div>
             <div>         
                 <button onClick={() => 
@@ -89,8 +85,8 @@ const Invoices = (props) => {
                             date_and_time: date_and_time.value,
                             selling_on_commission: selling_on_commission.value,
                             summa: summa.value,
-                            summa_nds: summa_ndc.value,
-                            summa_with_nds: summa_with_ndc.value,
+                            summa_nds: summa_nds.value,
+                            summa_with_nds: summa_with_nds.value,
                             record_summa: record_summa.value,
                             retail_summa: retail_summa.value,
                             pre_assessment_summa: pre_assessment_summa.value,
@@ -99,7 +95,7 @@ const Invoices = (props) => {
                             strings_count: strings_count.value,
                             total_count: total_count.value,
                             count_all: count_all.value,
-                            contract_id: contract.value.series_and_number,
+                            contract_id: contract.value.id,
                             operation_id: operation.value.id,
                             currency_id: currency.value.id,
                             agreement_id: agreement.value.id,
@@ -108,8 +104,6 @@ const Invoices = (props) => {
                             status_of_acceptance_id: status_of_acceptance.value.id,
                             status_of_booting_in_equipment_id:
                             status_of_booting_in_equipment.value.id,
-                            provider_id: contract.value.provider.id,
-                            customer_id: contract.value.customer.id,
                             invoice_type_id: 1
                             // provider_warehouse_id: contract.provider.warehouse.id,
                             // customer_warehouse_id: contract.customer.warehouse.id
@@ -128,10 +122,7 @@ const Invoices = (props) => {
                         props.setData("customs/status_of_acceptances", setStatusesAcceptence);
                         props.setData("customs/status_of_price_tag_printings", setStatusesPriceTag);
                         props.setData("customs/status_of_booting_in_equipments", setStatusesBooting);
-                        props.setData("warehouses/warehouses", setCustomerWarehouses)
-                        props.setData("warehouses/warehouses", setProviderWarehouses)
                         props.setData("utils/invoice_types", setInvoiceTypes);
-
                     }}
                     >
                     Обновить данные
