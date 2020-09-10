@@ -437,7 +437,7 @@ export default [
                 { title: "Адрес покупателя", field: "customer.legal_address" },
                 { title: "Действует с", field: "valid_from" },
                 { title: "Действует по", field: "valid_for" },
-                { title: "Валюта", field: "currency_id" },
+                { title: "Валюта", field: "currency.full_name" },
                 { title: "Примечание", field: "note" },
                 { title: "По умолчанию", field: "by_default" },
                 { title: "Тип оплаты", field: "type_of_payment.name" },

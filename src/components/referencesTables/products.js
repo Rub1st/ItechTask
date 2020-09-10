@@ -38,7 +38,7 @@ const Products = (props) => {
             </div>
             <div>
             
-                <button onClick={() => 
+                <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             full_name: full_name.value,
                             short_name: short_name.value,

@@ -23,7 +23,7 @@ const Warehouses = (props) => {
             </div>
             <div>
             
-                <button onClick={() => 
+                <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             address: address.value,
                             organization_id: organization.value.id,

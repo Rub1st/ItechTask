@@ -23,7 +23,7 @@ const Subgroups = (props) => {
             </div>
             <div>
             
-                <button onClick={() => 
+                <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             name: name.value,
                             p_group_id: group.value.id,

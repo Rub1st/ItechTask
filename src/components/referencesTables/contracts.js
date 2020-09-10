@@ -42,19 +42,18 @@ const Contracts = (props) => {
                 <input {...by_default}/>
               <SelectedInput label={'Поставщик'} classes={classes} object={provider} collection={props.CosPro.providers} attribute={'full_name'}/>
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
-              <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>     
               <SelectedInput label={'Тип оплаты'} classes={classes} object={type_of_payment} collection={props.CosPro.type_of_payments} attribute={'name'}/>     
               <SelectedInput label={'Тип обмена'} classes={classes} object={type_of_exchange} collection={props.CosPro.type_of_exchanges} attribute={'name'}/>     
               <SelectedInput label={'Тип договора'} classes={classes} object={type_of_contract} collection={props.CosPro.type_of_contracts} attribute={'name'}/>     
             </div>
             <div>
             
-                <button onClick={() => 
+                <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             series_and_number: series_and_number.value,
                             valid_for: valid_for.value,
                             valid_from: valid_from.value,
-                            currency_id: currency.value.id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
                             type_of_payment_id: type_of_payment.value.id,
                             type_of_exchange_id: type_of_exchange.value.id,
                             type_of_contract_id: type_of_contract.value.id,
@@ -95,3 +94,6 @@ export default connect(
         setData: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(Contracts);
+
+
+//<SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>     

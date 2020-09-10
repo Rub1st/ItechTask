@@ -77,7 +77,7 @@ const Invoices = (props) => {
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
             </div>
             <div>         
-                <button onClick={() => 
+                <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             is_closed: is_closed.value,
                             is_conducted: is_conducted.value,

@@ -51,14 +51,14 @@ const ActOfDiscrepancies = (props) => {
                 <input {...note}/>
                 <input {...strings_count}/>
                 <input {...total_count}/>
-              <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
+              <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
               <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
               <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses} attribute={'address'}/>
             </div>
             <div>         
-                <button onClick={() => 
+                <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             is_closed: is_closed.value,
                             is_conducted: is_conducted.value,
