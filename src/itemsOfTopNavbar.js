@@ -79,6 +79,38 @@ export default [
         childrenList: [
           {
             id: 0,
+            label: "ТТН Товары",
+            path: "guides/invoice_products",
+            table: {
+              columns: [
+                {title: "Подгруппа", field: "p_subgroup.name"},
+                {title: "Номер накладной ", field: "invoice.series_and_number"},
+                {title: "Полное имя", field: "full_name"},
+                {title: "Короткое имя", field: "short_name"},
+                {title: "Код", field: "code"},
+                {title: "Цена", field: "price"},
+                {title: "Сумма НДС", field: "summa_nds"},
+                {title: "Стоимость", field: "cost"},
+                {title: "Ставка НДС", field: "rate_nds.rate"},
+                {title: "Ед. измерения", field: "unit.short_name"},
+              ],
+              data: [],
+            },
+          },
+          {
+            id: 1,
+            label: "Акты расхождения товары",
+            path: "guides/act_of_discrepancies_products",
+            table: {
+              columns: [
+                {title: "Акт расхождения", field: "act_of_discrepancies.series_and_number"},
+                {title: "Продукт", field: "invoice_product.full_name"},
+              ],
+              data: []  
+            }
+          },
+          {
+            id: 2,
             label: "Товары",
             path: "guides/products",
             table: {
@@ -93,10 +125,10 @@ export default [
                 { title: "Стоимость", field: "cost" }
               ],
               data: [],
-            },
+            },  
           },
           {
-            id: 1,
+            id: 3,
             label: "Товарные группы",
             path: "guides/p_groups",
             table: {
@@ -105,7 +137,7 @@ export default [
             },
           },
           {
-            id: 2,
+            id: 4,
             label: "Дополнительные группы",
             path: "guides/p_subgroups",
             table: {
@@ -115,7 +147,7 @@ export default [
             },
           },
           {
-            id: 3,
+            id: 5,
             label: "Eдиницы измерения",
             path: "guides/units",
             table: {
@@ -125,7 +157,7 @@ export default [
             },
           },
           {
-            id: 4,
+            id: 6,
             label: "Цены",
             path: 'Nujno razobratsya',
             table: {
@@ -152,20 +184,10 @@ export default [
               data: [],
             },
           },
-          {
-            id: 5,
-            label: "Классификаторы",
-            path: 'Nujno razobratsya',
-            table: {
-              columns: [{ title: "Подгруппа", field: "ProductSubgroupName" },
-                        { title: "Продукт", field: "productName"}],
-              data: [],
-            },
-          },
         ],
       },
       {
-        id: 2,
+        id: 3,
         label: "Валюты и курсы",
         childrenList: [
           {

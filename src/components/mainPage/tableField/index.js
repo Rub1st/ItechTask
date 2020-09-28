@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { destroyData, AddToData } from "../../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../../reduxMain/reducer/id/actions";
 import { setData } from '../../../reduxMain/reducer/id/actions.js'
-import {Invoices, Organizations, Products, Subgroups, Warehouses, Contracts, ActOfDiscrepancies} from "../../referencesTables";
+import { ActOfDiscrepanciesProducts, InvoiceProducts, Invoices, Organizations, Products, Subgroups, Warehouses, Contracts, ActOfDiscrepancies} from "../../referencesTables";
 
 
 function MaterialTableDemo(props) {
@@ -28,11 +28,15 @@ function MaterialTableDemo(props) {
       
         checkIdes(0,0,0) ? <Organizations state={state}/>:
         
-        checkIdes(0,1,0) ? <Products state={state}/> :
+        checkIdes(0,1,2) ? <Products state={state}/> :
 
         checkIdes(0,1,2) ? <Subgroups state={state}/> :
 
         checkIdes(1,0,0) ? <Invoices state={state}/> :
+
+        checkIdes(0,1,0) ? <InvoiceProducts state={state}/> :
+
+        checkIdes(0,1,1) ? <ActOfDiscrepanciesProducts state={state}/> :
         (
         <>
           <MaterialTables isAdd={true} state={state}/>

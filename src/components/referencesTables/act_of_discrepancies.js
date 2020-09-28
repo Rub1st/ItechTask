@@ -7,7 +7,7 @@ import { setContracts,
          setOperations,
          setInvoiceTypes,
          setProviderWarehouses,
-         setCustomerWarehouses
+         setCustomerWarehouses, setInvoices
         } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
@@ -28,7 +28,7 @@ const ActOfDiscrepancies = (props) => {
     const summa_with_nds = useInputText('');
     const note = useInputText('');
     const summa = useInputText('');
-    const contract = useSelectBox({});
+    const invoice = useSelectBox({});
     const operation = useSelectBox({});
     const currency = useSelectBox({});
     const warehouse_c = useSelectBox({});
@@ -51,7 +51,7 @@ const ActOfDiscrepancies = (props) => {
                 <input {...note}/>
                 <input {...strings_count}/>
                 <input {...total_count}/>
-              <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
+              <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
               <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
@@ -71,7 +71,7 @@ const ActOfDiscrepancies = (props) => {
                             strings_count: strings_count.value,
                             total_count: total_count.value,
                             invoice_type_id: 2,
-                            contract_id: contract.value.id,
+                            invoice_id: invoice.value.id,
                             operation_id: operation.value.id,
                             currency_id: currency.value.id,
                             provider_warehouse_id: warehouse_p.value.id,
@@ -82,7 +82,7 @@ const ActOfDiscrepancies = (props) => {
                     className="btn btn-success btn-position"
                     onClick={() => {
                         props.setData(state.path, setData); 
-                        props.setData("warehouses/contracts", setContracts);
+                        props.setData("customs/invoices", setInvoices);
                         props.setData("customs/operations", setOperations);
                         props.setData("guides/currencies", setCurrencies);
                         props.setData("warehouses/warehouses", setCustomerWarehouses);

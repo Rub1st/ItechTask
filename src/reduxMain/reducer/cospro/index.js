@@ -17,7 +17,12 @@ import {
   SET_TYPE_OF_EXCHANGE,
   SET_INVOICE_TYPES,
   SET_PROVIDER_WAREHOUSES,
-  SET_CUSTOMER_WAREHOUSES
+  SET_CUSTOMER_WAREHOUSES,
+  SET_RATES_NDS,
+  SET_SUBGROUPS,
+  SET_INVOICES,
+  SET_ACTS,
+  SET_INVOICE_PRODUCTS
 } from "../../constants";
 
 let initialState = {
@@ -38,7 +43,12 @@ let initialState = {
   type_of_exchanges: [],
   type_of_payments: [],
   warehouses: [],
-  invoice_types: []
+  invoice_types: [],
+  rates_nds: [],
+  p_subgroups: [],
+  invoices: [],
+  acts: [],
+  invoice_products: []
 };
 
 const cosProReducer = (state = initialState, action) => {
@@ -117,6 +127,26 @@ const cosProReducer = (state = initialState, action) => {
     }
     case SET_CUSTOMER_WAREHOUSES: {
       state = Object.assign({}, state, {warehouses: action.value});
+      return state;
+    }
+    case SET_RATES_NDS: {
+      state = Object.assign({}, state, {rates_nds: action.value});
+      return state;
+    }
+    case SET_SUBGROUPS: {
+      state = Object.assign({}, state, {p_subgroups: action.value});
+      return state;
+    }
+    case SET_INVOICES: {
+      state = Object.assign({}, state, {invoices: action.value});
+      return state;
+    }
+    case SET_ACTS: {
+      state = Object.assign({}, state, {acts: action.value});
+      return state;
+    }
+    case SET_INVOICE_PRODUCTS: {
+      state = Object.assign({}, state, {invoice_products: action.value});
       return state;
     }
     default:

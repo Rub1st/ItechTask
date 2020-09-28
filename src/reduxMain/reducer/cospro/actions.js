@@ -17,13 +17,43 @@ import {
   SET_TYPE_OF_CONTRACT,
   SET_TYPE_OF_EXCHANGE,
   SET_TYPE_OF_PAYMENT,
-  SET_INVOICE_TYPES
+  SET_INVOICE_TYPES,
+  SET_RATES_NDS,
+  SET_SUBGROUPS,
+  SET_INVOICES,
+  SET_ACTS,
+  SET_INVOICE_PRODUCTS
 } from "../../constants";
 
 export const setProviders = (data) => ({
   type: SET_PROVIDERS,
   value: data,
 });
+
+export const setInvoices = (data) => ({
+  type: SET_INVOICES,
+  value: data
+})
+
+export const setInvoiceProducts = (data) => ({
+  type: SET_INVOICE_PRODUCTS,
+  value: data
+})
+
+export const setActs = (data) => ({
+  type: SET_ACTS,
+  value: data
+})
+
+export const setSubGroups = (data) => ({
+  type: SET_SUBGROUPS,
+  value: data
+})
+
+export const setRatesNDS = (data) => ({
+  type: SET_RATES_NDS,
+  value: data
+})
 
 export const setTypeOfContracts = (data) => ({
   type: SET_TYPE_OF_CONTRACT,
