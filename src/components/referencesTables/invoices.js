@@ -74,7 +74,6 @@ const Invoices = (props) => {
               <SelectedInput label={'Статус загрузки в оборудование'} classes={classes} object={status_of_booting_in_equipment} collection={props.CosPro.status_bootings} attribute={'name'}/>
               <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
-              <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
             </div>
             <div>         
                 <button className={'btn btn-info btn-position'} onClick={() => 
@@ -97,7 +96,7 @@ const Invoices = (props) => {
                             count_all: count_all.value,
                             contract_id: contract.value.id,
                             operation_id: operation.value.id,
-                            currency_id: currency.value.id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
                             agreement_id: agreement.value.id,
                             status_of_price_tag_printing_id:
                             status_of_price_tag_printing.value.id,

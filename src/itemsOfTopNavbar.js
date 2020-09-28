@@ -184,6 +184,17 @@ export default [
               data: [],
             },
           },
+          {
+            id: 7,
+            label: "Рейтинги НДС",
+            path: "guides/rate_ndses",
+            table: {
+              columns: [
+                { title: "Значение", field: "rate" },
+              ],
+              data: [],
+            },
+          }
         ],
       },
       {
