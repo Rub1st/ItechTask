@@ -33,10 +33,6 @@ const ActOfDiscrepancies = (props) => {
     const currency = useSelectBox({});
     const warehouse_c = useSelectBox({});
     const warehouse_p = useSelectBox({});
-    //const invoce_type = useSelectBox({});
-
-    //props.setData("utils/invoice_types", setInvoiceTypes);
-    console.log(props.CosPro.invoce_types)
 
     return (
         <>
@@ -53,7 +49,6 @@ const ActOfDiscrepancies = (props) => {
                 <input {...total_count}/>
               <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
-              <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
               <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses} attribute={'address'}/>
               <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses} attribute={'address'}/>
             </div>
@@ -73,7 +68,7 @@ const ActOfDiscrepancies = (props) => {
                             invoice_type_id: 2,
                             invoice_id: invoice.value.id,
                             operation_id: operation.value.id,
-                            currency_id: currency.value.id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
                             provider_warehouse_id: warehouse_p.value.id,
                             customer_warehouse_id: warehouse_c.value.id
                         },  state.path)

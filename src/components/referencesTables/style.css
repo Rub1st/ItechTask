@@ -2,3 +2,15 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+input {
+    width: 80px;
+    height: 40px;
+    font-size: 10pt;
+    margin: 5px;
+}

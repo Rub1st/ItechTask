@@ -461,7 +461,6 @@ export default [
                 { title: "Действует по", field: "valid_for" },
                 { title: "Валюта", field: "currency.full_name" },
                 { title: "Примечание", field: "note" },
-                { title: "По умолчанию", field: "by_default" },
                 { title: "Тип оплаты", field: "type_of_payment.name" },
                 { title: "Тип обмена", field: "type_of_exchange.name" },
                 { title: "Тип договора", field: "type_of_contract.name" },

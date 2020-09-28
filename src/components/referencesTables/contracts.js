@@ -22,7 +22,6 @@ const Contracts = (props) => {
     const valid_from = useDateTime({});
     const valid_for = useDateTime({});
     const note = useInputText('');
-    const by_default = useInputText('');
     const currency = useSelectBox({});
     const type_of_exchange = useSelectBox({});
     const type_of_payment = useSelectBox({});
@@ -39,7 +38,6 @@ const Contracts = (props) => {
                 <input {...valid_from}/>
                 <input {...valid_for}/>
                 <input {...note}/>
-                <input {...by_default}/>
               <SelectedInput label={'Поставщик'} classes={classes} object={provider} collection={props.CosPro.providers} attribute={'full_name'}/>
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
               <SelectedInput label={'Тип оплаты'} classes={classes} object={type_of_payment} collection={props.CosPro.type_of_payments} attribute={'name'}/>     
@@ -47,7 +45,6 @@ const Contracts = (props) => {
               <SelectedInput label={'Тип договора'} classes={classes} object={type_of_contract} collection={props.CosPro.type_of_contracts} attribute={'name'}/>     
             </div>
             <div>
-            
                 <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             series_and_number: series_and_number.value,
@@ -60,7 +57,6 @@ const Contracts = (props) => {
                             provider_id: provider.value.id,
                             customer_id: customer.value.id,
                             note: note.value,
-                            by_default: by_default.value
                         },  state.path)
 
                     }>Добавить</button>

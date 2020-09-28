@@ -20,6 +20,7 @@ const Products = (props) => {
     const rate_nds = useInputText('');
     const summa_nds = useInputText('');
     const unit = useSelectBox({});
+    const p_subgroup = useSelectBox({});
 
     return (
         <>
@@ -33,11 +34,10 @@ const Products = (props) => {
                 <input {...rate_nds}/>
                 <input {...summa_nds}/>
             <div>
-              <SelectedInput label={'Единица измерения'} classes={classes} object={unit} collection={props.CosPro.units} attribute={'full_name'}/>
+              <SelectedInput label={'Подгруппа товара'} classes={classes} object={p_subgroup} collection={props.CosPro.p_subgroups} attribute={'name'}/>     
             </div>
             </div>
             <div>
-            
                 <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             full_name: full_name.value,
@@ -45,7 +45,7 @@ const Products = (props) => {
                             code: code.value,
                             price: price.value,
                             cost: cost.value,
-                            unit_id: unit.value.id,
+                            unit_id: props.CosPro.units.filter(el => el.name === 'gramms')[0].id,
                             rate_nds: rate_nds.value,
                             summa_nds: summa_nds.value
                         }, state.path)

@@ -35,7 +35,6 @@ const InvoiceProducts = (props) => {
     return (
         <>
             <MaterialTables state={state}/>
-
             <div className="d-flex input-panel">
                 <input {...full_name}/>
                 <input {...short_name}/>
@@ -47,7 +46,7 @@ const InvoiceProducts = (props) => {
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
               <SelectedInput label={'Ставка НДС'} classes={classes} object={rate_nds} collection={props.CosPro.rates_nds} attribute={'name'}/>     
               <SelectedInput label={'Ед. измерения'} classes={classes} object={unit} collection={props.CosPro.units} attribute={'name'}/>     
-              <SelectedInput label={'Подгруппа'} classes={classes} object={p_subgroup} collection={props.CosPro.p_subgroups} attribute={'name'}/>     
+              <SelectedInput label={'Подгруппа товара'} classes={classes} object={p_subgroup} collection={props.CosPro.p_subgroups} attribute={'name'}/>     
               <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>     
             </div>
             <div>

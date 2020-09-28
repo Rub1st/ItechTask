@@ -72,7 +72,7 @@ const Invoices = (props) => {
               <SelectedInput label={'Статус печати чека'} classes={classes} object={status_of_price_tag_printing} collection={props.CosPro.status_price_tags} attribute={'name'}/>
               <SelectedInput label={'Статус приемки'} classes={classes} object={status_of_acceptance} collection={props.CosPro.status_acceptences} attribute={'name'}/>
               <SelectedInput label={'Статус загрузки в оборудование'} classes={classes} object={status_of_booting_in_equipment} collection={props.CosPro.status_bootings} attribute={'name'}/>
-              <SelectedInput label={'Контракт'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
+              <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
             </div>

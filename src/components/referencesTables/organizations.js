@@ -33,9 +33,9 @@ const Organizations = (props) => {
                 <input {...legal_address}/>
                 <input {...phone_or_fax}/>
                 <input {...email}/>
-                <input type="checkbox" {...is_provider}/>
-                <input type="checkbox" {...is_company}/>
-                <input type="checkbox" {...is_buyer}/>
+                <input type="checkbox" className="checkbox" {...is_provider}/>
+                <input type="checkbox" className="checkbox" {...is_company}/>
+                <input type="checkbox" className="checkbox" {...is_buyer}/>
             <div>
               <SelectedInput label={'Форма собственности'} classes={classes} object={ownership_form} collection={props.CosPro.ownership_forms} attribute={'name'}/>
             </div>
