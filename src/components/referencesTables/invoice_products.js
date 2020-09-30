@@ -82,6 +82,23 @@ const InvoiceProducts = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            full_name: full_name.value,
+                            short_name: short_name.value,
+                            code: code.value,
+                            price: price,
+                            summa_nds: summa_nds.value,
+                            cost: cost.value,
+                            rate_nds_id: rate_nds.value.id,
+                            provider_id: provider.value.id,
+                            customer_id: customer.value.id,
+                            unit_id: unit.value.id,
+                            p_subgroup_id: p_subgroup.value.id,
+                            invoice_id: invoice.value.id
+                        },  state.path)
+
+                    }>Удалить</button>
             </div>  
         </>
     )

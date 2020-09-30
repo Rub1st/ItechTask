@@ -41,6 +41,16 @@ const ActOfDiscrepanciesProducts = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button 
+                className="btn btn-danger btn-position"
+                onClick={() => {
+                    props.destroy({
+                        ct_of_discrepancies_id: act.value.id,
+                        invoice_products_id: invoice_products.value.id,
+                    }, state.path)
+                }}>
+                    Удалить
+                </button>
             </div>  
         </>
     )

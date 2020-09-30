@@ -74,6 +74,21 @@ const Contracts = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.add({
+                            series_and_number: series_and_number.value,
+                            valid_for: valid_for.value,
+                            valid_from: valid_from.value,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
+                            type_of_payment_id: type_of_payment.value.id,
+                            type_of_exchange_id: type_of_exchange.value.id,
+                            type_of_contract_id: type_of_contract.value.id,
+                            provider_id: provider.value.id,
+                            customer_id: customer.value.id,
+                            note: note.value,
+                        },  state.path)
+
+                    }>Удалить</button>
             </div>  
         </>
     )

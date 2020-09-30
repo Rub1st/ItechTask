@@ -63,6 +63,20 @@ const Organizations = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            full_name: full_name.value,
+                            short_name: short_name.value,
+                            unp: unp.value,
+                            legal_address: legal_address.value,
+                            phone_or_fax: phone_or_fax.value,
+                            ownership_form_id: ownership_form.value.id,
+                            email: email.value,
+                            is_provider: is_provider.value,
+                            is_company: is_company.value,
+                            is_buyer: is_buyer.value
+                        }, state.path)
+                    }>Удалить</button>
             </div>
         </>
     )

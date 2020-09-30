@@ -38,6 +38,12 @@ const Warehouses = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            address: address.value,
+                            organization_id: organization.value.id,
+                        }, state.path)
+                    }>Удалить</button>
             </div>
             
         </>

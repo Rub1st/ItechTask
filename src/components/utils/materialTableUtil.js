@@ -63,24 +63,24 @@ const MaterialTables = (props) => {
             }
             resolve();
           }, 1000);
-        })} : null
+        }),
+        onRowDelete: (oldData) =>
+          new Promise((resolve) => {
+              setTimeout(() => {
+                {
+                  props.destroy(oldData, state.path);
+                }
+              resolve();
+            }, 600);
+        }),
+      } : null
     return(
         <MaterialTable
             icons={tableIcons}
             title={state.label}
             columns={state.table.columns}
             data={props.ID.data}
-            editable={{...add,
-              onRowDelete: (oldData) =>
-                new Promise((resolve) => {
-                  setTimeout(() => {
-                    {
-                      props.destroy(oldData, state.path);
-                    }
-                    resolve();
-                  }, 600);
-                }),
-            }}
+            editable={{...add}}
           />
     )
 }

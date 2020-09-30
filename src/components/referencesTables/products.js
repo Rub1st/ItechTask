@@ -56,6 +56,18 @@ const Products = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            full_name: full_name.value,
+                            short_name: short_name.value,
+                            code: code.value,
+                            price: price.value,
+                            cost: cost.value,
+                            unit_id: props.CosPro.units.filter(el => el.name === 'gramms')[0].id,
+                            rate_nds: rate_nds.value,
+                            summa_nds: summa_nds.value
+                        }, state.path)
+                    }>Удалить</button>
             </div>
             
         </>

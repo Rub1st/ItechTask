@@ -86,6 +86,26 @@ const ActOfDiscrepancies = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            is_closed: is_closed.value,
+                            is_conducted: is_conducted.value,
+                            series_and_number: series_and_number.value,
+                            date_and_time: date_and_time.value,
+                            summa: summa.value,
+                            summa_nds: summa_nds.value,
+                            summa_with_nds: summa_with_nds.value,
+                            note: note.value,
+                            strings_count: strings_count.value,
+                            total_count: total_count.value,
+                            invoice_type_id: 2,
+                            invoice_id: invoice.value.id,
+                            operation_id: operation.value.id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
+                            provider_warehouse_id: warehouse_p.value.id,
+                            customer_warehouse_id: warehouse_c.value.id
+                        },  state.path)
+                    }>Удалить</button>
             </div>  
         </>
     )

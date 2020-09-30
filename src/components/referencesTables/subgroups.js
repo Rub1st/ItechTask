@@ -37,6 +37,12 @@ const Subgroups = (props) => {
                     }}>
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            name: name.value,
+                            p_group_id: group.value.id,
+                        }, state.path)
+                    }>Удалить</button>
             </div>
             
         </>

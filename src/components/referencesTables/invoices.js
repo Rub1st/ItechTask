@@ -126,6 +126,38 @@ const Invoices = (props) => {
                     >
                     Обновить данные
                 </button>
+                <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy({
+                            is_closed: is_closed.value,
+                            is_conducted: is_conducted.value,
+                            series_and_number: series_and_number.value,
+                            date_and_time: date_and_time.value,
+                            selling_on_commission: selling_on_commission.value,
+                            summa: summa.value,
+                            summa_nds: summa_nds.value,
+                            summa_with_nds: summa_with_nds.value,
+                            record_summa: record_summa.value,
+                            retail_summa: retail_summa.value,
+                            pre_assessment_summa: pre_assessment_summa.value,
+                            write_down_summa: write_down_summa.value,
+                            note: note.value,
+                            strings_count: strings_count.value,
+                            total_count: total_count.value,
+                            count_all: count_all.value,
+                            contract_id: contract.value.id,
+                            operation_id: operation.value.id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
+                            agreement_id: agreement.value.id,
+                            status_of_price_tag_printing_id:
+                            status_of_price_tag_printing.value.id,
+                            status_of_acceptance_id: status_of_acceptance.value.id,
+                            status_of_booting_in_equipment_id:
+                            status_of_booting_in_equipment.value.id,
+                            invoice_type_id: 1
+                            // provider_warehouse_id: contract.provider.warehouse.id,
+                            // customer_warehouse_id: contract.customer.warehouse.id
+                        },  state.path)
+                    }>Удалить</button>
             </div>  
         </>
     )
