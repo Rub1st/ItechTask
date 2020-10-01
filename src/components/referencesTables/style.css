@@ -9,8 +9,19 @@ input[type="checkbox"] {
 }
 
 input {
-    width: 80px;
+    width: 100px;
     height: 40px;
     font-size: 10pt;
     margin: 5px;
 }
+
+::placeholder {
+    font-size: 8pt;
+}
+:-ms-input-placeholder { 
+    font-size: 8pt;
+  }
+  
+  ::-ms-input-placeholder { 
+    font-size: 8pt;
+  }

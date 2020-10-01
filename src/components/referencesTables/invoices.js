@@ -54,20 +54,19 @@ const Invoices = (props) => {
             <div className="d-flex input-panel">
                 <input type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
-                <input {...series_and_number}/>
-                <input {...date_and_time}/>
+                <input placeholder="Серия/номер" {...series_and_number}/>
+                <input placeholder="Дата/время" {...date_and_time}/>
                 <input type="checkbox" {...selling_on_commission}/>
-                <input {...summa}/>
-                <input {...summa_nds}/>
-                <input {...summa_with_nds}/>
-                <input {...record_summa}/>
-                <input {...retail_summa}/>
-                <input {...pre_assessment_summa}/>
-                <input {...write_down_summa}/>
-                <input {...note}/>
-                <input {...strings_count}/>
-                <input {...total_count}/>
-                <input {...count_all}/>
+                <input placeholder="Сумма" {...summa}/>
+                <input placeholder="Сумма НДС" {...summa_nds}/>
+                <input placeholder="Сумма с НДС" {...summa_with_nds}/>
+                <input placeholder="Сумма (учетная)" {...record_summa}/>
+                <input placeholder="Сумма розничная" {...retail_summa}/>
+                <input placeholder="Сумма дооценки" {...pre_assessment_summa}/>
+                <input placeholder="Сумма списания" {...write_down_summa}/>
+                <input placeholder="Примечание" {...note}/>
+                <input placeholder="Кол-во строк" {...strings_count}/>
+                <input placeholder="Кол-во всего" {...count_all}/>
               <SelectedInput label={'Соглашение'} classes={classes} object={agreement} collection={props.CosPro.agreements} attribute={'name'}/>
               <SelectedInput label={'Статус печати чека'} classes={classes} object={status_of_price_tag_printing} collection={props.CosPro.status_price_tags} attribute={'name'}/>
               <SelectedInput label={'Статус приемки'} classes={classes} object={status_of_acceptance} collection={props.CosPro.status_acceptences} attribute={'name'}/>
@@ -92,7 +91,6 @@ const Invoices = (props) => {
                             write_down_summa: write_down_summa.value,
                             note: note.value,
                             strings_count: strings_count.value,
-                            total_count: total_count.value,
                             count_all: count_all.value,
                             contract_id: contract.value.id,
                             operation_id: operation.value.id,

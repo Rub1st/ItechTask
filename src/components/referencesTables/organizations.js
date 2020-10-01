@@ -27,12 +27,12 @@ const Organizations = (props) => {
         <>
             <MaterialTables state={state}/>
             <div className="d-flex">
-                <input {...full_name}/>
-                <input {...short_name}/>
-                <input {...unp}/>
-                <input {...legal_address}/>
-                <input {...phone_or_fax}/>
-                <input {...email}/>
+                <input placeholder="Наименование" {...full_name}/>
+                <input placeholder="Короткое имя" {...short_name}/>
+                <input placeholder="УНП" {...unp}/>
+                <input placeholder="Юр. адрес" {...legal_address}/>
+                <input placeholder="Телефон/факс" {...phone_or_fax}/>
+                <input placeholder="e-mail" {...email}/>
                 <input type="checkbox" {...is_provider}/>
                 <input type="checkbox" {...is_company}/>
                 <input type="checkbox" {...is_buyer}/>

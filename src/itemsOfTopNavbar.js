@@ -79,7 +79,7 @@ export default [
         childrenList: [
           {
             id: 0,
-            label: "ТТН Товары",
+            label: "Товары прихода",
             path: "guides/invoice_products",
             table: {
               columns: [
@@ -111,24 +111,6 @@ export default [
           },
           {
             id: 2,
-            label: "Товары",
-            path: "guides/products",
-            table: {
-              columns: [
-                { title: "Штрихкод", field: "code" },
-                { title: "Наименование", field: "full_name" },
-                { title: "Короткое имя", field: "short_name" },
-                { title: "Единица измерения", field: "unit.full_name" },
-                { title: "Цена", field: "price" },
-                { title: "Рейтинг НДС", field: "rate_nds" },
-                { title: "Сумма НДС", field: "summa_nds" },
-                { title: "Стоимость", field: "cost" }
-              ],
-              data: [],
-            },  
-          },
-          {
-            id: 3,
             label: "Товарные группы",
             path: "guides/p_groups",
             table: {
@@ -137,7 +119,7 @@ export default [
             },
           },
           {
-            id: 4,
+            id: 3,
             label: "Дополнительные группы",
             path: "guides/p_subgroups",
             table: {
@@ -147,17 +129,19 @@ export default [
             },
           },
           {
-            id: 5,
+            id: 4,
             label: "Eдиницы измерения",
             path: "guides/units",
             table: {
               columns: [{ title: "Короткое наименование", field: "short_name" },
-                        { title: "Полное наименование", field: "full_name"}],
+                        { title: "Полное наименование", field: "full_name"},
+                        { title: "Граммы", field: "gramms"}
+                      ],
               data: [],
             },
           },
           {
-            id: 6,
+            id: 5,
             label: "Цены",
             path: 'Nujno razobratsya',
             table: {
@@ -185,9 +169,9 @@ export default [
             },
           },
           {
-            id: 7,
+            id: 6,
             label: "Рейтинги НДС",
-            path: "guides/rate_ndses",
+            path: "guides/rate_vats",
             table: {
               columns: [
                 { title: "Значение", field: "rate" },
@@ -269,7 +253,6 @@ export default [
                 { title: "Склад покупателя", field: "warehouse.address" },
                 { title: "Кол-во строк", field: "strings_count" },
                 { title: "Кол-во (всего)", field: "total_count" },
-                { title: "Сумма", field: "count_all" },
               ],
               data: [],
             },

@@ -18,7 +18,7 @@ const Warehouses = (props) => {
         <>
             <MaterialTables isAdd={false} state={state}/>
             <div className="d-flex">
-                <input {...address}/>
+                <input placeholder="Адрес" {...address}/>
               <SelectedInput label={'Организация'} classes={classes} object={organization} collection={props.CosPro.organizations} attribute={'full_name'}/>
             </div>
             <div>

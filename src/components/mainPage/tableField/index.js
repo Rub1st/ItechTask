@@ -28,9 +28,7 @@ function MaterialTableDemo(props) {
       
         checkIdes(0,0,0) ? <Organizations state={state}/>:
         
-        checkIdes(0,1,2) ? <Products state={state}/> :
-
-        checkIdes(0,1,2) ? <Subgroups state={state}/> :
+        checkIdes(0,1,3) ? <Subgroups state={state}/> :
 
         checkIdes(1,0,0) ? <Invoices state={state}/> :
 
