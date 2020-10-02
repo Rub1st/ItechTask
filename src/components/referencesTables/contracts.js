@@ -75,7 +75,7 @@ const Contracts = (props) => {
                     Обновить данные
                 </button>
                 <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.add({
+                        props.destroy({
                             series_and_number: series_and_number.value,
                             valid_for: valid_for.value,
                             valid_from: valid_from.value,

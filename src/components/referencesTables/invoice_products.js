@@ -44,7 +44,7 @@ const InvoiceProducts = (props) => {
                 <input placeholder="Стоимость" {...cost}/>
               <SelectedInput label={'Поставщик'} classes={classes} object={provider} collection={props.CosPro.providers} attribute={'full_name'}/>
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
-              <SelectedInput label={'Ставка НДС'} classes={classes} object={rate_nds} collection={props.CosPro.rates_nds} attribute={'name'}/>     
+              <SelectedInput label={'Рейтинги НДС'} classes={classes} object={rate_nds} collection={props.CosPro.rates_vats} attribute={'name'}/>     
               <SelectedInput label={'Ед. измерения'} classes={classes} object={unit} collection={props.CosPro.units} attribute={'name'}/>     
               <SelectedInput label={'Подгруппа товара'} classes={classes} object={p_subgroup} collection={props.CosPro.p_subgroups} attribute={'name'}/>     
               <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>     
@@ -59,7 +59,7 @@ const InvoiceProducts = (props) => {
                             price: price,
                             summa_nds: summa_nds.value,
                             cost: cost.value,
-                            rate_nds_id: rate_nds.value.id,
+                            rate_vats_id: rate_nds.value.id,
                             provider_id: provider.value.id,
                             customer_id: customer.value.id,
                             unit_id: unit.value.id,
@@ -90,7 +90,7 @@ const InvoiceProducts = (props) => {
                             price: price,
                             summa_nds: summa_nds.value,
                             cost: cost.value,
-                            rate_nds_id: rate_nds.value.id,
+                            rate_vats_id: rate_nds.value.id,
                             provider_id: provider.value.id,
                             customer_id: customer.value.id,
                             unit_id: unit.value.id,

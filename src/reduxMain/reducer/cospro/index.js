@@ -29,7 +29,7 @@ let initialState = {
   organizations: [],
   customers: [],
   providers: [],
-  groups: [],
+  p_groups: [],
   ownership_forms: [],
   units: [],
   contracts: [],
@@ -102,7 +102,7 @@ const cosProReducer = (state = initialState, action) => {
       return state;
     }
     case SET_GROUPS: {
-      state = Object.assign({}, state, { groups: action.value });
+      state = Object.assign({}, state, { p_groups: action.value });
       return state;
     }
     case SET_TYPE_OF_EXCHANGE: {
