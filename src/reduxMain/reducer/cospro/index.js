@@ -58,11 +58,11 @@ const cosProReducer = (state = initialState, action) => {
       return state;
     }
     case SET_CUSTOMERS: {
-      state = Object.assign({}, state, { customers: action.value });
+      state = Object.assign({}, state, { customers: action.value.filer(el => el.is_buyer === true) });
       return state;
     }
     case SET_PROVIDERS: {
-      state = Object.assign({}, state, { providers: action.value });
+      state = Object.assign({}, state, { providers: action.value.filer(el => el.is_provider === true) });
       return state;
     }
     case SET_CONTRACTS: {
