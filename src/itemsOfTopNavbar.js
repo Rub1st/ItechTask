@@ -106,7 +106,7 @@ export default [
                 {title: "Акт расхождения", field: "act_of_discrepancies.series_and_number"},
                 {title: "Продукт", field: "invoice_product.full_name"},
               ],
-              data: []  
+              data: []
             }
           },
           {
@@ -249,8 +249,6 @@ export default [
                 },
                 { title: "Поставщик", field: "provider.full_name" },
                 { title: "Покупатель", field: "customer.full_name" },
-                { title: "Склад поставщика", field: "warehouse.address" },
-                { title: "Склад покупателя", field: "warehouse.address" },
                 { title: "Кол-во строк", field: "strings_count" },
                 { title: "Кол-во (всего)", field: "total_count" },
               ],
@@ -302,7 +300,7 @@ export default [
           {
             id: 0,
             label: "Типы соглашений",
-          
+
             path: 'customs/agreements',
             table: {
               columns: [
