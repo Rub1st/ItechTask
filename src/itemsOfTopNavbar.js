@@ -37,7 +37,6 @@ export default [
                 { title: "Короткое имя", field: "short_name" },
                 { title: "УНП", field: "unp" },
                 { title: "Форма собственности", field: "ownership_form.name" },
-                { title: "Группа организаций", field: "organization_group" },
                 { title: "Юридический адрес", field: "legal_address" },
                 { title: "Телефон/факс", field: "phone_or_fax" },
                 { title: "E-mail", field: "email" },
@@ -104,7 +103,7 @@ export default [
             table: {
               columns: [
                 {title: "Акт расхождения", field: "act_of_discrepancies.series_and_number"},
-                {title: "Продукт", field: "invoice_product.full_name"},
+                {title: "Продукт", field: "invoice_products.full_name"},
               ],
               data: []
             }

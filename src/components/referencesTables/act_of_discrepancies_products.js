@@ -27,8 +27,8 @@ const ActOfDiscrepanciesProducts = (props) => {
             <div>         
                 <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
-                            act_of_discrepancies_id: act.value.id,
-                            invoice_products_id: invoice_products.value.id,
+                            act_of_discrepancy_id: act.value.id,
+                            invoice_product_id: invoice_products.value.id,
                         },  state.path)
                     }>Добавить</button>
                 <button 
@@ -45,7 +45,7 @@ const ActOfDiscrepanciesProducts = (props) => {
                 className="btn btn-danger btn-position"
                 onClick={() => {
                     props.destroy({
-                        ct_of_discrepancies_id: act.value.id,
+                        act_of_discrepancies_id: act.value.id,
                         invoice_products_id: invoice_products.value.id,
                     }, state.path)
                 }}>
