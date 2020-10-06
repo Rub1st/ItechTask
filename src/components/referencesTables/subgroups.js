@@ -19,7 +19,7 @@ const Subgroups = (props) => {
             <MaterialTables isAdd={false} state={state}/>
             <div className="d-flex">
                 <input placeholder="Наименование" {...name}/>
-              <SelectedInput label={'Группа'} classes={classes} object={group} collection={props.CosPro.groups} attribute={'name'}/>
+              <SelectedInput label={'Группа'} classes={classes} object={group} collection={props.CosPro.p_groups} attribute={'name'}/>
             </div>
             <div>
             

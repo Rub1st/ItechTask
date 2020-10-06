@@ -44,7 +44,7 @@ let initialState = {
   type_of_payments: [],
   warehouses: [],
   invoice_types: [],
-  rates_nds: [],
+  rates_vats: [],
   p_subgroups: [],
   invoices: [],
   acts: [],
@@ -130,7 +130,7 @@ const cosProReducer = (state = initialState, action) => {
       return state;
     }
     case SET_RATES_NDS: {
-      state = Object.assign({}, state, {rates_nds: action.value});
+      state = Object.assign({}, state, {rates_vats: action.value});
       return state;
     }
     case SET_SUBGROUPS: {

@@ -102,8 +102,8 @@ export default [
             path: "guides/act_of_discrepancies_products",
             table: {
               columns: [
-                {title: "Акт расхождения", field: "act_of_discrepancy.series_and_number"},
-                {title: "Продукт", field: "invoice_product.full_name"},
+                {title: "Акт расхождения", field: "act_of_discrepancies.series_and_number"},
+                {title: "Продукт", field: "invoice_products.full_name"},
               ],
               data: []
             }
@@ -283,8 +283,8 @@ export default [
                 { title: "Валюта", field: "currency.full_name" },
                 { title: "Направление документа", field: "invoice_type.name"},
                 {
-                  title: "Номер договора",
-                  field: "contract.series_and_number",
+                  title: "Номер ТТН",
+                  field: "invoices.series_and_number",
                 },
               ],
               data: [],
