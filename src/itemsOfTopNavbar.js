@@ -91,7 +91,7 @@ export default [
                 {title: "Цена", field: "price"},
                 {title: "Сумма НДС", field: "summa_nds"},
                 {title: "Стоимость", field: "cost"},
-                {title: "Ставка НДС", field: "rate_nds.rate"},
+                {title: "Рейтинг НДС", field: "rate_vats.rate"},
                 {title: "Ед. измерения", field: "unit.short_name"},
               ],
               data: [],
@@ -124,7 +124,7 @@ export default [
             path: "guides/p_subgroups",
             table: {
               columns: [{ title: "Наименование", field: "name" },
-                        { title: "Группа", field: "groupName"}],
+                        { title: "Группа", field: "p_group.id"}],
               data: [],
             },
           },
@@ -182,7 +182,7 @@ export default [
         ],
       },
       {
-        id: 3,
+        id: 2,
         label: "Валюты и курсы",
         childrenList: [
           {

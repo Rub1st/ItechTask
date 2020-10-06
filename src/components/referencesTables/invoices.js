@@ -38,15 +38,13 @@ const Invoices = (props) => {
     const note = useInputText('');
     const strings_count = useInputText('');
     const total_count = useInputText('');
-    const count_all = useInputText('');
+    const total_count = useInputText('');
     const contract = useSelectBox({})
     const operation = useSelectBox({});
-    const currency = useSelectBox({});
     const agreement = useSelectBox({});
     const status_of_price_tag_printing = useSelectBox({});
     const status_of_acceptance = useSelectBox({});
     const status_of_booting_in_equipment = useSelectBox({});
-    //const invoce_type = useSelectBox({});
 
     return (
         <>
@@ -66,7 +64,7 @@ const Invoices = (props) => {
                 <input placeholder="Сумма списания" {...write_down_summa}/>
                 <input placeholder="Примечание" {...note}/>
                 <input placeholder="Кол-во строк" {...strings_count}/>
-                <input placeholder="Кол-во всего" {...count_all}/>
+                <input placeholder="Кол-во всего" {...total_count}/>
               <SelectedInput label={'Соглашение'} classes={classes} object={agreement} collection={props.CosPro.agreements} attribute={'name'}/>
               <SelectedInput label={'Статус печати чека'} classes={classes} object={status_of_price_tag_printing} collection={props.CosPro.status_price_tags} attribute={'name'}/>
               <SelectedInput label={'Статус приемки'} classes={classes} object={status_of_acceptance} collection={props.CosPro.status_acceptences} attribute={'name'}/>
@@ -91,7 +89,7 @@ const Invoices = (props) => {
                             write_down_summa: write_down_summa.value,
                             note: note.value,
                             strings_count: strings_count.value,
-                            count_all: count_all.value,
+                            total_count: total_count.value,
                             contract_id: contract.value.id,
                             operation_id: operation.value.id,
                             currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
@@ -102,8 +100,6 @@ const Invoices = (props) => {
                             status_of_booting_in_equipment_id:
                             status_of_booting_in_equipment.value.id,
                             invoice_type_id: 1
-                            // provider_warehouse_id: contract.provider.warehouse.id,
-                            // customer_warehouse_id: contract.customer.warehouse.id
                         },  state.path)
                     }>Добавить</button>
                 <button 
@@ -141,7 +137,6 @@ const Invoices = (props) => {
                             note: note.value,
                             strings_count: strings_count.value,
                             total_count: total_count.value,
-                            count_all: count_all.value,
                             contract_id: contract.value.id,
                             operation_id: operation.value.id,
                             currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
@@ -152,8 +147,6 @@ const Invoices = (props) => {
                             status_of_booting_in_equipment_id:
                             status_of_booting_in_equipment.value.id,
                             invoice_type_id: 1
-                            // provider_warehouse_id: contract.provider.warehouse.id,
-                            // customer_warehouse_id: contract.customer.warehouse.id
                         },  state.path)
                     }>Удалить</button>
             </div>  
