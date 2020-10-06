@@ -38,7 +38,6 @@ const Invoices = (props) => {
     const note = useInputText('');
     const strings_count = useInputText('');
     const total_count = useInputText('');
-    const total_count = useInputText('');
     const contract = useSelectBox({})
     const operation = useSelectBox({});
     const agreement = useSelectBox({});
