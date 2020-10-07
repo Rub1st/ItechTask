@@ -8,6 +8,11 @@ input[type="checkbox"] {
     height: 20px;
 }
 
+.btn-delete {
+    display: inline-flex;
+    padding: 5px;
+}
+
 input {
     width: 100px;
     height: 40px;

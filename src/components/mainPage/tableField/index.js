@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { destroyData, AddToData } from "../../../reduxMain/actions/dataActions";
 import { updateData, takeData } from "../../../reduxMain/reducer/id/actions";
 import { setData } from '../../../reduxMain/reducer/id/actions.js'
-import { ActOfDiscrepanciesProducts, InvoiceProducts, Invoices, Organizations, Products, Subgroups, Warehouses, Contracts, ActOfDiscrepancies} from "../../referencesTables";
+import { ActOfDiscrepanciesProducts, InvoiceProducts, Invoices, Organizations, Subgroups, Warehouses, Contracts, ActOfDiscrepancies} from "../../referencesTables";
 
 
 function MaterialTableDemo(props) {
@@ -15,7 +15,7 @@ function MaterialTableDemo(props) {
 
   React.useEffect(() => {
     setState(props.data);
-  }, [props.data.table]);
+  }, [props.data]);
 
   return (
     <div className="position">

@@ -2,10 +2,8 @@ import React from 'react'
 import { SelectedInput, useCheckBox, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
-import { setContracts,
-         setCurrencies,
+import { setCurrencies,
          setOperations,
-         setInvoiceTypes,
          setProviderWarehouses,
          setCustomerWarehouses, setInvoices
         } from '../../reduxMain/reducer/cospro/actions'
@@ -27,12 +25,12 @@ const ActOfDiscrepancies = (props) => {
     const summa_nds = useInputText('');
     const summa_with_nds = useInputText('');
     const note = useInputText('');
-    const summa = useInputText('');
     const invoice = useSelectBox({});
     const operation = useSelectBox({});
-    const currency = useSelectBox({});
     const warehouse_c = useSelectBox({});
     const warehouse_p = useSelectBox({});
+
+    const act = useSelectBox({})
 
     return (
         <>
@@ -67,7 +65,7 @@ const ActOfDiscrepancies = (props) => {
                             invoice_type_id: 2,
                             invoice_id: invoice.value.id,
                             operation_id: operation.value.id,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
                             provider_warehouse_id: warehouse_p.value.id,
                             customer_warehouse_id: warehouse_c.value.id
                         },  state.path)
@@ -85,25 +83,12 @@ const ActOfDiscrepancies = (props) => {
                     >
                     Обновить данные
                 </button>
-                <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.destroy({
-                            is_closed: is_closed.value,
-                            is_conducted: is_conducted.value,
-                            series_and_number: series_and_number.value,
-                            date_and_time: date_and_time.value,
-                            strings_count: strings_count.value,
-                            total_count: total_count.value,
-                            summa_nds: summa_nds.value,
-                            summa_with_nds: summa_with_nds.value,
-                            note: note.value,
-                            invoice_type_id: 2,
-                            invoice_id: invoice.value.id,
-                            operation_id: operation.value.id,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
-                            provider_warehouse_id: warehouse_p.value.id,
-                            customer_warehouse_id: warehouse_c.value.id
-                        },  state.path)
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Акт расхождения'} classes={classes} object={act} collection={props.ID.data} attribute={'series_and_number'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(act.value, state.path)
                     }>Удалить</button>
+                </div>
             </div>  
         </>
     )

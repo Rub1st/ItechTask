@@ -13,6 +13,7 @@ const Warehouses = (props) => {
     const {state} = props;
     const address = useInputText('');
     const organization = useSelectBox({});
+    const warehouse = useSelectBox({});
 
     return (
         <>
@@ -38,12 +39,12 @@ const Warehouses = (props) => {
                     >
                     Обновить данные
                 </button>
-                <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.destroy({
-                            address: address.value,
-                            organization_id: organization.value.id,
-                        }, state.path)
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Склад'} classes={classes} object={warehouse} collection={props.ID.data} attribute={'address'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(warehouse.value, state.path)
                     }>Удалить</button>
+                </div>
             </div>
             
         </>

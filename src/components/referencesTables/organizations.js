@@ -22,6 +22,7 @@ const Organizations = (props) => {
     const is_company = useCheckBox(false);
     const is_buyer = useCheckBox(false);
     const ownership_form = useSelectBox({});
+    const organization = useSelectBox({});
 
     return (
         <>
@@ -57,26 +58,19 @@ const Organizations = (props) => {
                     }>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {props.setData(state.path, setData);
-                                    props.setData("guides/ownership_forms", setOwnershipForms)}
+                    onClick={() => {
+                        props.setData(state.path, setData);
+                        props.setData("guides/ownership_forms", setOwnershipForms)}
                     }
                     >
                     Обновить данные
                 </button>
-                <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.destroy({
-                            full_name: full_name.value,
-                            short_name: short_name.value,
-                            unp: unp.value,
-                            legal_address: legal_address.value,
-                            phone_or_fax: phone_or_fax.value,
-                            ownership_form_id: ownership_form.value.id,
-                            email: email.value,
-                            is_provider: is_provider.value,
-                            is_company: is_company.value,
-                            is_buyer: is_buyer.value
-                        }, state.path)
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Организация'} classes={classes} object={organization} collection={props.ID.data} attribute={'full_name'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(organization.value, state.path)
                     }>Удалить</button>
+                </div>
             </div>
         </>
     )

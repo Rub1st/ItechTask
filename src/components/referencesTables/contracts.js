@@ -22,12 +22,13 @@ const Contracts = (props) => {
     const valid_from = useDateTime({});
     const valid_for = useDateTime({});
     const note = useInputText('');
-    const currency = useSelectBox({});
     const type_of_exchange = useSelectBox({});
     const type_of_payment = useSelectBox({});
     const type_of_contract = useSelectBox({});
     const provider = useSelectBox({});
     const customer = useSelectBox({});
+
+    const contract = useSelectBox({})
 
     return (
         <>
@@ -50,7 +51,7 @@ const Contracts = (props) => {
                             series_and_number: series_and_number.value,
                             valid_for: valid_for.value,
                             valid_from: valid_from.value,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
+                            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
                             type_of_payment_id: type_of_payment.value.id,
                             type_of_exchange_id: type_of_exchange.value.id,
                             type_of_contract_id: type_of_contract.value.id,
@@ -74,21 +75,12 @@ const Contracts = (props) => {
                     >
                     Обновить данные
                 </button>
-                <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.destroy({
-                            series_and_number: series_and_number.value,
-                            valid_for: valid_for.value,
-                            valid_from: valid_from.value,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name == "Br")[0].id,
-                            type_of_payment_id: type_of_payment.value.id,
-                            type_of_exchange_id: type_of_exchange.value.id,
-                            type_of_contract_id: type_of_contract.value.id,
-                            provider_id: provider.value.id,
-                            customer_id: customer.value.id,
-                            note: note.value,
-                        },  state.path)
-
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.ID.data} attribute={'series_and_number'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(contract.value, state.path)
                     }>Удалить</button>
+                </div>
             </div>  
         </>
     )

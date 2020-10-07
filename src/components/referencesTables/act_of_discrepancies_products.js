@@ -1,5 +1,5 @@
 import React from 'react'
-import { SelectedInput, useCheckBox, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
+import { SelectedInput, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setActs,
@@ -16,6 +16,8 @@ const ActOfDiscrepanciesProducts = (props) => {
     const {state} = props;
     const invoice_products = useSelectBox({});
     const act = useSelectBox({});
+
+    const pr_act = useSelectBox({})
 
     return (
         <>
@@ -41,16 +43,12 @@ const ActOfDiscrepanciesProducts = (props) => {
                     >
                     Обновить данные
                 </button>
-                <button 
-                className="btn btn-danger btn-position"
-                onClick={() => {
-                    props.destroy({
-                        act_of_discrepancies_id: act.value.id,
-                        invoice_products_id: invoice_products.value.id,
-                    }, state.path)
-                }}>
-                    Удалить
-                </button>
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Акты расхождения товар'} classes={classes} object={pr_act} collection={props.ID.data} attribute={'id'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(pr_act.value, state.path)
+                    }>Удалить</button>
+                </div>
             </div>  
         </>
     )

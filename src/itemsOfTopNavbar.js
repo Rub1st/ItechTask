@@ -102,6 +102,7 @@ export default [
             path: "guides/act_of_discrepancies_products",
             table: {
               columns: [
+                {title: "id", field: "id"},
                 {title: "Акт расхождения", field: "act_of_discrepancies.series_and_number"},
                 {title: "Продукт", field: "invoice_products.full_name"},
               ],

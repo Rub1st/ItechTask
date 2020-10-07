@@ -1,5 +1,5 @@
 import React from 'react'
-import { SelectedInput, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
+import { SelectedInput, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setCustomers,
@@ -31,6 +31,8 @@ const InvoiceProducts = (props) => {
     const invoice = useSelectBox({});
     const provider = useSelectBox({});
     const customer = useSelectBox({});
+
+    const invoice_product = useSelectBox({});
 
     return (
         <>
@@ -82,23 +84,12 @@ const InvoiceProducts = (props) => {
                     >
                     Обновить данные
                 </button>
-                <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.destroy({
-                            full_name: full_name.value,
-                            short_name: short_name.value,
-                            code: code.value,
-                            price: price,
-                            summa_nds: summa_nds.value,
-                            cost: cost.value,
-                            rate_vats_id: rate_nds.value.id,
-                            provider_id: provider.value.id,
-                            customer_id: customer.value.id,
-                            unit_id: unit.value.id,
-                            p_subgroup_id: p_subgroup.value.id,
-                            invoice_id: invoice.value.id
-                        },  state.path)
-
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Товар прихода'} classes={classes} object={invoice_product} collection={props.ID.data} attribute={'full_name'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(invoice_product.value, state.path)
                     }>Удалить</button>
+                </div>
             </div>  
         </>
     )

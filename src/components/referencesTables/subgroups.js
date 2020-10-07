@@ -13,6 +13,7 @@ const Subgroups = (props) => {
     const {state} = props;
     const name = useInputText('');
     const group = useSelectBox({});
+    const sub_group = useSelectBox({})
 
     return (
         <>
@@ -37,12 +38,12 @@ const Subgroups = (props) => {
                     }}>
                     Обновить данные
                 </button>
-                <button className={'btn btn-danger btn-position'} onClick={() => 
-                        props.destroy({
-                            name: name.value,
-                            p_group_id: group.value.id,
-                        }, state.path)
+                <div className='btn btn-delete'>
+                    <SelectedInput label={'Дополнительная группа'} classes={classes} object={sub_group} collection={props.ID.data} attribute={'name'}/>
+                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                        props.destroy(sub_group.value, state.path)
                     }>Удалить</button>
+                </div>
             </div>
             
         </>
