@@ -21,7 +21,6 @@ export const destroyData = (obj, path) => dispatch => {
 }
 
 export const AddToData = (obj, path) => dispatch => {
-  console.log(obj)
   axios.post(`http://localhost:3000/${path}`, obj,{
     "Content-Type": "application/x-www-form-urlencoded",
   }).then((response) => dispatch(add(response.data)))

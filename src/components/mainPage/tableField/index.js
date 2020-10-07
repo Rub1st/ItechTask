@@ -41,7 +41,7 @@ function MaterialTableDemo(props) {
         <button
           className="btn btn-dark btn-position"
           onClick={() => {
-            props.setData(state.path, setData);
+            props.set(state.path, setData);
           }}
         >
           Обновить данные
@@ -59,7 +59,7 @@ export default connect(
   }),
   (dispatch) => ({
     updateData: (table) => dispatch(updateData(table)),
-    setData: (path, setter) => dispatch(takeData(path, setter)),
+    set: (path, setter) => dispatch(takeData(path, setter)),
     add: (data, path) => dispatch(AddToData(data, path)),
     destroy: (data, path) => dispatch(destroyData(data, path)),
   })
