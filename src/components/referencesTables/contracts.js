@@ -64,13 +64,13 @@ const Contracts = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData); 
-                        props.setData("guides/organizations", setProviders);
-                        props.setData("guides/organizations", setCustomers);
-                        props.setData("guides/currencies", setCurrencies);
-                        props.setData("warehouses/type_of_payments", setTypeOfPayments);
-                        props.setData("warehouses/type_of_exchanges", setTypeOfExchanges);
-                        props.setData("warehouses/type_of_contracts", setTypeOfContracts);
+                        props.set(state.path, setData); 
+                        props.set("guides/organizations", setProviders);
+                        props.set("guides/organizations", setCustomers);
+                        props.set("guides/currencies", setCurrencies);
+                        props.set("warehouses/type_of_payments", setTypeOfPayments);
+                        props.set("warehouses/type_of_exchanges", setTypeOfExchanges);
+                        props.set("warehouses/type_of_contracts", setTypeOfContracts);
                     }}
                     >
                     Обновить данные
@@ -94,7 +94,7 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path, setter)),
+        set: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(Contracts);
 

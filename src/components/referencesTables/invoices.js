@@ -104,17 +104,17 @@ const Invoices = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData); 
-                        props.setData("guides/organizations", setProviders);
-                        props.setData("guides/organizations", setCustomers);
-                        props.setData("warehouses/contracts", setContracts);
-                        props.setData("customs/operations", setOperations);
-                        props.setData("guides/currencies", setCurrencies);
-                        props.setData("customs/agreements", setAgreements);
-                        props.setData("customs/status_of_acceptances", setStatusesAcceptence);
-                        props.setData("customs/status_of_price_tag_printings", setStatusesPriceTag);
-                        props.setData("customs/status_of_booting_in_equipments", setStatusesBooting);
-                        props.setData("utils/invoice_types", setInvoiceTypes);
+                        props.set(state.path, setData); 
+                        props.set("guides/organizations", setProviders);
+                        props.set("guides/organizations", setCustomers);
+                        props.set("warehouses/contracts", setContracts);
+                        props.set("customs/operations", setOperations);
+                        props.set("guides/currencies", setCurrencies);
+                        props.set("customs/agreements", setAgreements);
+                        props.set("customs/status_of_acceptances", setStatusesAcceptence);
+                        props.set("customs/status_of_price_tag_printings", setStatusesPriceTag);
+                        props.set("customs/status_of_booting_in_equipments", setStatusesBooting);
+                        props.set("utils/invoice_types", setInvoiceTypes);
                     }}
                     >
                     Обновить данные
@@ -138,6 +138,6 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path, setter)),
+        set: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(Invoices);

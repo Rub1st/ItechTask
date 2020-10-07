@@ -73,12 +73,12 @@ const ActOfDiscrepancies = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData); 
-                        props.setData("customs/invoices", setInvoices);
-                        props.setData("customs/operations", setOperations);
-                        props.setData("guides/currencies", setCurrencies);
-                        props.setData("warehouses/warehouses", setCustomerWarehouses);
-                        props.setData("warehouses/warehouses", setProviderWarehouses);
+                        props.set(state.path, setData); 
+                        props.set("customs/invoices", setInvoices);
+                        props.set("customs/operations", setOperations);
+                        props.set("guides/currencies", setCurrencies);
+                        props.set("warehouses/warehouses", setCustomerWarehouses);
+                        props.set("warehouses/warehouses", setProviderWarehouses);
                     }}
                     >
                     Обновить данные
@@ -102,6 +102,6 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path, setter)),
+        set: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(ActOfDiscrepancies);

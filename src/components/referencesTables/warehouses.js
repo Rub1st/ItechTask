@@ -33,8 +33,8 @@ const Warehouses = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData); 
-                        props.setData("guides/organizations", setOrganizations);
+                        props.set(state.path, setData); 
+                        props.set("guides/organizations", setOrganizations);
                     }}
                     >
                     Обновить данные
@@ -59,6 +59,6 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path,setter)),
+        set: (path, setter) => dispatch(takeData(path,setter)),
     })
 )(Warehouses);

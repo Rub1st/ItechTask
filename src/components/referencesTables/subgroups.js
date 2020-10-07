@@ -33,8 +33,8 @@ const Subgroups = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData);
-                        props.setData("guides/p_groups", setGroups);
+                        props.set(state.path, setData);
+                        props.set("guides/p_groups", setGroups);
                     }}>
                     Обновить данные
                 </button>
@@ -58,6 +58,6 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path, setter)),
+        set: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(Subgroups);

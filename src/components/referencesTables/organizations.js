@@ -59,8 +59,8 @@ const Organizations = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData);
-                        props.setData("guides/ownership_forms", setOwnershipForms)}
+                        props.set(state.path, setData);
+                        props.set("guides/ownership_forms", setOwnershipForms)}
                     }
                     >
                     Обновить данные
@@ -84,6 +84,6 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path, setter)),
+        set: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(Organizations);

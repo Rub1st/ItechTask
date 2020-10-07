@@ -36,9 +36,9 @@ const ActOfDiscrepanciesProducts = (props) => {
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
-                        props.setData(state.path, setData); 
-                        props.setData("customs/act_of_discrepancies", setActs);
-                        props.setData("guides/invoice_products", setInvoiceProducts);
+                        props.set(state.path, setData); 
+                        props.set("customs/act_of_discrepancies", setActs);
+                        props.set("guides/invoice_products", setInvoiceProducts);
                     }}
                     >
                     Обновить данные
@@ -62,6 +62,6 @@ export default connect(
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
-        setData: (path, setter) => dispatch(takeData(path, setter)),
+        set: (path, setter) => dispatch(takeData(path, setter)),
     })
 )(ActOfDiscrepanciesProducts);
