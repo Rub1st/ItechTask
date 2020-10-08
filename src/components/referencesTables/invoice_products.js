@@ -40,10 +40,10 @@ const InvoiceProducts = (props) => {
             <div className="d-flex input-panel">
                 <input placeholder="Полное имя" {...full_name}/>
                 <input placeholder="Короткое имя" {...short_name}/>
-                <input placeholder="Код" {...code}/>
-                <input placeholder="Цена" {...price}/>
-                <input placeholder="Сумма НДС" {...summa_nds}/>
-                <input placeholder="Стоимость" {...cost}/>
+                <input type="number" placeholder="Код" {...code}/>
+                <input type="number" placeholder="Цена" {...price}/>
+                <input type="number" placeholder="Сумма НДС" {...summa_nds}/>
+                <input type="number" placeholder="Стоимость" {...cost}/>
               <SelectedInput label={'Поставщик'} classes={classes} object={provider} collection={props.CosPro.providers} attribute={'full_name'}/>
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
               <SelectedInput label={'Рейтинги НДС'} classes={classes} object={rate_nds} collection={props.CosPro.rates_vats} attribute={'rate'}/>     

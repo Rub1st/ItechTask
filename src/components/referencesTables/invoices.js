@@ -51,19 +51,19 @@ const Invoices = (props) => {
             <div className="d-flex input-panel">
                 <input type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
-                <input placeholder="Серия/номер" {...series_and_number}/>
-                <input placeholder="Дата/время" {...date_and_time}/>
+                <input type="number" placeholder="Серия/номер" {...series_and_number}/>
+                <input type="date" placeholder="Дата/время" {...date_and_time}/>
                 <input type="checkbox" {...selling_on_commission}/>
-                <input placeholder="Сумма" {...summa}/>
-                <input placeholder="Сумма НДС" {...summa_nds}/>
-                <input placeholder="Сумма с НДС" {...summa_with_nds}/>
-                <input placeholder="Сумма (учетная)" {...record_summa}/>
-                <input placeholder="Сумма розничная" {...retail_summa}/>
-                <input placeholder="Сумма дооценки" {...pre_assessment_summa}/>
-                <input placeholder="Сумма списания" {...write_down_summa}/>
+                <input type="number" placeholder="Сумма" {...summa}/>
+                <input type="number" placeholder="Сумма НДС" {...summa_nds}/>
+                <input type="number" placeholder="Сумма с НДС" {...summa_with_nds}/>
+                <input type="number" placeholder="Сумма (учетная)" {...record_summa}/>
+                <input type="number" placeholder="Сумма розничная" {...retail_summa}/>
+                <input type="number" placeholder="Сумма дооценки" {...pre_assessment_summa}/>
+                <input type="number" placeholder="Сумма списания" {...write_down_summa}/>
                 <input placeholder="Примечание" {...note}/>
-                <input placeholder="Кол-во строк" {...strings_count}/>
-                <input placeholder="Кол-во всего" {...total_count}/>
+                <input type="number" placeholder="Кол-во строк" {...strings_count}/>
+                <input type="number" placeholder="Кол-во всего" {...total_count}/>
               <SelectedInput label={'Соглашение'} classes={classes} object={agreement} collection={props.CosPro.agreements} attribute={'name'}/>
               <SelectedInput label={'Статус печати чека'} classes={classes} object={status_of_price_tag_printing} collection={props.CosPro.status_price_tags} attribute={'name'}/>
               <SelectedInput label={'Статус приемки'} classes={classes} object={status_of_acceptance} collection={props.CosPro.status_acceptences} attribute={'name'}/>

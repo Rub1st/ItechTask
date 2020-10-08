@@ -8,6 +8,11 @@ input[type="checkbox"] {
     height: 20px;
 }
 
+input[type="date"] {
+    width: 130px;
+    height: 25px;
+}
+
 .btn-delete {
     display: inline-flex;
     padding: 5px;

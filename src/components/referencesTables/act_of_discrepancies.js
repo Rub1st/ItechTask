@@ -38,13 +38,13 @@ const ActOfDiscrepancies = (props) => {
             <div className="d-flex input-panel">
                 <input label={"Закрыт"} type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
-                <input placeholder="Серия/номер" {...series_and_number}/>
-                <input placeholder="Дата и время" {...date_and_time}/>
-                <input placeholder="Сумма НДС" {...summa_nds}/>
-                <input placeholder="Сумма с НДС" {...summa_with_nds}/>
+                <input type="number" placeholder="Серия/номер" {...series_and_number}/>
+                <input type="date" placeholder="Дата и время" {...date_and_time}/>
+                <input type="number" placeholder="Сумма НДС" {...summa_nds}/>
+                <input type="number" placeholder="Сумма с НДС" {...summa_with_nds}/>
                 <input placeholder="Примечание" {...note}/>
-                <input placeholder="Кол-во строк" {...strings_count}/>
-                <input placeholder="Кол-во всего" {...total_count}/>
+                <input type="number" placeholder="Кол-во строк" {...strings_count}/>
+                <input type="number" placeholder="Кол-во всего" {...total_count}/>
               <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
               <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses.filter(el => el.organization.is_buyer === true)} attribute={'address'}/>

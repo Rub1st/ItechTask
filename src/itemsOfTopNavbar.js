@@ -90,7 +90,7 @@ export default [
                 {title: "Цена", field: "price"},
                 {title: "Сумма НДС", field: "summa_nds"},
                 {title: "Стоимость", field: "cost"},
-                {title: "Рейтинг НДС", field: "rate_vats.rate"},
+                {title: "Рейтинг НДС", field: "rate_vat.rate"},
                 {title: "Ед. измерения", field: "unit.short_name"},
               ],
               data: [],
@@ -102,9 +102,9 @@ export default [
             path: "guides/act_of_discrepancies_products",
             table: {
               columns: [
-                {title: "id", field: "id"},
-                {title: "Акт расхождения", field: "act_of_discrepancies.series_and_number"},
-                {title: "Продукт", field: "invoice_products.full_name"},
+                {title: "Код", field: "code"},
+                {title: "Акт расхождения", field: "act_of_discrepancy.series_and_number"},
+                {title: "Продукт", field: "invoice_product.full_name"},
               ],
               data: []
             }
