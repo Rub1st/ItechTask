@@ -103,6 +103,7 @@ export default [
             table: {
               columns: [
                 {title: "Код", field: "code"},
+                {title: "Номер ТТН", field: "invoice_product.invoice.series_and_number"},
                 {title: "Акт расхождения", field: "act_of_discrepancy.series_and_number"},
                 {title: "Продукт", field: "invoice_product.full_name"},
               ],
