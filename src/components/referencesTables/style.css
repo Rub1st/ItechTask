@@ -12,6 +12,11 @@ input[type="date"] {
     width: 130px;
     height: 25px;
 }
+.placeholder{
+    color: #999999;
+    padding: 0px 0px 0px 10px;
+    font-size: 8pt;
+}
 
 .btn-delete {
     display: inline-flex;

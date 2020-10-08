@@ -36,8 +36,14 @@ const Contracts = (props) => {
 
             <div className="d-flex input-panel">
                 <input type="number" placeholder="Серия/номер" {...series_and_number}/>
-                <input type="date" placeholder="Действует с" {...valid_from}/>
-                <input type="date" placeholder="Действует по" {...valid_for}/>
+                <div>
+                    <div className="placeholder">Действует с</div>
+                    <input type="date" placeholder="Действует с" {...valid_from}/>
+                </div>
+                <div>
+                    <div className="placeholder">Действует по</div>
+                    <input type="date" placeholder="Действует по" {...valid_for}/>
+                </div>
                 <input placeholder="Примечание" {...note}/>
               <SelectedInput label={'Поставщик'} classes={classes} object={provider} collection={props.CosPro.providers} attribute={'full_name'}/>
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
