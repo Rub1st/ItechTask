@@ -44,7 +44,7 @@ const ActOfDiscrepanciesProducts = (props) => {
                     Обновить данные
                 </button>
                 <div className='btn btn-delete'>
-                    <SelectedInput label={'Акты расхождения товар'} classes={classes} object={pr_act} collection={props.ID.data} attribute={'id'}/>
+                    <SelectedInput label={'Акты расхождения товар'} classes={classes} object={pr_act} collection={props.ID.data} attribute={'code'}/>
                     <button className={'btn btn-danger btn-position'} onClick={() => 
                         props.destroy(pr_act.value, state.path)
                     }>Удалить</button>

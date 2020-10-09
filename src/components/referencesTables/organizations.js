@@ -32,8 +32,8 @@ const Organizations = (props) => {
                 <input placeholder="Короткое имя" {...short_name}/>
                 <input type="number" placeholder="УНП" {...unp}/>
                 <input placeholder="Юр. адрес" {...legal_address}/>
-                <input placeholder="Телефон/факс" {...phone_or_fax}/>
-                <input placeholder="e-mail" {...email}/>
+                <input placeholder="Телефон/факс" pattern="\+375\ ?(29|44|17|33)\d{0,3}\d{0,2}\d{0,2}" {...phone_or_fax}/>
+                <input placeholder="e-mail" pattern="[\w\W]+@(gmail|yandex|mail)\.(com|ru)$" {...email}/>
                 <input type="checkbox" {...is_provider}/>
                 <input type="checkbox" {...is_company}/>
                 <input type="checkbox" {...is_buyer}/>
