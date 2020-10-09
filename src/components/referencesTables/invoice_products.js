@@ -79,7 +79,7 @@ const InvoiceProducts = (props) => {
                         props.setData("guides/units", setUnits);
                         props.setData("customs/invoices", setInvoices);
                         props.setData("guides/p_subgroups", setSubGroups);
-                        props.setData("guides/rate_ndses", setRatesNDS);
+                        props.setData("guides/rate_vats", setRatesNDS);
                     }}
                     >
                     Обновить данные
