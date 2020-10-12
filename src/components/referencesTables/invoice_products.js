@@ -58,7 +58,7 @@ const InvoiceProducts = (props) => {
                             full_name: full_name.value,
                             short_name: short_name.value,
                             code: code.value,
-                            price: price,
+                            price: price.value,
                             summa_nds: summa_nds.value,
                             cost: cost.value,
                             rate_vat_id: rate_nds.value.id,

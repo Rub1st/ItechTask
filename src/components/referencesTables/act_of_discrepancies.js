@@ -5,7 +5,8 @@ import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setCurrencies,
          setOperations,
          setProviderWarehouses,
-         setCustomerWarehouses, setInvoices
+         setCustomerWarehouses, setInvoices,
+         setInvoiceTypes
         } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
@@ -62,7 +63,7 @@ const ActOfDiscrepancies = (props) => {
                             summa_nds: summa_nds.value,
                             summa_with_nds: summa_with_nds.value,
                             note: note.value,
-                            invoice_type_id: 2,
+                            invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "возврат")[0].id,
                             invoice_id: invoice.value.id,
                             operation_id: operation.value.id,
                             currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
@@ -79,6 +80,7 @@ const ActOfDiscrepancies = (props) => {
                         props.set("guides/currencies", setCurrencies);
                         props.set("warehouses/warehouses", setCustomerWarehouses);
                         props.set("warehouses/warehouses", setProviderWarehouses);
+                        props.set("utils/invoice_types", setInvoiceTypes);
                     }}
                     >
                     Обновить данные
