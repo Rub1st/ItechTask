@@ -5,6 +5,7 @@ import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setOwnershipForms } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
+import { checkEmail, checkPhone } from '../utils/other';
 
 
 const Organizations = (props) => {
@@ -24,6 +25,23 @@ const Organizations = (props) => {
     const ownership_form = useSelectBox({});
     const organization = useSelectBox({});
 
+    const addOrganization = () => {
+        const condition = checkEmail(email.value) && checkPhone(phone_or_fax.value)
+        condition ? props.add(
+        {
+            full_name: full_name.value,
+            short_name: short_name.value,
+            unp: unp.value,
+            legal_address: legal_address.value,
+            phone_or_fax: phone_or_fax.value,
+            ownership_form_id: ownership_form.value.id,
+            email: email.value,
+            is_provider: is_provider.value,
+            is_company: is_company.value,
+            is_buyer: is_buyer.value
+        }, state.path) : alert('Error input values')
+    }
+
     return (
         <>
             <MaterialTables state={state}/>
@@ -32,30 +50,15 @@ const Organizations = (props) => {
                 <input placeholder="Короткое имя" {...short_name}/>
                 <input type="number" placeholder="УНП" {...unp}/>
                 <input placeholder="Юр. адрес" {...legal_address}/>
-                <input placeholder="Телефон/факс" pattern="\+375\ ?(29|44|17|33)\d{0,3}\d{0,2}\d{0,2}" {...phone_or_fax}/>
-                <input placeholder="e-mail" pattern="[\w\W]+@(gmail|yandex|mail)\.(com|ru)$" {...email}/>
+                <input placeholder="Телефон/факс" {...phone_or_fax}/>
+                <input placeholder="e-mail" {...email}/>
                 <input type="checkbox" {...is_provider}/>
                 <input type="checkbox" {...is_company}/>
                 <input type="checkbox" {...is_buyer}/>
-            <div>
-              <SelectedInput label={'Форма собственности'} classes={classes} object={ownership_form} collection={props.CosPro.ownership_forms} attribute={'name'}/>
-            </div>
+                <SelectedInput label={'Форма собственности'} classes={classes} object={ownership_form} collection={props.CosPro.ownership_forms} attribute={'name'}/>
             </div>
             <div>        
-                <button className={'btn btn-info btn-position'} onClick={() => 
-                        props.add({
-                            full_name: full_name.value,
-                            short_name: short_name.value,
-                            unp: unp.value,
-                            legal_address: legal_address.value,
-                            phone_or_fax: phone_or_fax.value,
-                            ownership_form_id: ownership_form.value.id,
-                            email: email.value,
-                            is_provider: is_provider.value,
-                            is_company: is_company.value,
-                            is_buyer: is_buyer.value
-                        }, state.path)
-                    }>Добавить</button>
+                <button className={'btn btn-info btn-position'} onClick={addOrganization}>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {

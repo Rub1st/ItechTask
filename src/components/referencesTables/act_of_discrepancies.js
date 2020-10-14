@@ -10,6 +10,7 @@ import { setCurrencies,
         } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
+
 import './style.css'
 
 const ActOfDiscrepancies = (props) => {
@@ -33,10 +34,31 @@ const ActOfDiscrepancies = (props) => {
 
     const act = useSelectBox({})
 
+    const addAct = () => {
+        const condition = true
+        props.add({
+            is_closed: is_closed.value,
+            is_conducted: is_conducted.value,
+            series_and_number: series_and_number.value,
+            date_and_time: date_and_time.value,
+            strings_count: strings_count.value,
+            total_count: total_count.value,
+            summa_nds: summa_nds.value,
+            summa_with_nds: summa_with_nds.value,
+            note: note.value,
+            invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "возврат")[0].id,
+            invoice_id: invoice.value.id,
+            operation_id: operation.value.id,
+            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
+            provider_warehouse_id: warehouse_p.value.id,
+            customer_warehouse_id: warehouse_c.value.id
+        },  state.path)
+    }
+
     return (
         <>
           <MaterialTables state={state}/>
-            <div className="d-flex input-panel">
+            <div className="d-flex input-panel" onSubmit={addAct}>
                 <input label={"Закрыт"} type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
                 <input type="number" placeholder="Серия/номер" {...series_and_number}/>
@@ -46,31 +68,13 @@ const ActOfDiscrepancies = (props) => {
                 <input placeholder="Примечание" {...note}/>
                 <input type="number" placeholder="Кол-во строк" {...strings_count}/>
                 <input type="number" placeholder="Кол-во всего" {...total_count}/>
-              <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>
-              <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
-              <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses.filter(el => el.organization.is_buyer === true)} attribute={'address'}/>
-              <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses.filter(el => el.organization.is_provider === true)} attribute={'address'}/>
+                <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>
+                <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
+                <SelectedInput label={'Склад поставщика'} classes={classes} object={warehouse_p} collection={props.CosPro.warehouses.filter(el => el.organization.is_buyer === true)} attribute={'address'}/>
+                <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses.filter(el => el.organization.is_provider === true)} attribute={'address'}/>
             </div>
-            <div>         
-                <button className={'btn btn-info btn-position'} onClick={() => 
-                        props.add({
-                            is_closed: is_closed.value,
-                            is_conducted: is_conducted.value,
-                            series_and_number: series_and_number.value,
-                            date_and_time: date_and_time.value,
-                            strings_count: strings_count.value,
-                            total_count: total_count.value,
-                            summa_nds: summa_nds.value,
-                            summa_with_nds: summa_with_nds.value,
-                            note: note.value,
-                            invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "возврат")[0].id,
-                            invoice_id: invoice.value.id,
-                            operation_id: operation.value.id,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
-                            provider_warehouse_id: warehouse_p.value.id,
-                            customer_warehouse_id: warehouse_c.value.id
-                        },  state.path)
-                    }>Добавить</button>
+            <div>
+                <button className={'btn btn-info btn-position'} onClick={addAct}>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
