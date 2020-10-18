@@ -62,7 +62,7 @@ const ActOfDiscrepancies = (props) => {
                             summa_nds: summa_nds.value,
                             summa_with_nds: summa_with_nds.value,
                             note: note.value,
-                            invoice_type_id: 2,
+                            invoice_type_id: 1,
                             invoice_id: invoice.value.id,
                             operation_id: operation.value.id,
                             currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
