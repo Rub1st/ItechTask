@@ -7,6 +7,7 @@ import { setActs,
         } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
+import WithError from "../../hoc/error_hoc"
 import './style.css'
 
 const ActOfDiscrepanciesProducts = (props) => {
@@ -22,6 +23,9 @@ const ActOfDiscrepanciesProducts = (props) => {
     return (
         <>
           <MaterialTables state={state}/>
+          {
+              props.CosPro.errors ? console.log('error') : console.log('not')
+          }
             <div className="d-flex input-panel">
               <SelectedInput label={'Акт расхождения'} classes={classes} object={act} collection={props.CosPro.acts} attribute={'series_and_number'}/>
               <SelectedInput label={'Продукт'} classes={classes} object={invoice_products} collection={props.CosPro.invoice_products} attribute={'full_name'}/>
@@ -59,9 +63,9 @@ export default connect(
         ID: state.idReducer,
         CosPro: state.cosProReducer,
     }),
-    dispatch => ({
+    dispatch =>  dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
         destroy: (data, path) => dispatch(destroyData(data, path)),
         set: (path, setter) => dispatch(takeData(path, setter)),
     })
-)(ActOfDiscrepanciesProducts);
+)(WithError(ActOfDiscrepanciesProducts));

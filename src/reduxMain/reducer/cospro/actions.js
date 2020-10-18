@@ -22,7 +22,8 @@ import {
   SET_SUBGROUPS,
   SET_INVOICES,
   SET_ACTS,
-  SET_INVOICE_PRODUCTS
+  SET_INVOICE_PRODUCTS,
+  SET_ERRORS
 } from "../../constants";
 
 export const setProviders = (data) => ({
@@ -52,6 +53,11 @@ export const setSubGroups = (data) => ({
 
 export const setRatesNDS = (data) => ({
   type: SET_RATES_NDS,
+  value: data
+})
+
+export const setErrors = (data) => ({
+  type: SET_ERRORS,
   value: data
 })
 

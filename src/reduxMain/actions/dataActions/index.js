@@ -3,6 +3,7 @@ import {
   DESTROY
 } from "../../constants";
 import axios from "axios";
+import { setErrors } from "../../reducer/cospro/actions";
 
 const add = (data) => ({
   type: ADD,
@@ -23,5 +24,7 @@ export const destroyData = (obj, path) => dispatch => {
 export const AddToData = (obj, path) => dispatch => {
   axios.post(`http://localhost:3000/${path}`, obj,{
     "Content-Type": "application/x-www-form-urlencoded",
-  }).then((response) => dispatch(add(response.data)))
+  })
+  .then((response) => dispatch(add(response.data)))
+  .catch(error => setErrors(error))
 } 
