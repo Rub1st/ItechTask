@@ -22,7 +22,8 @@ import {
   SET_SUBGROUPS,
   SET_INVOICES,
   SET_ACTS,
-  SET_INVOICE_PRODUCTS
+  SET_INVOICE_PRODUCTS,
+  SET_ERRORS
 } from "../../constants";
 
 let initialState = {
@@ -48,105 +49,110 @@ let initialState = {
   p_subgroups: [],
   invoices: [],
   acts: [],
-  invoice_products: []
+  invoice_products: [],
+  errors: []
 };
 
 const cosProReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ERRORS: {
+      state = Object.assign({}, state, { errors: action.value })
+      return state;
+    }
     case SET_ORGANIZATIONS: {
-      state = Object.assign({}, state, { organizations: action.value });
+      state = Object.assign({}, state, { organizations: action.value, errors: [] });
       return state;
     }
     case SET_CUSTOMERS: {
-      state = Object.assign({}, state, { customers: action.value.filter(el => el.is_buyer === true) });
+      state = Object.assign({}, state, { customers: action.value.filter(el => el.is_buyer === true), errors: [] });
       return state;
     }
     case SET_PROVIDERS: {
-      state = Object.assign({}, state, { providers: action.value.filter(el => el.is_provider === true) });
+      state = Object.assign({}, state, { providers: action.value.filter(el => el.is_provider === true), errors: [] });
       return state;
     }
     case SET_CONTRACTS: {
-      state = Object.assign({}, state, { contracts: action.value });
+      state = Object.assign({}, state, { contracts: action.value, errors: [] });
       return state;
     }
     case SET_OPERATIONS: {
-      state = Object.assign({}, state, { operations: action.value });
+      state = Object.assign({}, state, { operations: action.value, errors: [] });
       return state;
     }
     case SET_CURRENCIES: {
-      state = Object.assign({}, state, { currencies: action.value });
+      state = Object.assign({}, state, { currencies: action.value, errors: [] });
       return state;
     }
     case SET_AGREEMENTS: {
-      state = Object.assign({}, state, { agreements: action.value });
+      state = Object.assign({}, state, { agreements: action.value, errors: [] });
       return state;
     }
     case SET_STATUS_PRICE_TAG: {
-      state = Object.assign({}, state, { status_price_tags: action.value });
+      state = Object.assign({}, state, { status_price_tags: action.value, errors: [] });
       return state;
     }
     case SET_STATUS_ACCEPTENCE: {
-      state = Object.assign({}, state, { status_acceptences: action.value });
+      state = Object.assign({}, state, { status_acceptences: action.value, errors: [] });
       return state;
     }
     case SET_STATUS_BOOTING: {
-      state = Object.assign({}, state, { status_bootings: action.value });
+      state = Object.assign({}, state, { status_bootings: action.value, errors: [] });
       return state;
     }
     case SET_OWNERSHIP_FORMS: {
-      state = Object.assign({}, state, { ownership_forms: action.value });
+      state = Object.assign({}, state, { ownership_forms: action.value, errors: [] });
       return state;
     }
     case SET_UNITS: {
-      state = Object.assign({}, state, { units: action.value });
+      state = Object.assign({}, state, { units: action.value, errors: [] });
       return state;
     }
     case SET_GROUPS: {
-      state = Object.assign({}, state, { p_groups: action.value });
+      state = Object.assign({}, state, { p_groups: action.value, errors: [] });
       return state;
     }
     case SET_TYPE_OF_EXCHANGE: {
-      state = Object.assign({}, state, { type_of_exchanges: action.value });
+      state = Object.assign({}, state, { type_of_exchanges: action.value, errors: [] });
       return state;
     }
     case SET_TYPE_OF_PAYMENT: {
-      state = Object.assign({}, state, { type_of_payments: action.value });
+      state = Object.assign({}, state, { type_of_payments: action.value, errors: [] });
       return state;
     }
     case SET_TYPE_OF_CONTRACT: {
-      state = Object.assign({}, state, { type_of_contracts: action.value });
+      state = Object.assign({}, state, { type_of_contracts: action.value, errors: [] });
       return state;
     }
     case SET_INVOICE_TYPES: {
-      state = Object.assign({}, state, { invoice_types: action.value });
+      state = Object.assign({}, state, { invoice_types: action.value, errors: [] });
       return state;
     }
     case SET_PROVIDER_WAREHOUSES: {
-      state = Object.assign({}, state, {warehouses: action.value});
+      state = Object.assign({}, state, {warehouses: action.value, errors: []});
       return state;
     }
     case SET_CUSTOMER_WAREHOUSES: {
-      state = Object.assign({}, state, {warehouses: action.value});
+      state = Object.assign({}, state, {warehouses: action.value, errors: []});
       return state;
     }
     case SET_RATES_NDS: {
-      state = Object.assign({}, state, {rates_vats: action.value});
+      state = Object.assign({}, state, {rates_vats: action.value, errors: []});
       return state;
     }
     case SET_SUBGROUPS: {
-      state = Object.assign({}, state, {p_subgroups: action.value});
+      state = Object.assign({}, state, {p_subgroups: action.value, errors: []});
       return state;
     }
     case SET_INVOICES: {
-      state = Object.assign({}, state, {invoices: action.value});
+      state = Object.assign({}, state, {invoices: action.value, errors: []});
       return state;
     }
     case SET_ACTS: {
-      state = Object.assign({}, state, {acts: action.value});
+      state = Object.assign({}, state, {acts: action.value, errors: []});
       return state;
     }
     case SET_INVOICE_PRODUCTS: {
-      state = Object.assign({}, state, {invoice_products: action.value});
+      state = Object.assign({}, state, {invoice_products: action.value, errors: []});
       return state;
     }
     default:

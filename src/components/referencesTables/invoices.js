@@ -98,7 +98,7 @@ const Invoices = (props) => {
                             status_of_acceptance_id: status_of_acceptance.value.id,
                             status_of_booting_in_equipment_id:
                             status_of_booting_in_equipment.value.id,
-                            invoice_type_id: 1
+                            invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "закупка")[0].id
                         },  state.path)
                     }>Добавить</button>
                 <button 
