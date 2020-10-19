@@ -1,5 +1,5 @@
 import React from 'react'
-import { SelectedInput, useSelectBox, useStyles, MaterialTables} from '../utils'
+import { SelectedInput, useSelectBox, useStyles, MaterialTables, useInputText} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setActs,
@@ -15,6 +15,7 @@ const ActOfDiscrepanciesProducts = (props) => {
     const classes = useStyles();
 
     const {state} = props;
+    const code = useInputText("")
     const invoice_products = useSelectBox({});
     const act = useSelectBox({});
 
@@ -27,12 +28,14 @@ const ActOfDiscrepanciesProducts = (props) => {
             props.CosPro.errors ? <Error path={state.path} message={props.CosPro.errors}/> : null
           }
             <div className="d-flex input-panel">
+              <input type="number" placeholder="Код" {...code}/>
               <SelectedInput label={'Акт расхождения'} classes={classes} object={act} collection={props.CosPro.acts} attribute={'series_and_number'}/>
               <SelectedInput label={'Продукт'} classes={classes} object={invoice_products} collection={props.CosPro.invoice_products} attribute={'full_name'}/>
             </div>
             <div>         
                 <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
+                            code: code.value,
                             act_of_discrepancy_id: act.value.id,
                             invoice_product_id: invoice_products.value.id,
                         },  state.path)
