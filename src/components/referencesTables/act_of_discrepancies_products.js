@@ -25,7 +25,7 @@ const ActOfDiscrepanciesProducts = (props) => {
         <>
           <MaterialTables state={state}/>
           {
-            props.CosPro.errors ? <Error path={state.path} message={props.CosPro.errors}/> : null
+            props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
           }
             <div className="d-flex input-panel">
               <input type="number" placeholder="Код" {...code}/>
@@ -67,6 +67,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),

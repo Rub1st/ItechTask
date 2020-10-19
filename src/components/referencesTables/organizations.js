@@ -1,12 +1,13 @@
 import React from 'react'
+
+import Error from "../error_notification"
+
 import { SelectedInput, useCheckBox, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
 import { setOwnershipForms } from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
-import { checkEmail, checkPhone } from '../utils/other';
-
 
 const Organizations = (props) => {
 
@@ -25,26 +26,12 @@ const Organizations = (props) => {
     const ownership_form = useSelectBox({});
     const organization = useSelectBox({});
 
-    const addOrganization = () => {
-        const condition = checkEmail(email.value) && checkPhone(phone_or_fax.value)
-        condition ? props.add(
-        {
-            full_name: full_name.value,
-            short_name: short_name.value,
-            unp: unp.value,
-            legal_address: legal_address.value,
-            phone_or_fax: phone_or_fax.value,
-            ownership_form_id: ownership_form.value.id,
-            email: email.value,
-            is_provider: is_provider.value,
-            is_company: is_company.value,
-            is_buyer: is_buyer.value
-        }, state.path) : alert('Error input values')
-    }
-
     return (
         <>
             <MaterialTables state={state}/>
+            {
+                props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
+            }
             <div className="d-flex">
                 <input placeholder="Наименование" {...full_name}/>
                 <input placeholder="Короткое имя" {...short_name}/>
@@ -58,13 +45,28 @@ const Organizations = (props) => {
                 <SelectedInput label={'Форма собственности'} classes={classes} object={ownership_form} collection={props.CosPro.ownership_forms} attribute={'name'}/>
             </div>
             <div>        
-                <button className={'btn btn-info btn-position'} onClick={addOrganization}>Добавить</button>
+                <button className={'btn btn-info btn-position'} onClick={() => {
+                    props.add(
+                        {
+                            full_name: full_name.value,
+                            short_name: short_name.value,
+                            unp: unp.value,
+                            legal_address: legal_address.value,
+                            phone_or_fax: phone_or_fax.value,
+                            ownership_form_id: ownership_form.value.id,
+                            email: email.value,
+                            is_provider: is_provider.value,
+                            is_company: is_company.value,
+                            is_buyer: is_buyer.value
+                        }, state.path)
+                }}>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
                     onClick={() => {
                         props.set(state.path, setData);
-                        props.set("guides/ownership_forms", setOwnershipForms)}
-                    }
+                        props.set("guides/ownership_forms", setOwnershipForms)
+                        ownership_form.onChange({target: { value: {}}})
+                    }}
                     >
                     Обновить данные
                 </button>
@@ -83,6 +85,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),

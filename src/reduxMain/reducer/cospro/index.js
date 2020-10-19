@@ -51,19 +51,10 @@ let initialState = {
   invoices: [],
   acts: [],
   invoice_products: [],
-  errors: null
 };
 
 const cosProReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_ERRORS: {
-      state = Object.assign({}, state, { errors: action.value })
-      return state;
-    }
-    case CLOSE_ERROR: {
-      state = Object.assign({}, state, { errors: action.value })
-      return state;
-    }
     case SET_ORGANIZATIONS: {
       state = Object.assign({}, state, { organizations: action.value, errors: null });
       return state;

@@ -1,4 +1,7 @@
 import React from 'react'
+
+import Error from "../error_notification"
+
 import { SelectedInput, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
@@ -18,6 +21,9 @@ const Subgroups = (props) => {
     return (
         <>
             <MaterialTables isAdd={false} state={state}/>
+            {
+                props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
+            }
             <div className="d-flex">
                 <input placeholder="Наименование" {...name}/>
               <SelectedInput label={'Группа'} classes={classes} object={group} collection={props.CosPro.p_groups} attribute={'name'}/>
@@ -35,6 +41,7 @@ const Subgroups = (props) => {
                     onClick={() => {
                         props.set(state.path, setData);
                         props.set("guides/p_groups", setGroups);
+                        group.onChange({target: { value: {}}});
                     }}>
                     Обновить данные
                 </button>
@@ -54,6 +61,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),

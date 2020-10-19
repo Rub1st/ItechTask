@@ -1,4 +1,7 @@
 import React from 'react'
+
+import Error from "../error_notification"
+
 import { SelectedInput, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
@@ -37,6 +40,9 @@ const InvoiceProducts = (props) => {
     return (
         <>
             <MaterialTables state={state}/>
+            {
+                props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
+            }
             <div className="d-flex input-panel">
                 <input placeholder="Полное имя" {...full_name}/>
                 <input placeholder="Короткое имя" {...short_name}/>
@@ -52,7 +58,6 @@ const InvoiceProducts = (props) => {
               <SelectedInput label={'ТТН'} classes={classes} object={invoice} collection={props.CosPro.invoices} attribute={'series_and_number'}/>     
             </div>
             <div>
-            
                 <button className={'btn btn-info btn-position'} onClick={() => 
                         props.add({
                             full_name: full_name.value,
@@ -80,6 +85,12 @@ const InvoiceProducts = (props) => {
                         props.setData("customs/invoices", setInvoices);
                         props.setData("guides/p_subgroups", setSubGroups);
                         props.setData("guides/rate_vats", setRatesNDS);
+                        provider.onChange({target: { value: {}}})
+                        customer.onChange({target: { value: {}}})
+                        rate_nds.onChange({target: { value: {}}})
+                        unit.onChange({target: { value: {}}})
+                        p_subgroup.onChange({target: { value: {}}})
+                        invoice.onChange({target: { value: {}}})
                     }}
                     >
                     Обновить данные
@@ -99,6 +110,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),

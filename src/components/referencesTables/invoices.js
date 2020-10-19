@@ -1,4 +1,7 @@
 import React from 'react'
+
+import Error from "../error_notification"
+
 import { SelectedInput, useCheckBox, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
@@ -48,6 +51,9 @@ const Invoices = (props) => {
     return (
         <>
           <MaterialTables state={state}/>
+            {
+                props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
+            }
             <div className="d-flex input-panel">
                 <input type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
@@ -115,6 +121,13 @@ const Invoices = (props) => {
                         props.set("customs/status_of_price_tag_printings", setStatusesPriceTag);
                         props.set("customs/status_of_booting_in_equipments", setStatusesBooting);
                         props.set("utils/invoice_types", setInvoiceTypes);
+                        agreement.onChange({target: { value: {}}})
+                        status_of_price_tag_printing.onChange({target: { value: {}}})
+                        status_of_acceptance.onChange({target: { value: {}}})
+                        status_of_booting_in_equipment.onChange({target: { value: {}}})
+                        contract.onChange({target: { value: {}}})
+                        operation.onChange({target: { value: {}}})
+                        invoice.onChange({target: { value: {}}})
                     }}
                     >
                     Обновить данные
@@ -134,6 +147,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),

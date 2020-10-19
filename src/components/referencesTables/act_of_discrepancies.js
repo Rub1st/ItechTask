@@ -1,4 +1,7 @@
 import React from 'react'
+
+import Error from "../error_notification"
+
 import { SelectedInput, useCheckBox, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
@@ -35,7 +38,6 @@ const ActOfDiscrepancies = (props) => {
     const act = useSelectBox({})
 
     const addAct = () => {
-        const condition = true
         props.add({
             is_closed: is_closed.value,
             is_conducted: is_conducted.value,
@@ -58,6 +60,9 @@ const ActOfDiscrepancies = (props) => {
     return (
         <>
           <MaterialTables state={state}/>
+          {
+            props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
+          }
             <div className="d-flex input-panel" onSubmit={addAct}>
                 <input label={"Закрыт"} type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
@@ -85,6 +90,10 @@ const ActOfDiscrepancies = (props) => {
                         props.set("warehouses/warehouses", setCustomerWarehouses);
                         props.set("warehouses/warehouses", setProviderWarehouses);
                         props.set("utils/invoice_types", setInvoiceTypes);
+                        invoice.onChange({target: { value: {}}})
+                        operation.onChange({target: { value: {}}})
+                        warehouse_p.onChange({target: { value: {}}})
+                        warehouse_c.onChange({target: { value: {}}})
                     }}
                     >
                     Обновить данные
@@ -104,6 +113,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),

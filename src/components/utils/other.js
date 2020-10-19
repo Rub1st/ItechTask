@@ -11,16 +11,3 @@ export const useStyles =
     },
 }));
 
-export const checkEmail = (value) => {
-  const reg = new RegExp(/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|ru|by)\b/);
-  return reg.test(value)
-}
-
-export const checkPhone = (value) => {
-  if (value) {
-    const reg = new RegExp(/\d{0,}/);
-    console.log(reg.test(value))
-    return reg.test(value);
-  }
-  return false 
-}

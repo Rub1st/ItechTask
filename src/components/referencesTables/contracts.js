@@ -1,4 +1,7 @@
 import React from 'react'
+
+import Error from "../error_notification"
+
 import { SelectedInput, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
 import { setData } from '../../reduxMain/reducer/id/actions.js'
@@ -33,7 +36,9 @@ const Contracts = (props) => {
     return (
         <>
             <MaterialTables state={state}/>
-
+            {
+                props.Error.errors ? <Error path={state.path} message={props.Error.errors}/> : null
+            }
             <div className="d-flex input-panel">
                 <input type="number" placeholder="Серия/номер" {...series_and_number}/>
                 <div>
@@ -65,7 +70,6 @@ const Contracts = (props) => {
                             customer_id: customer.value.id,
                             note: note.value,
                         },  state.path)
-
                     }>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
@@ -77,6 +81,11 @@ const Contracts = (props) => {
                         props.set("warehouses/type_of_payments", setTypeOfPayments);
                         props.set("warehouses/type_of_exchanges", setTypeOfExchanges);
                         props.set("warehouses/type_of_contracts", setTypeOfContracts);
+                        provider.onChange({target: { value: {}}})
+                        customer.onChange({target: { value: {}}})
+                        type_of_payment.onChange({target: { value: {}}})
+                        type_of_exchange.onChange({target: { value: {}}})
+                        type_of_contract.onChange({target: { value: {}}})
                     }}
                     >
                     Обновить данные
@@ -96,6 +105,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
+        Erorr: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
