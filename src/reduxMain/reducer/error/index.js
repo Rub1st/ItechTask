@@ -23,12 +23,16 @@ const ErrorReducer = (state = initialState, action) => {
 
 const definedValue = (data) => {
   switch(data.status) {
+    case 400:
+      return 'Нажмите на кнопку "Обновить данные" прежде чем что-то добавить'
     case 404:
       return "Error 404, not found"
+    case 422: 
+      return data.data.errors[0]
     case 500:
       return "Что-то не так с сервером, обратитесь к преподавателю"
-    default: 
-      return data.data.errors[0]
+    default:
+      return "Неизвестная ошибка, мы в процессе ее решения"
   }
 }
 
