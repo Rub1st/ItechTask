@@ -33,6 +33,36 @@ const Contracts = (props) => {
 
     const contract = useSelectBox({})
 
+    const updateData = () => {
+        props.set(state.path, setData); 
+        props.set("guides/organizations", setProviders);
+        props.set("guides/organizations", setCustomers);
+        props.set("guides/currencies", setCurrencies);
+        props.set("warehouses/type_of_payments", setTypeOfPayments);
+        props.set("warehouses/type_of_exchanges", setTypeOfExchanges);
+        props.set("warehouses/type_of_contracts", setTypeOfContracts);
+        provider.onChange({target: { value: {}}})
+        customer.onChange({target: { value: {}}})
+        type_of_payment.onChange({target: { value: {}}})
+        type_of_exchange.onChange({target: { value: {}}})
+        type_of_contract.onChange({target: { value: {}}})
+    }
+
+    const addData = () => {
+        props.add({
+            series_and_number: series_and_number.value,
+            valid_for: valid_for.value,
+            valid_from: valid_from.value,
+            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
+            type_of_payment_id: type_of_payment.value.id,
+            type_of_exchange_id: type_of_exchange.value.id,
+            type_of_contract_id: type_of_contract.value.id,
+            provider_id: provider.value.id,
+            customer_id: customer.value.id,
+            note: note.value,
+        },  state.path)
+    }
+
     return (
         <>
             <MaterialTables state={state}/>
@@ -57,37 +87,15 @@ const Contracts = (props) => {
               <SelectedInput label={'Тип договора'} classes={classes} object={type_of_contract} collection={props.CosPro.type_of_contracts} attribute={'name'}/>     
             </div>
             <div>
-                <button className={'btn btn-info btn-position'} onClick={() => 
-                        props.add({
-                            series_and_number: series_and_number.value,
-                            valid_for: valid_for.value,
-                            valid_from: valid_from.value,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
-                            type_of_payment_id: type_of_payment.value.id,
-                            type_of_exchange_id: type_of_exchange.value.id,
-                            type_of_contract_id: type_of_contract.value.id,
-                            provider_id: provider.value.id,
-                            customer_id: customer.value.id,
-                            note: note.value,
-                        },  state.path)
-                    }>Добавить</button>
+                <button className={'btn btn-info btn-position'} 
+                    onClick={ () => {
+                        updateData();
+                        addData();
+                }}>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {
-                        props.set(state.path, setData); 
-                        props.set("guides/organizations", setProviders);
-                        props.set("guides/organizations", setCustomers);
-                        props.set("guides/currencies", setCurrencies);
-                        props.set("warehouses/type_of_payments", setTypeOfPayments);
-                        props.set("warehouses/type_of_exchanges", setTypeOfExchanges);
-                        props.set("warehouses/type_of_contracts", setTypeOfContracts);
-                        provider.onChange({target: { value: {}}})
-                        customer.onChange({target: { value: {}}})
-                        type_of_payment.onChange({target: { value: {}}})
-                        type_of_exchange.onChange({target: { value: {}}})
-                        type_of_contract.onChange({target: { value: {}}})
-                    }}
-                    >
+                    onClick={updateData}
+                >
                     Обновить данные
                 </button>
                 <div className='btn btn-delete'>

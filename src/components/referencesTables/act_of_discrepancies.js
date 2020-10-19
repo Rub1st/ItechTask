@@ -4,7 +4,7 @@ import Error from "../error_notification"
 
 import { SelectedInput, useCheckBox, useDateTime, useInputText, useSelectBox, useStyles, MaterialTables} from '../utils'
 import { connect } from "react-redux";
-import { setData } from '../../reduxMain/reducer/id/actions.js'
+import { setData, updateData } from '../../reduxMain/reducer/id/actions.js'
 import { setCurrencies,
          setOperations,
          setProviderWarehouses,
@@ -57,6 +57,20 @@ const ActOfDiscrepancies = (props) => {
         },  state.path)
     }
 
+    const updateData = () => {
+        props.set(state.path, setData); 
+        props.set("customs/invoices", setInvoices);
+        props.set("customs/operations", setOperations);
+        props.set("guides/currencies", setCurrencies);
+        props.set("warehouses/warehouses", setCustomerWarehouses);
+        props.set("warehouses/warehouses", setProviderWarehouses);
+        props.set("utils/invoice_types", setInvoiceTypes);
+        invoice.onChange({target: { value: {}}})
+        operation.onChange({target: { value: {}}})
+        warehouse_p.onChange({target: { value: {}}})
+        warehouse_c.onChange({target: { value: {}}})
+    }
+
     return (
         <>
           <MaterialTables state={state}/>
@@ -79,22 +93,13 @@ const ActOfDiscrepancies = (props) => {
                 <SelectedInput label={'Склад покупателя'} classes={classes} object={warehouse_c} collection={props.CosPro.warehouses.filter(el => el.organization.is_provider === true)} attribute={'address'}/>
             </div>
             <div>
-                <button className={'btn btn-info btn-position'} onClick={addAct}>Добавить</button>
+                <button className={'btn btn-info btn-position'} onClick={() => {
+                    updateData();
+                    addAct();
+                    }}>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {
-                        props.set(state.path, setData); 
-                        props.set("customs/invoices", setInvoices);
-                        props.set("customs/operations", setOperations);
-                        props.set("guides/currencies", setCurrencies);
-                        props.set("warehouses/warehouses", setCustomerWarehouses);
-                        props.set("warehouses/warehouses", setProviderWarehouses);
-                        props.set("utils/invoice_types", setInvoiceTypes);
-                        invoice.onChange({target: { value: {}}})
-                        operation.onChange({target: { value: {}}})
-                        warehouse_p.onChange({target: { value: {}}})
-                        warehouse_c.onChange({target: { value: {}}})
-                    }}
+                    onClick={updateData}
                     >
                     Обновить данные
                 </button>

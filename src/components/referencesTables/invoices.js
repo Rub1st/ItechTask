@@ -48,6 +48,57 @@ const Invoices = (props) => {
 
     const invoice = useSelectBox({})
 
+    const updateData = () => {
+        props.set(state.path, setData); 
+        props.set("guides/organizations", setProviders);
+        props.set("guides/organizations", setCustomers);
+        props.set("warehouses/contracts", setContracts);
+        props.set("customs/operations", setOperations);
+        props.set("guides/currencies", setCurrencies);
+        props.set("customs/agreements", setAgreements);
+        props.set("customs/status_of_acceptances", setStatusesAcceptence);
+        props.set("customs/status_of_price_tag_printings", setStatusesPriceTag);
+        props.set("customs/status_of_booting_in_equipments", setStatusesBooting);
+        props.set("utils/invoice_types", setInvoiceTypes);
+        agreement.onChange({target: { value: {}}})
+        status_of_price_tag_printing.onChange({target: { value: {}}})
+        status_of_acceptance.onChange({target: { value: {}}})
+        status_of_booting_in_equipment.onChange({target: { value: {}}})
+        contract.onChange({target: { value: {}}})
+        operation.onChange({target: { value: {}}})
+        invoice.onChange({target: { value: {}}})
+    }
+
+    const addData = () => {
+        props.add({
+            is_closed: is_closed.value,
+            is_conducted: is_conducted.value,
+            series_and_number: series_and_number.value,
+            date_and_time: date_and_time.value,
+            selling_on_commission: selling_on_commission.value,
+            summa: summa.value,
+            summa_nds: summa_nds.value,
+            summa_with_nds: summa_with_nds.value,
+            record_summa: record_summa.value,
+            retail_summa: retail_summa.value,
+            pre_assessment_summa: pre_assessment_summa.value,
+            write_down_summa: write_down_summa.value,
+            note: note.value,
+            strings_count: strings_count.value,
+            total_count: total_count.value,
+            contract_id: contract.value.id,
+            operation_id: operation.value.id,
+            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
+            agreement_id: agreement.value.id,
+            status_of_price_tag_printing_id:
+            status_of_price_tag_printing.value.id,
+            status_of_acceptance_id: status_of_acceptance.value.id,
+            status_of_booting_in_equipment_id:
+            status_of_booting_in_equipment.value.id,
+            invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "закупка")[0].id
+        },  state.path)
+    };
+
     return (
         <>
           <MaterialTables state={state}/>
@@ -78,58 +129,13 @@ const Invoices = (props) => {
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
             </div>
             <div>         
-                <button className={'btn btn-info btn-position'} onClick={() => 
-                        props.add({
-                            is_closed: is_closed.value,
-                            is_conducted: is_conducted.value,
-                            series_and_number: series_and_number.value,
-                            date_and_time: date_and_time.value,
-                            selling_on_commission: selling_on_commission.value,
-                            summa: summa.value,
-                            summa_nds: summa_nds.value,
-                            summa_with_nds: summa_with_nds.value,
-                            record_summa: record_summa.value,
-                            retail_summa: retail_summa.value,
-                            pre_assessment_summa: pre_assessment_summa.value,
-                            write_down_summa: write_down_summa.value,
-                            note: note.value,
-                            strings_count: strings_count.value,
-                            total_count: total_count.value,
-                            contract_id: contract.value.id,
-                            operation_id: operation.value.id,
-                            currency_id: props.CosPro.currencies.filter(el => el.short_name === "Br")[0].id,
-                            agreement_id: agreement.value.id,
-                            status_of_price_tag_printing_id:
-                            status_of_price_tag_printing.value.id,
-                            status_of_acceptance_id: status_of_acceptance.value.id,
-                            status_of_booting_in_equipment_id:
-                            status_of_booting_in_equipment.value.id,
-                            invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "закупка")[0].id
-                        },  state.path)
-                    }>Добавить</button>
+                <button className={'btn btn-info btn-position'} onClick={() => {
+                    updateData();
+                    addData();
+                }}>Добавить</button>
                 <button 
                     className="btn btn-success btn-position"
-                    onClick={() => {
-                        props.set(state.path, setData); 
-                        props.set("guides/organizations", setProviders);
-                        props.set("guides/organizations", setCustomers);
-                        props.set("warehouses/contracts", setContracts);
-                        props.set("customs/operations", setOperations);
-                        props.set("guides/currencies", setCurrencies);
-                        props.set("customs/agreements", setAgreements);
-                        props.set("customs/status_of_acceptances", setStatusesAcceptence);
-                        props.set("customs/status_of_price_tag_printings", setStatusesPriceTag);
-                        props.set("customs/status_of_booting_in_equipments", setStatusesBooting);
-                        props.set("utils/invoice_types", setInvoiceTypes);
-                        agreement.onChange({target: { value: {}}})
-                        status_of_price_tag_printing.onChange({target: { value: {}}})
-                        status_of_acceptance.onChange({target: { value: {}}})
-                        status_of_booting_in_equipment.onChange({target: { value: {}}})
-                        contract.onChange({target: { value: {}}})
-                        operation.onChange({target: { value: {}}})
-                        invoice.onChange({target: { value: {}}})
-                    }}
-                    >
+                    onClick={updateData}>
                     Обновить данные
                 </button>
                 <div className='btn btn-delete'>
