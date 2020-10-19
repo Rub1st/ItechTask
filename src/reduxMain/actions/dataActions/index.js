@@ -26,5 +26,5 @@ export const AddToData = (obj, path) => dispatch => {
     "Content-Type": "application/x-www-form-urlencoded",
   })
   .then((response) => dispatch(add(response.data)))
-  .catch(error => dispatch(setErrors(error.errors)))
+  .catch(error => dispatch(setErrors(error.data.errors)))
 } 
