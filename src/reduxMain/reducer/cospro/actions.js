@@ -56,11 +56,6 @@ export const setRatesNDS = (data) => ({
   value: data
 })
 
-export const setErrors = (data) => ({
-  type: SET_ERRORS,
-  value: data
-})
-
 export const setTypeOfContracts = (data) => ({
   type: SET_TYPE_OF_CONTRACT,
   value: data,

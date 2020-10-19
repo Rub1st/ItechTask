@@ -12,6 +12,11 @@
     transition: all 0.3s ease-out;
 }
 
+.error-text {
+    font-size: 15pt;
+    align-content: center;
+}
+
 .Open {
     animation-duration: 0.5s;
     animation-name: slidein;

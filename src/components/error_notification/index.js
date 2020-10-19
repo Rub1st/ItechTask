@@ -1,24 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { setData } from '../../reduxMain/reducer/id/actions.js'
-import { takeData } from "../../reduxMain/reducer/id/actions";
+import { closeError } from "../../reduxMain/reducer/error/actions";
 
 import './style.css'
 
 const Error = (props) => (
     <div className={"Modal Open"}>
-        <div>
+        <div className={"error-text"}>
             {props.message}
         </div>
-        <button onClick={props.set(props.path, setData)}>Close</button>
+        <button className={"btn btn-info"} onClick={() => props.closeError()}>Закрыть</button>
     </div>
 )
 
 export default connect(
-    state => ({
-        idReducer: state.idReducer,
-    }),
+    state => ({}),
     dispatch => ({
-        set: (path, setter) => dispatch(takeData(path, setter))
+        closeError: () => dispatch(closeError(null))
     })
 )(Error);

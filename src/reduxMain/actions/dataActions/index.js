@@ -3,7 +3,7 @@ import {
   DESTROY
 } from "../../constants";
 import axios from "axios";
-import { setErrors } from "../../reducer/cospro/actions";
+import { setErrors } from "../../reducer/error/actions";
 
 const add = (data) => ({
   type: ADD,
@@ -26,5 +26,5 @@ export const AddToData = (obj, path) => dispatch => {
     "Content-Type": "application/x-www-form-urlencoded",
   })
   .then((response) => dispatch(add(response.data)))
-  .catch(error => setErrors(error))
+  .catch(error => dispatch(setErrors(error.message)))
 } 

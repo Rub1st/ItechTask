@@ -24,7 +24,7 @@ const ActOfDiscrepanciesProducts = (props) => {
         <>
           <MaterialTables state={state}/>
           {
-              props.CosPro.errors ? <Error path={state.path} {...props.CosPro.errors}/> : null
+            props.CosPro.errors ? <Error path={state.path} message={props.CosPro.errors}/> : null
           }
             <div className="d-flex input-panel">
               <SelectedInput label={'Акт расхождения'} classes={classes} object={act} collection={props.CosPro.acts} attribute={'series_and_number'}/>

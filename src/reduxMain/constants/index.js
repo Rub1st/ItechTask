@@ -30,3 +30,4 @@ export const SET_INVOICES = "SET_INVOICES";
 export const SET_ACTS = "SET_ACTS";
 export const SET_INVOICE_PRODUCTS = "SET_INVOICE_PRODUCTS";
 export const SET_ERRORS = "SET_ERRORS";
+export const CLOSE_ERROR = "CLOSE_ERROR";
