@@ -17,7 +17,6 @@ const ActOfDiscrepanciesProducts = (props) => {
     const {state} = props;
     const invoice_products = useSelectBox({});
     const act = useSelectBox({});
-    console.log(act)
 
     const pr_act = useSelectBox({})
 
@@ -44,8 +43,8 @@ const ActOfDiscrepanciesProducts = (props) => {
                         props.set(state.path, setData); 
                         props.set("customs/act_of_discrepancies", setActs);
                         props.set("guides/invoice_products", setInvoiceProducts);
-                        act.onChange({})
-                        invoice_products.onChange({})
+                        act.onChange({event: { target: { value: {}}}})
+                        invoice_products.onChange({event: { target: { value: {}}}})
                     }}
                     >
                     Обновить данные
