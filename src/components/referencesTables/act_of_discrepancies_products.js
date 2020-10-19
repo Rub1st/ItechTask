@@ -43,8 +43,8 @@ const ActOfDiscrepanciesProducts = (props) => {
                         props.set(state.path, setData); 
                         props.set("customs/act_of_discrepancies", setActs);
                         props.set("guides/invoice_products", setInvoiceProducts);
-                        act.onChange({event: { target: { value: {}}}})
-                        invoice_products.onChange({event: { target: { value: {}}}})
+                        act.onChange({target: { value: {}}})
+                        invoice_products.onChange({target: { value: {}}})
                     }}
                     >
                     Обновить данные
