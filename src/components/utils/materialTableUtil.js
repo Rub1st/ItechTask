@@ -45,6 +45,7 @@ const tableIcons = {
 
 const MaterialTables = (props) => {
     const {state,isAdd = false} = props
+    const checkIdes = (first,second,thrid) => props.ID.idTop === first && props.ID.idLeftField === second && props.ID.idLeft === thrid
     const add = isAdd ? {
         onRowAdd: (newData) =>
         new Promise((resolve, reject) => {
@@ -74,16 +75,64 @@ const MaterialTables = (props) => {
             }, 600);
         }),
       } : null
+    const sumPretier = (data) => {
+      return checkIdes(1,0,0) ?
+      data.map(el => (
+        {...el,
+          summa_nds: createPrettySum(el.summa_nds),
+          summa: createPrettySum(el.summa),
+          summa_with_nds: createPrettySum(el.summa_with_nds),
+          retail_summa: createPrettySum(el.retail_summa),
+          record_summa: createPrettySum(el.record_summa),
+          pre_assessment_summa: createPrettySum(el.pre_assessment_summa),
+          write_down_summa: createPrettySum(el.write_down_summa),
+        })) : checkIdes(1,1,0) ? data.map(el => (
+          {...el,
+            summa_with_nds: createPrettySum(el.summa_with_nds),
+            summa_nds: createPrettySum(el.summa_nds),
+          }
+        )) : checkIdes(0,1,0) ? data.map(el => (
+          {...el,
+            price: createPrettySum(el.price),
+            summa_nds: createPrettySum(el.summa_nds),
+            cost: createPrettySum(el.cost),
+            invoice_date: el.invoice_date == null ? '-' : el.invoice_date,
+            }
+        )) : checkIdes(0,1,5) ? data.map(el => (
+          {...el,
+           price: createPrettySum(el.invoice_product.price),
+           wholesale_percent: createPrettySum(el.wholesale_percent),
+           wholesale_value: createPrettySum(el.wholesale_value),
+           commercial_percent: createPrettySum(el.commercial_percent),
+           commercial_value: createPrettySum(el.commercial_value),
+           nds_percent: createPrettySum(el.nds_percent),
+           nds_value: createPrettySum(el.nds_value),
+           retail_price: createPrettySum(el.retail_price),
+           cost: createPrettySum(el.cost),
+          }
+        ))
+        : data
+    }
+
     return(
         <MaterialTable
             icons={tableIcons}
             title={state.label}
             columns={state.table.columns}
-            data={props.ID.data}
+            data={sumPretier(props.ID.data)}
             editable={{...add}}
           />
     )
 }
+
+const createPrettySum = (num) => {
+  let number = num.toString().split('.')
+  number[1] = number.length > 1 ? number[1].length > 2 ? number[1].slice(0,2) :
+              number[1].length < 2 ? number[1] + '0' : number[1] : '00'
+  return number[0] + '.' + number[1]
+}
+
+
 
 export default connect(
     state => ({

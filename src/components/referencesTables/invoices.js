@@ -13,7 +13,7 @@ import { setCustomers,
          setOperations,
          setStatusesAcceptence,
          setStatusesBooting,
-         setStatusesPriceTag, 
+         setStatusesPriceTag,
         setInvoiceTypes} from '../../reduxMain/reducer/cospro/actions'
 import { destroyData, AddToData } from "../../reduxMain/actions/dataActions";
 import { takeData } from "../../reduxMain/reducer/id/actions";
@@ -49,7 +49,7 @@ const Invoices = (props) => {
     const invoice = useSelectBox({})
 
     const updateData = () => {
-        props.set(state.path, setData); 
+        props.set(state.path, setData);
         props.set("guides/organizations", setProviders);
         props.set("guides/organizations", setCustomers);
         props.set("warehouses/contracts", setContracts);
@@ -97,7 +97,10 @@ const Invoices = (props) => {
             status_of_booting_in_equipment.value.id,
             invoice_type_id: props.CosPro.invoice_types.filter(el => el.name === "закупка")[0].id
         },  state.path)
+
     };
+
+    console.log(state)
 
     return (
         <>
@@ -109,7 +112,10 @@ const Invoices = (props) => {
                 <input type="checkbox" {...is_closed}/>
                 <input type="checkbox" {...is_conducted}/>
                 <input type="number" placeholder="Серия/номер" {...series_and_number}/>
-                <input type="date" placeholder="Дата/время" {...date_and_time}/>
+                <div>
+                    <div className="placeholder">Дата создания</div>
+                    <input type="date" placeholder="Дата/время" {...date_and_time}/>
+                </div>
                 <input type="checkbox" {...selling_on_commission}/>
                 <input type="number" placeholder="Сумма" {...summa}/>
                 <input type="number" placeholder="Сумма НДС" {...summa_nds}/>
@@ -128,23 +134,23 @@ const Invoices = (props) => {
               <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.CosPro.contracts} attribute={'series_and_number'}/>
               <SelectedInput label={'Операция'} classes={classes} object={operation} collection={props.CosPro.operations} attribute={'name'}/>
             </div>
-            <div>         
+            <div>
                 <button className={'btn btn-info btn-position'} onClick={() => {
                     updateData();
                     addData();
                 }}>Добавить</button>
-                <button 
+                <button
                     className="btn btn-success btn-position"
                     onClick={updateData}>
                     Обновить данные
                 </button>
                 <div className='btn btn-delete'>
                     <SelectedInput label={'Накладная'} classes={classes} object={invoice} collection={props.ID.data} attribute={'series_and_number'}/>
-                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                    <button className={'btn btn-danger btn-position'} onClick={() =>
                         props.destroy(invoice.value, state.path)
                     }>Удалить</button>
                 </div>
-            </div>  
+            </div>
         </>
     )
 }

@@ -83,15 +83,16 @@ export default [
             table: {
               columns: [
                 {title: "Подгруппа", field: "p_subgroup.name"},
-                {title: "Номер накладной ", field: "invoice.series_and_number"},
-                {title: "Полное имя", field: "full_name"},
-                {title: "Короткое имя", field: "short_name"},
+                {title: "Наименование", field: "full_name"},
                 {title: "Код", field: "code"},
+                {title: "Номер накладной ", field: "invoice.series_and_number"},
+                {title: "Кол-во", field: "count"},
                 {title: "Цена", field: "price"},
                 {title: "Сумма НДС", field: "summa_nds"},
                 {title: "Стоимость", field: "cost"},
                 {title: "Рейтинг НДС", field: "rate_vat.rate"},
                 {title: "Ед. измерения", field: "unit.short_name"},
+                {title: "Дата прихода", field: "invoice_date"}
               ],
               data: [],
             },
@@ -106,6 +107,8 @@ export default [
                 {title: "Номер ТТН", field: "invoice_product.invoice.series_and_number"},
                 {title: "Акт расхождения", field: "act_of_discrepancy.series_and_number"},
                 {title: "Продукт", field: "invoice_product.full_name"},
+                {title: "Кол-во", field: "count"},
+                {title: "Стоимость", field: "cost"}
               ],
               data: []
             }
@@ -144,23 +147,22 @@ export default [
           {
             id: 5,
             label: "Цены",
-            path: 'Nujno razobratsya',
+            path: 'guides/costs',
             table: {
               columns: [
-                { title: "Наименование", field: "close" },
-                { title: "Код", field: "given" },
-                { title: "Краткое наименование", field: "number" },
-                { title: "Базовая ед. изм.", field: "seria" },
-                { title: "Родительная ед. изм.", field: "dateOfDocument" },
-                { title: "Коэффицент пересчета в баз. ед.", field: "Sender" },
-                { title: "Дробный", field: "warehouseOfSender" },
-                { title: "Вес нетто, кг", field: "getter" },
-                { title: "Вес брутто, кг", field: "warehouseOfGetter" },
-                {
-                  title: "Учитывать продажи в наличие товара",
-                  field: "operation",
-                },
-                { title: "Передавать на весы", field: "countAll" },
+                { title: "Наименование", field: "invoice_product.full_name" },
+                { title: "Номер ТТН", field: "invoice_product.invoice.series_and_number" },
+                { title: "ед. изм.", field: "invoice_product.unit.full_name" },
+                { title: "Кол-во", field: "invoice_product.count" },
+                { title: "Цена", field: "price" },
+                { title: "Опт. надбавка %", field: "wholesale_percent" },
+                { title: "Опт. надбавка Z", field: "wholesale_value" },
+                { title: "Торг. надбавка %", field: "commercial_percent" },
+                { title: "Торг. надбавка Z", field: "commercial_value" },
+                { title: "НДС %", field: "nds_percent" },
+                { title: "НДС Z", field: "nds_value" },
+                { title: "Розничная цена", field: "retail_price" },
+                { title: "Стоимость", field: "cost" },
               ],
               data: [],
             },
