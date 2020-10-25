@@ -58,7 +58,7 @@ const ActOfDiscrepancies = (props) => {
     }
 
     const updateData = () => {
-        props.set(state.path, setData); 
+        props.set(state.path, setData);
         props.set("customs/invoices", setInvoices);
         props.set("customs/operations", setOperations);
         props.set("guides/currencies", setCurrencies);
@@ -97,7 +97,7 @@ const ActOfDiscrepancies = (props) => {
                     updateData();
                     addAct();
                     }}>Добавить</button>
-                <button 
+                <button
                     className="btn btn-success btn-position"
                     onClick={updateData}
                     >
@@ -105,11 +105,11 @@ const ActOfDiscrepancies = (props) => {
                 </button>
                 <div className='btn btn-delete'>
                     <SelectedInput label={'Акт расхождения'} classes={classes} object={act} collection={props.ID.data} attribute={'series_and_number'}/>
-                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                    <button className={'btn btn-danger btn-position'} onClick={() =>
                         props.destroy(act.value, state.path)
                     }>Удалить</button>
                 </div>
-            </div>  
+            </div>
         </>
     )
 }

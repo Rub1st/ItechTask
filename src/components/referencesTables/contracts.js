@@ -34,7 +34,7 @@ const Contracts = (props) => {
     const contract = useSelectBox({})
 
     const updateData = () => {
-        props.set(state.path, setData); 
+        props.set(state.path, setData);
         props.set("guides/organizations", setProviders);
         props.set("guides/organizations", setCustomers);
         props.set("guides/currencies", setCurrencies);
@@ -82,17 +82,17 @@ const Contracts = (props) => {
                 <input placeholder="Примечание" {...note}/>
               <SelectedInput label={'Поставщик'} classes={classes} object={provider} collection={props.CosPro.providers} attribute={'full_name'}/>
               <SelectedInput label={'Покупатель'} classes={classes} object={customer} collection={props.CosPro.customers} attribute={'full_name'}/>
-              <SelectedInput label={'Тип оплаты'} classes={classes} object={type_of_payment} collection={props.CosPro.type_of_payments} attribute={'name'}/>     
-              <SelectedInput label={'Тип обмена'} classes={classes} object={type_of_exchange} collection={props.CosPro.type_of_exchanges} attribute={'name'}/>     
-              <SelectedInput label={'Тип договора'} classes={classes} object={type_of_contract} collection={props.CosPro.type_of_contracts} attribute={'name'}/>     
+              <SelectedInput label={'Тип оплаты'} classes={classes} object={type_of_payment} collection={props.CosPro.type_of_payments} attribute={'name'}/>
+              <SelectedInput label={'Тип обмена'} classes={classes} object={type_of_exchange} collection={props.CosPro.type_of_exchanges} attribute={'name'}/>
+              <SelectedInput label={'Тип договора'} classes={classes} object={type_of_contract} collection={props.CosPro.type_of_contracts} attribute={'name'}/>
             </div>
             <div>
-                <button className={'btn btn-info btn-position'} 
+                <button className={'btn btn-info btn-position'}
                     onClick={ () => {
                         updateData();
                         addData();
                 }}>Добавить</button>
-                <button 
+                <button
                     className="btn btn-success btn-position"
                     onClick={updateData}
                 >
@@ -100,11 +100,11 @@ const Contracts = (props) => {
                 </button>
                 <div className='btn btn-delete'>
                     <SelectedInput label={'Договор'} classes={classes} object={contract} collection={props.ID.data} attribute={'series_and_number'}/>
-                    <button className={'btn btn-danger btn-position'} onClick={() => 
+                    <button className={'btn btn-danger btn-position'} onClick={() =>
                         props.destroy(contract.value, state.path)
                     }>Удалить</button>
                 </div>
-            </div>  
+            </div>
         </>
     )
 }
@@ -113,7 +113,7 @@ export default connect(
     state => ({
         ID: state.idReducer,
         CosPro: state.cosProReducer,
-        Erorr: state.errorReducer
+        Error: state.errorReducer
     }),
     dispatch => ({
         add: (data, path) => dispatch(AddToData(data, path)),
@@ -123,4 +123,4 @@ export default connect(
 )(Contracts);
 
 
-//<SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>     
+//<SelectedInput label={'Валюта'} classes={classes} object={currency} collection={props.CosPro.currencies} attribute={'full_name'}/>
