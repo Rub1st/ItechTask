@@ -101,17 +101,19 @@ const MaterialTables = (props) => {
         )) : checkIdes(0,1,5) ? data.map(el => (
           {...el,
            price: createPrettySum(el.invoice_product.price),
-           wholesale_percent: createPrettySum(el.wholesale_percent),
            wholesale_value: createPrettySum(el.wholesale_value),
-           commercial_percent: createPrettySum(el.commercial_percent),
            commercial_value: createPrettySum(el.commercial_value),
-           nds_percent: createPrettySum(el.nds_percent),
            nds_value: createPrettySum(el.nds_value),
            retail_price: createPrettySum(el.retail_price),
            cost: createPrettySum(el.cost),
           }
         ))
-        : data
+        : checkIdes(0,1,1) ? data.map(el => (
+          {
+            ...el,
+            cost: createPrettySum(el.cost),
+          }
+        )) : data
     }
 
     return(

@@ -39,7 +39,7 @@ const idReducer = (state = initialState, action) => {
         let path =
           TopNavbarItems[initialState.idTop].mainList[initialState.idLeftField]
             .childrenList[initialState.idLeft].path;
-  
+
         let obj = { path: path, data: action.value.data };
         axios.post(`http://localhost:3000/${path}`, obj, {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -47,6 +47,7 @@ const idReducer = (state = initialState, action) => {
         return state;
       }
       case SET_DATA: {
+        console.log(action.value)
         return Object.assign({}, state, { data: action.value });
       }
       default:

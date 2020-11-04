@@ -90,6 +90,7 @@ export default [
                 {title: "Цена", field: "price"},
                 {title: "Сумма НДС", field: "summa_nds"},
                 {title: "Стоимость", field: "cost"},
+                {title: "Cтоимость с НДС", field: "cost_with_nds"},
                 {title: "Рейтинг НДС", field: "rate_vat.rate"},
                 {title: "Ед. измерения", field: "unit.short_name"},
                 {title: "Дата прихода", field: "invoice_date"}
@@ -225,6 +226,7 @@ export default [
                 {
                   title: "Продажа на комиссию",
                   field: "selling_on_commission",
+                  type: "boolean",
                 },
                 { title: "Сумма", field: "summa" },
                 { title: "Сумма НДС", field: "summa_nds" },
@@ -279,10 +281,10 @@ export default [
                 { title: "Сумма НДС", field: "summa_nds" },
                 { title: "Сумма с НДС", field: "summa_with_nds" },
                 { title: "Примечание", field: "note" },
-                { title: "Поставщик", field: "contract.provider_id" },
+                { title: "Поставщик", field: "invoice.contract.provider.full_name" },
                 { title: "Склад поставщика", field: "provider_warehouse.address" },
                 { title: "Склад покупателя", field: "customer_warehouse.address" },
-                { title: "Покупатель", field: "contract.customer_id" },
+                { title: "Покупатель", field: "invoice.contract.customer.full_name" },
                 { title: "Операция", field: "operation.name" },
                 { title: "Валюта", field: "currency.full_name" },
                 { title: "Направление документа", field: "invoice_type.name"},

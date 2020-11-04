@@ -33,7 +33,6 @@ const Costs = (props) => {
             <div className="d-flex input-panel">
                 <input type="number" placeholder="процент товарной надбавки" {...commercial_percent}/>
                 <input type="number" placeholder="процент оптовой надбавки" {...wholesale_percent}/>
-                <input type="number" placeholder="процент НДС" {...nds_percent}/>
                 <SelectedInput label={'Продукт'} classes={classes} object={invoice_products} collection={props.CosPro.invoice_products} attribute={'full_name'}/>
             </div>
             <div>
@@ -41,7 +40,6 @@ const Costs = (props) => {
                         props.add({
                           wholesale_percent: wholesale_percent.value,
                           commercial_percent: commercial_percent.value,
-                          nds_percent: nds_percent.value,
                           invoice_product_id: invoice_products.value.id,
                         },  state.path)
 

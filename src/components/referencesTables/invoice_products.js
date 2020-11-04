@@ -45,7 +45,6 @@ const InvoiceProducts = (props) => {
                 <input type="number" placeholder="Код" {...code}/>
                 <input type="number" placeholder="Количество" {...count}/>
                 <input type="number" placeholder="Цена" {...price}/>
-                <input type="number" placeholder="Сумма НДС" {...summa_nds}/>
               <SelectedInput label={'Рейтинги НДС'} classes={classes} object={rate_nds} collection={props.CosPro.rates_vats} attribute={'rate'}/>
               <SelectedInput label={'Ед. измерения'} classes={classes} object={unit} collection={props.CosPro.units} attribute={'short_name'}/>
               <SelectedInput label={'Подгруппа товара'} classes={classes} object={p_subgroup} collection={props.CosPro.p_subgroups} attribute={'name'}/>
@@ -58,8 +57,6 @@ const InvoiceProducts = (props) => {
                             code: code.value,
                             price: price.value,
                             count: count.value,
-                            summa_nds: summa_nds.value,
-                            cost: (+summa_nds.value + +price.value) * +count.value ,
                             rate_vat_id: rate_nds.value.id,
                             unit_id: unit.value.id,
                             p_subgroup_id: p_subgroup.value.id,
