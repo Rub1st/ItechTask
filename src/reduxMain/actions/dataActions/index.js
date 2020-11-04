@@ -27,4 +27,4 @@ export const AddToData = (obj, path) => dispatch => {
   })
   .then((response) => dispatch(add(response.data)))
   .catch(error => dispatch(setErrors(error.response)))
-} 
+}
